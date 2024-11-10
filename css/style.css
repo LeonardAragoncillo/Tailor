@@ -1,0 +1,105 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.topnav{
+    width:100%;
+    height: 100px;
+    background-image: url(../img/image\ 1.png);
+
+
+}
+
+.side img{
+    width: 6.5vw;
+    height: 12vh;
+    margin-top: 80px;
+    margin-left: 40px;
+}
+
+.side{
+    width: 315px;
+    height: 240px;
+    background: #635d5d;
+    box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.25);
+
+}
+
+.side h3{
+    padding-left: 40px;
+}
+.side p{
+    padding-left: 35px;
+}
+
+.inside{
+    /* Rectangle 10 */
+
+    width: 315px;
+    height: 311%;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
+
+
+}
+
+.logo-text{
+    position: absolute;
+    height: 48px;
+    left: 350px;
+    font-weight: 900;
+    font-size: 32px;
+    color: white;
+    top: 20px;
+}
+
+.custom{
+    /* Customer */
+
+position: absolute;
+width: 166px;
+height: 35px;
+left: 108px;
+top: 98px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 22px;
+line-height: 27px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.03em;
+
+color: #e0e0e0;
+
+
+}
+
+.side p{
+    /* Customer@gmail.com */
+
+position: absolute;
+width: 166px;
+height: 35px;
+left: 106px;
+top: 121px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 300;
+font-size: 11px;
+line-height: 13px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.03em;
+
+color: #e0e0e0;
+
+
+}
