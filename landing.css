@@ -30,7 +30,7 @@ ul.navbar-nav{
 }
 
 .intro{
-    background-image: url(landing-bg.webp);
+    background-image: url(./img/landing-bg.webp);
     display: flex;
     justify-content: center;
     align-items: center;
