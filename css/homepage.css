@@ -13,7 +13,7 @@
 }
 
 .bgrectang{
-    height: 90vh;
+    height: 100vh;
     width: 204.5vh;
     background-image: url(../img/homepage\ bg.png);
     background-size: cover;
@@ -41,7 +41,20 @@
 }
 
 .bgrectang a{
-    font-style: normal;
+    text-decoration: none;
+    background-color: white;
+    width: 15%;
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    border-radius: 8px;
+}
+
+.bgrectang a:hover{
+    background-color: #5a5959;
+    color: #fff;
 }
 
 .belownav{
@@ -101,6 +114,8 @@ height: auto;
     text-decoration: none;
 }
 
+.inside ul {
+}
 
 .inside ul li {
     padding-top: 60px;
