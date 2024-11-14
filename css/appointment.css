@@ -7,12 +7,13 @@
 }
 
 .topnav{
-    
-    
-    
+    height: 10vh;
+    background-image: url(../img/homepage\ bg.png);
+    background-size: cover;
 }
 
 .bgrectang{
+    /*
     height: 90vh;
     width: 204.5vh;
     background-image: url(../img/homepage\ bg.png);
@@ -24,24 +25,31 @@
     justify-content: center;
     flex-direction: column;
     padding-left: 15%;
+    */
 }
 
 .bgrectang h2{
+    /*
     font-family: 'Inter';
     font-style: normal;
     font-weight: 900;
     font-size: 64px;
     line-height: 77px;
     color: #fff;
+    */
 }
 
 .bgrectang p{
+    /*
     font-size: 20px;
     color: #fff;
+    */
 }
 
 .bgrectang a{
+    /*
     font-style: normal;
+    */
 }
 
 .belownav{
