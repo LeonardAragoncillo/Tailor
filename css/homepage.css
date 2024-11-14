@@ -96,18 +96,19 @@ height: auto;
 }
 
 .inside{
-    /* Rectangle 10 */
+    /* Rectangle 10 
 
     width: 315px;
-    height: 584%;
+    height: 50%;
     box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
     background: #ffffff;
+    */
 }
 
 
 
 .inside ul li a {
-    padding: 50px;
+    padding: 5px;
     border-radius: 10px;
     color: #000000;
     list-style: none;
@@ -115,10 +116,14 @@ height: auto;
 }
 
 .inside ul {
+    display: flex;
+    justify-content: flex-end;
+    height: 50px;
+    
 }
 
 .inside ul li {
-    padding-top: 60px;
+    padding-top: 20px;
     margin-right: 10px;
     list-style: none;
     transition: transform .2s;
@@ -126,6 +131,12 @@ height: auto;
 
 .inside ul li:hover {
     transform: scale(1.2);
+}
+
+.inside ul img{
+    height: 60px;
+    margin-top: -18px;
+    margin-left: -10px;
 }
 
 .menu img{
