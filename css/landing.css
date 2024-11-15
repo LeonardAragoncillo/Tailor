@@ -11,7 +11,7 @@ nav.navbar{
     justify-content: space-around;
     margin: auto;
     align-items: center;
-    background: rgb(0, 0, 0);
+    background: rgb(76, 76, 76);
     z-index: 2;
     overflow: hidden;
 }   

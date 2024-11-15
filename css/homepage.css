@@ -1,8 +1,8 @@
 *{
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
-    margin: 0;
     padding: 0;
+    margin: 0;
+    font-family: '__Inter_20951f', '__Inter_Fallback_20951f';
     box-sizing: border-box;
 }
 
@@ -14,7 +14,7 @@
 
 .bgrectang{
     height: 100vh;
-    width: 204.5vh;
+    width: 100%;
     background-image: url(../img/homepage\ bg.png);
     background-size: cover;
     display: flex;
@@ -23,7 +23,6 @@
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
-    padding-left: 15%;
 }
 
 .bgrectang h2{
@@ -96,13 +95,23 @@ height: auto;
 }
 
 .inside{
-    /* Rectangle 10 
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    justify-content: space-between;
+    background-color: #635d5d;
+    width: 100%;
+    color: #fff;
+    position: sticky;
+    overflow: hidden;
+}
 
-    width: 315px;
-    height: 50%;
-    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.25);
-    background: #ffffff;
-    */
+.inside h2{
+    margin-left: 10px;
+    padding-left: 20px;
+    font-size:larger;
+    margin: 0%;
+    font-weight: 600;
 }
 
 
@@ -110,7 +119,7 @@ height: auto;
 .inside ul li a {
     padding: 5px;
     border-radius: 10px;
-    color: #000000;
+    color: #ffffff;
     list-style: none;
     text-decoration: none;
 }
