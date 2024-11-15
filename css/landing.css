@@ -180,3 +180,7 @@ div.icon{
 div.text-center p-3{
     background-color: beige;
 }
+.icon a{
+    padding-right: 10px;
+    color: black;
+}
