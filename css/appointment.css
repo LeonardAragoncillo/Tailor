@@ -1,4 +1,4 @@
-*{
+* {
     font-size: 1em;
     padding: 0;
     margin: 0;
@@ -6,13 +6,9 @@
     box-sizing: border-box;
 }
 
-.topnav{
-    
-    
-    
-}
+.topnav {}
 
-.bgrectang{
+.bgrectang {
     height: 100vh;
     width: 100%;
     background-image: url(../img/homepage\ bg.png);
@@ -27,53 +23,74 @@
 
 .rectang {
     border: 1px solid black;
-    width: 711px;
-    height: 421px;
-    background: white;
+    width: 51.25%;
+    height: 50.0833%;
+    background: #ebebeb;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 
 }
-.rectang{
+
+.rectang {
     padding: 26px;
 }
-.rectang h2{
+
+.rectang h2 {
     text-align: center;
 }
-.rectang p{
+
+.rectang p {
     padding-left: 90px;
     font-size: 14px;
-    
+
 }
 
-div.next{
+div.container{
+    height: 18%;
     display: flex;
-    justify-content: end;
-    background-color: white;
-    color: black;
-
+    justify-content: flex-end;
+    align-items: flex-end;
 }
-button#next.nxt{
+
+button#next.btn-1 {
     background-color: white;
     color: black;
     padding: 8px;
-    border-radius: 7px;
+    border-radius: 8px;
     width: 158px;
     height: 50px;
-   
+}
+button#next:hover{
+    background-color: black;
+    color: white;
+    transition: color 0.2s ease-in-out, transform 0.3s ease-in-out;
+}
+div.next{
+    border-radius: 8px;
+    
 }
 
-div.button{
+
+div.button {
     text-align: center;
-    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    height: 30%;
+    align-items: center;
+    width: 22%;
+    margin-left: 36%;
+
 }
-button.btn{
-    
+
+button.btn {
+
     background-color: #000000;
     color: white;
 }
 
-.belownav{
+.belownav {
     top: 0;
     left: 0;
     bottom: 0;
@@ -85,18 +102,18 @@ button.btn{
 }
 
 .belownav:hover {
-width: auto;
-height: auto;
+    width: auto;
+    height: auto;
 }
 
-.side img{
+.side img {
     width: 6.5vw;
     height: 12vh;
     margin-top: 80px;
     margin-left: 40px;
 }
 
-.side{
+.side {
     width: 315px;
     height: 240px;
     background: #635d5d;
@@ -104,14 +121,15 @@ height: auto;
 
 }
 
-.side h3{
+.side h3 {
     padding-left: 40px;
 }
-.side p{
+
+.side p {
     padding-left: 35px;
 }
 
-.inside{
+.inside {
     display: flex;
     align-items: center;
     margin-right: 5px;
@@ -123,10 +141,10 @@ height: auto;
     overflow: hidden;
 }
 
-.inside h2{
+.inside h2 {
     margin-left: 10px;
     padding-left: 20px;
-    font-size:larger;
+    font-size: larger;
     margin: 0%;
     font-weight: 600;
 }
@@ -145,7 +163,7 @@ height: auto;
     display: flex;
     justify-content: flex-end;
     height: 50px;
-    
+
 }
 
 .inside ul li {
@@ -159,18 +177,18 @@ height: auto;
     transform: scale(1.2);
 }
 
-.inside ul img{
+.inside ul img {
     height: 60px;
     margin-top: -18px;
     margin-left: -10px;
 }
 
-.menu img{
+.menu img {
     height: 25px;
     padding-right: 20px;
 }
 
-.logo-text{
+.logo-text {
     position: absolute;
     height: 48px;
     left: 350px;
@@ -180,55 +198,54 @@ height: auto;
     top: 20px;
 }
 
-.custom{
+.custom {
     /* Customer */
 
-position: absolute;
-width: 166px;
-height: 35px;
-left: 108px;
-top: 98px;
+    position: absolute;
+    width: 166px;
+    height: 35px;
+    left: 108px;
+    top: 98px;
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 500;
-font-size: 22px;
-line-height: 27px;
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: 0.03em;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.03em;
 
-color: #e0e0e0;
+    color: #e0e0e0;
 
 
 }
 
-.side p{
+.side p {
     /* Customer@gmail.com */
 
-position: absolute;
-width: 166px;
-height: 35px;
-left: 106px;
-top: 121px;
+    position: absolute;
+    width: 166px;
+    height: 35px;
+    left: 106px;
+    top: 121px;
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 300;
-font-size: 11px;
-line-height: 13px;
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: 0.03em;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.03em;
 
-color: #e0e0e0;
+    color: #e0e0e0;
 
 
 }
 
 
 
-.rectang{
-}
+.rectang {}
