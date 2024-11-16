@@ -1,217 +1,219 @@
-*{
-    font-size: 1em;
+* {
     padding: 0;
     margin: 0;
     font-family: '__Inter_20951f', '__Inter_Fallback_20951f';
     box-sizing: border-box;
 }
 
-.topnav{
-    
-    
-    
-}
-
-.bgrectang{
-    height: 100vh;
-    width: 100%;
-    background-image: url(../img/homepage\ bg.png);
-    background-size: cover;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.bgrectang h2{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 64px;
-    line-height: 77px;
-    color: #fff;
-}
-
-.bgrectang p{
-    font-size: 20px;
-    color: #fff;
-}
-
-.bgrectang a{
-    text-decoration: none;
-    background-color: white;
-    width: 15%;
-    height: 6%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #000000;
-    border-radius: 8px;
-}
-
-.bgrectang a:hover{
-    background-color: #5a5959;
-    color: #fff;
-}
-
-.belownav{
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 72px;
-    height: calc(100vh - 0px);
-    color: #fff;
+nav.navbar {
     position: fixed;
-    box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.25);
-}
-
-.belownav:hover {
-width: auto;
-height: auto;
-}
-
-.side img{
-    width: 6.5vw;
-    height: 12vh;
-    margin-top: 80px;
-    margin-left: 40px;
-}
-
-.side{
-    width: 315px;
-    height: 240px;
-    background: #635d5d;
-    box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.25);
-
-}
-
-.side h3{
-    padding-left: 40px;
-}
-.side p{
-    padding-left: 35px;
-}
-
-.inside{
-    display: flex;
-    align-items: center;
-    margin-right: 5px;
-    justify-content: space-between;
-    background-color: #635d5d;
     width: 100%;
-    color: #fff;
-    position: sticky;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    align-items: center;
+    background: rgb(76, 76, 76);
+    z-index: 2;
     overflow: hidden;
 }
 
-.inside h2{
-    margin-left: 10px;
+.brand {
     padding-left: 20px;
-    font-size:larger;
+    font-size: larger;
     margin: 0%;
     font-weight: 600;
+
 }
 
-
-
-.inside ul li a {
-    padding: 5px;
-    border-radius: 10px;
-    color: #ffffff;
-    list-style: none;
-    text-decoration: none;
-}
-
-.inside ul {
+ul.navbar-nav {
     display: flex;
-    justify-content: flex-end;
-    height: 50px;
-    
+    justify-content: end;
+    width: 100%;
+    padding-right: 10px;
 }
 
-.inside ul li {
-    padding-top: 20px;
-    margin-right: 10px;
-    list-style: none;
-    transition: transform .2s;
+.intro {
+    background-image: url(../img/landing-bg.webp);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Full viewport height */
+    background-size: cover;
+    flex-direction: column;
+
+
 }
 
-.inside ul li:hover {
-    transform: scale(1.2);
-}
+.phrase h1 {
 
-.inside ul img{
-    height: 60px;
-    margin-top: -18px;
-    margin-left: -10px;
-}
-
-.menu img{
-    height: 25px;
-    padding-right: 20px;
-}
-
-.logo-text{
-    position: absolute;
-    height: 48px;
-    left: 350px;
-    font-weight: 900;
-    font-size: 32px;
+    text-align: center;
+    font-size: 3em;
+    /* Adjust size as needed */
     color: white;
-    top: 20px;
+    /* Optional: sets the text color */
+    padding-bottom: 15px;
+    margin-top: 60px;
 }
 
-.custom{
-    /* Customer */
-
-position: absolute;
-width: 166px;
-height: 35px;
-left: 108px;
-top: 98px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 500;
-font-size: 22px;
-line-height: 27px;
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: 0.03em;
-
-color: #e0e0e0;
-
+.phrase h4 {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
 
 }
 
-.side p{
-    /* Customer@gmail.com */
+#button {
+    flex: 1;
+    /* Make buttons take equal space */
+    padding: 10px;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    margin: 5px;
+    /* Optional margin */
+    width: 215px;
+    height: 56px;
+}
 
-position: absolute;
-width: 166px;
-height: 35px;
-left: 106px;
-top: 121px;
+.context h5 {
+    margin-top: 30px;
+    margin-left: 100px;
+    font-weight: bold;
+}
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 300;
-font-size: 11px;
-line-height: 13px;
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: 0.03em;
+div.container {
+    display: flex;
+    margin-top: 60px;
+}
 
-color: #e0e0e0;
+.context img {
+    width: 61px;
+    height: 51px;
+    margin-left: 120px;
+    margin-top: 50px;
+}
 
+div.info {
+    display: flex;
 
 }
 
+p#details {
+    padding-left: 100px;
+}
 
+img.img1 {
+    width: 61px;
+    height: 51px;
+    margin-left: 120px;
+    margin-top: 10px;
+}
 
-.rectang{
+img.img3 {
+    width: 61px;
+    height: 51px;
+    margin-left: 120px;
+    margin-top: 60px;
+}
+
+img.sidepic {
+    width: 415px;
+    height: 593px;
+    margin-left: 100px;
+    margin-top: 20px;
+    border-radius: 10px;
+    margin-bottom: 5%;
+}
+
+div.context-1 {
+    display: flex;
+}
+
+div.services {
+    background-color: rgb(246, 233, 218);
+}
+
+.carousel img {
+    height: 530px;
+    /* Set your desired height */
+    width: 70%;
+    /* Maintain aspect ratio */
+
+}
+
+div.carousel {
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.hours h3 {
+    padding-left: 15%;
+}
+
+.hours img {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+
+}
+
+div.opening {
+    display: flex;
+    padding-left: 17%;
+    padding-top: 18px;
+    margin-bottom: 10px;
+}
+
+div.details {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+}
+
+div.hours {
+    width: 50%;
+}
+
+div.information {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-right: 100px;
+}
+
+.icon img {
+    width: 30px;
+    height: 30px;
+}
+
+div.location {
+    display: flex;
+    padding-top: 18px;
+    margin-bottom: 10px;
+}
+
+div.icon {
+    display: flex;
+    padding-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.icon p {
+    padding-right: 10px;
+}
+
+div.text-center p-3 {
+    background-color: beige;
+}
+
+.icon a {
+    padding-right: 10px;
+    color: black;
 }
