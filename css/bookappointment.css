@@ -1,0 +1,86 @@
+* {
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+    font-family: '__Inter_20951f', '__Inter_Fallback_20951f';
+    box-sizing: border-box;
+}
+body{
+	background-image: url(../img/landing-bg.webp);
+	margin: 0%;
+    height:auto;
+	width: auto;
+	background-size: cover; /* This will cover the entire area */
+    background-position: center; /* This centers the image */
+    background-repeat: no-repeat; 
+}
+.brand{
+    padding-top: 28px;
+    padding-left: 39px;
+    font-size: 32px;
+    margin: 0%;
+    font-weight: 700;
+	color: white;
+}
+
+.form{
+	width: 551px;
+    height: 420px;
+    background: white;
+    margin: 36px auto;
+    padding: 20px;
+    border-radius: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+	
+}
+.form input{
+	display: block;
+	width: 80%;
+	font-size: 18px;
+	padding: 5px;
+	border: 1px solid black;
+	background: transparent;
+	color: #000000;
+	align-items: center;
+	
+}
+.form label{
+	color: rgb(0, 0, 0);
+	cursor: pointer;
+	padding: 5px 0px;
+	display: block;
+	font-size: 20px;
+	font-family: tahoma;
+	padding-left: 105px;
+}
+input#Name, #date, #time, #note{
+	width: 343px;
+	height: 36px;
+	margin-left: 105px;
+    margin-bottom: 22px;
+}
+div.container-2{
+    height: 18%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-bottom: 10px;
+}
+
+button#next.btn-1 {
+    background-color: white;
+    color: black;
+    padding: 8px;
+    border-radius: 8px;
+    width: 158px;
+    height: 50px;
+}
+button#next:hover{
+    background-color: black;
+    color: white;
+    transition: color 0.2s ease-in-out, transform 0.3s ease-in-out;
+}
+div.next{
+    border-radius: 8px;
+    
+}
