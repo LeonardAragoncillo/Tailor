@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailor Appointment & Measurements</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Measurement Picture or Fill Measurements</h1>
+        <form id="uploadForm">
+            <label for="measurementPicture">Do you have a picture of your measurements?</label>
+            <input type="file" id="measurementPicture" name="measurementPicture" accept="image/*">
+
+            <button type="button" id="uploadButton">Upload Picture</button>
+            <button type="button" id="noPictureButton">I Don't Have a Picture</button>
+        </form>
+
+        <div id="measurementSection" class="hidden">
+            <form id="measurementForm">
+                <h2>Fill Your Measurements</h2>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="date">Appointment Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Appointment Time:</label>
+                <input type="time" id="time" name="time" required>
+
+                <h2>Measurements</h2>
+                <label for="chest">Chest (inches):</label>
+                <input type="number" id="chest" name="chest" required>
+
+                <label for="waist">Waist (inches):</label>
+                <input type="number" id="waist" name="waist" required>
+
+                <label for="hip">Hip (inches):</label>
+                <input type="number" id="hip" name="hip" required>
+
+                <label for="inseam">Inseam (inches):</label>
+                <input type="number" id="inseam" name="inseam" required>
+
+                <button type="submit">Send Measurements</button>
+            </form>
+            <div id="confirmation" class="hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadButton').addEventListener('click', function() {
+    const fileInput = document.getElementById('measurementPicture');
+    
+    if (fileInput.files.length > 0) {
+        // Handle the file upload logic here (e.g., sending the file to the server)
+        alert('Picture uploaded successfully!'); // Placeholder for actual upload logic
+    } else {
+        alert('Please select a picture to upload.');
+    }
+});
+
+document.getElementById('noPictureButton').addEventListener('click', function() {
+    // Hide the upload form and show the measurement form
+    document.getElementById('uploadForm').classList.add('hidden');
+    document.getElementById('measurementSection').classList.remove('hidden');
+});
+
+document.getElementById('measurementForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const chest = document.getElementById('chest').value;
+    const waist = document.getElementById('waist').value;
+    const hip = document.getElementById('hip').value;
+    const inseam = document.getElementById('inseam').value;
+
+    // Placeholder for sending data to the server
+    // You can use fetch or XMLHttpRequest to send the data
+    </script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-image: url('background.jpg'); /* Replace with your image file name */
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
+}
+
+.hidden {
+    display: none;
+}
+
+#confirmation {
+    margin-top: 20px;
+    padding: 10px;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+}</style>
+</body>
+</html>
