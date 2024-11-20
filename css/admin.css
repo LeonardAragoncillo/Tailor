@@ -1,0 +1,114 @@
+* {
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+    font-family: '__Inter_20951f', '__Inter_Fallback_20951f';
+    box-sizing: border-box;
+}
+header{
+    position: relative; /* Make the header a positioning context */
+    height: 96px;
+    width: auto;
+    background-color:  rgb(94 94 94);
+    color: white;
+}
+.calendar-icon {
+    width: 57px; /* Adjust size as needed */
+    height: 43px; /* Adjust size as needed */
+    margin-right: 10px; /* Space between icon and date */
+    margin-top: 11px;
+}
+
+.container{
+    display: flex;
+    justify-content: end;
+    padding-top: 10px;
+
+}
+.today-date {
+    margin-top: 10px;
+   
+}
+
+.date-label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.date-display {
+    margin-top: 0;
+    font-size: 18px;
+}
+/* side-bar */
+.container-1{
+    width: 315px;
+    height: 240px;
+    background-color: rgb(65,74,76);
+}
+.side-bar {
+    position: absolute; /* Position the sidebar absolutely */
+    top: 0; /* Align it to the top of the header */
+    left: 0; /* Align it to the left of the header */
+    width: 250px; /* Set the width of the sidebar */
+    height: 100%; /* Set the height to 100% of the viewport */
+    z-index: 0; /* Ensure the sidebar is below the header */
+}
+.container-2{
+    width: 315px;
+    height: auto;
+    background-color:  RGB(54, 69, 79);
+}
+div.profile{
+    display: flex;
+    padding-left: 42px;
+    height: 300px;
+    align-items: center;
+}
+.profile-icon{
+    width: 75px;
+    height: 76px;
+    margin-bottom: 15px;
+}
+
+.profile-label{
+    display: flex;
+    color: white;
+    flex-direction: column;
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.menu li {
+    display: inline-block; /* Display items in a horizontal line */
+    padding-left: 74px; /* Space between items */
+    display: flex;
+    flex-direction: row;
+    padding-top: 22px;
+    padding-bottom: 10px;
+}
+
+.menu a {
+    text-decoration: none; /* Remove underline from links */
+    padding: 10px 15px; /* Add padding for better click area */
+    color: white; 
+    font-size: 18px;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.menu a:hover {
+    color: black; /* Change text color on hover */
+}
+.icon{
+    width: 35px;
+    height: 35px;
+}
+/* img, a{
+    display: flex;
+} */
