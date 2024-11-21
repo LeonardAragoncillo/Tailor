@@ -54,41 +54,7 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById('uploadButton').addEventListener('click', function() {
-    const fileInput = document.getElementById('measurementPicture');
     
-    if (fileInput.files.length > 0) {
-        // Handle the file upload logic here (e.g., sending the file to the server)
-        alert('Picture uploaded successfully!'); // Placeholder for actual upload logic
-    } else {
-        alert('Please select a picture to upload.');
-    }
-});
-
-document.getElementById('noPictureButton').addEventListener('click', function() {
-    // Hide the upload form and show the measurement form
-    document.getElementById('uploadForm').classList.add('hidden');
-    document.getElementById('measurementSection').classList.remove('hidden');
-});
-
-document.getElementById('measurementForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
-
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const date = document.getElementById('date').value;
-    const time = document.getElementById('time').value;
-    const chest = document.getElementById('chest').value;
-    const waist = document.getElementById('waist').value;
-    const hip = document.getElementById('hip').value;
-    const inseam = document.getElementById('inseam').value;
-
-    // Placeholder for sending data to the server
-    // You can use fetch or XMLHttpRequest to send the data
-    </script>
     <style>
         body {
     font-family: Arial, sans-serif;

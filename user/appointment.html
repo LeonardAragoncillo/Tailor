@@ -35,22 +35,60 @@
 
     </header>
     <div class="bgrectang">
-        <div class="rectang">
-            <h2>Do you already have a measurement?</h2>
-            <p><b>YES:</b> If you already have a measurement, you can proceed to the next step.</p>
-            <p><b>NO:</b> If you don't have a measurement, you can set an appointment <br> for measurement.</p>
-
-            <div class="button">
-                <button class="btn " type="button">YES</button>
-                <button class="btn " type="button">NO</button>
+        <div class="container" style="width: 700px;">
+            <h1>Appointment</h1>
+            <form id="uploadForm">
+                <label for="measurementPicture">Do you have a picture of your measurements?</label>
+                <input type="file" id="measurementPicture" name="measurementPicture" accept="image/*">
+    
+                <button type="button" id="uploadButton" style="margin-bottom: 5px;">Upload Picture</button>
+                <button type="button" id="noPictureButton">I Don't Have a Picture</button>
+            </form>
+    
+            <div id="measurementSection" class="hidden">
+                <form id="measurementForm">
+                    <h2>Fill Your Measurements</h2>
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+    
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+    
+                    <label for="date">Appointment Date:</label>
+                    <input type="date" id="date" name="date" required>
+    
+                    <label for="time">Appointment Time:</label>
+                    <input type="time" id="time" name="time" required>
+    
+                    <h2>Measurements</h2>
+                    <label for="chest">Chest (inches):</label>
+                    <input type="number" id="chest" name="chest" required>
+    
+                    <label for="waist">Waist (inches):</label>
+                    <input type="number" id="waist" name="waist" required>
+    
+                    <label for="hip">Hip (inches):</label>
+                    <input type="number" id="hip" name="hip" required>
+    
+                    <label for="inseam">Inseam (inches):</label>
+                    <input type="number" id="inseam" name="inseam" required>
+    
+                    <button type="submit">Send Measurements</button>
+                </form>
+                <div id="confirmation" class="hidden"></div>
             </div>
         </div>
-        <div class="container">
+        <div class="tobutton">
             <div class="next">
                 <button class="btn-1" type="button" id="next">NEXT</button>
             </div>
         </div>
+        </div>
     </div>
+    <script src="../js/appointment.js"></script>
 </body>
 
 </html>
