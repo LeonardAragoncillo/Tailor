@@ -14,65 +14,96 @@
         <div class="calendar">
             <div class="container">
                 <div>
-                    <img src="../img/calendar-icon.png" alt="" srcset="" class="calendar-icon">
+                    <img src="../img/calendar-icon.png" alt="" class="calendar-icon">
                 </div>
-
                 <div class="Todays-date">
                     <p class="date-label">Today's Date</p>
                     <div id="current-date" class="date-display"></div>
-
                 </div>
             </div>
+        </div>
     </header>
+
     <script>
-        //to display todays date
+        // to display today's date
         const dateElement = document.getElementById('current-date');
         const today = new Date();
         const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
         const currentDate = today.toLocaleDateString('en-US', options);
         dateElement.innerHTML = currentDate;
     </script>
-    <div class="side-bar">
-        <div class="container-1">
-            <div class="profile">
-                <img src="../img/profile.png" alt="" srcset="" class="profile-icon">
-                <div class="profile-label">
-                    <h5>Administrator</h5>
-                    <p>admin@gmail.com</p>
+
+    <div class="main-container">
+        <div class="side-bar">
+            <div class="container-1">
+                <div class="profile">
+                    <img src="../img/profile.png" alt="" class="profile-icon">
+                    <div class="profile-label">
+                        <h5>Administrator</h5>
+                        <p>admin@gmail.com</p>
+                    </div>
                 </div>
             </div>
+
+            <div class="container-2">
+                <ul class="menu">
+                    <li>
+                        <img src="../img/speedometer-icon.png" alt="" class="icon">
+                        <a href=""><span>Dashboard</span></a>
+                    </li>
+                    <li>
+                        <img src="../img/sewing-machine-icon.png" alt="" class="icon">
+                        <a href=""><span>Tailor</span></a>
+                    </li>
+                    <li>
+                        <img src="../img/male-icon.png" alt="" class="icon">
+                        <a href=""><span>Customer</span></a>
+                    </li>
+                    <li>
+                        <img src="../img/timetable-icon.png" alt="" class="icon">
+                        <a href=""><span>Appointment</span></a>
+                    </li>
+                    <li>
+                        <img src="../img/sand-clock-half-icon.png" alt="" class="icon">
+                        <a href=""><span>Calendar</span></a>
+                    </li>
+                    <li>
+                        <img src="../img/project-icon.png" alt="" class="icon">
+                        <a href=""><span>History</span></a>
+                    </li>
+                    <li>
+                        <img src="../img/door-check-out-icon.png" alt="" class="icon">
+                        <a href=""><span>Log out</span></a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="container-2">
-            <ul class="menu">
-                <li>
-                    <img src="../img/speedometer-icon.png" alt="" srcset="" class="icon">
-                    <a href=""><span>Dashboard</span></a>
-                </li>
-                <li>
-                    <img src="../img/sewing-machine-icon.png" alt="" srcset="" class="icon">
-                    <a href=""><span>Tailor</span></a>
-                </li>
-                <li>
-                    <img src="../img/male-icon.png" alt="" srcset="" class="icon">
-                    <a href=""><span>Customer</span></a>
-                </li>
-                <li>
-                    <img src="../img/timetable-icon.png" alt="" srcset="" class="icon">
-                    <a href=""><span>Appointment</span></a>
-                </li>
-                <li>
-                    <img src="../img/sand-clock-half-icon.png" alt="" srcset="" class="icon">
-                    <a href=""><span>Calendar</span></a>
-                </li>
-                <li>
-                    <img src="../img/project-icon.png" alt="" srcset="" class="icon">
-                    <a href=""><span>History</span></a>
-                </li>
-                <li>
-                    <img src="../img/door-check-out-icon.png" alt="" srcset="" class="icon">
-                    <a href=""><span>Log out</span></a>
-                </li>
-            </ul>
+        <div class="content">
+            <div class="container-3">
+                <h3>Status</h>
+            </div>
+            <div class="main-box">
+                <div class="box">
+                    <div class="box-1">
+    
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-2">
+                        
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-3">
+                        
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-4">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

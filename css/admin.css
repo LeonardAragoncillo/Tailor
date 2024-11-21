@@ -50,9 +50,10 @@ header{
     position: absolute; /* Position the sidebar absolutely */
     top: 0; /* Align it to the top of the header */
     left: 0; /* Align it to the left of the header */
-    width: 250px; /* Set the width of the sidebar */
+    width: 315px; /* Set the width of the sidebar */
     height: 100%; /* Set the height to 100% of the viewport */
     z-index: 0; /* Ensure the sidebar is below the header */
+
 }
 .container-2{
     width: 315px;
@@ -112,3 +113,28 @@ div.profile{
 /* img, a{
     display: flex;
 } */
+
+.main-container {
+    display: grid;
+    grid-template-columns: 315px auto; /* Sidebar width and content width */
+    height: calc(100vh - 96px); /* Full height minus header height */
+    justify-content: center;
+    margin-right: 20px;
+}
+
+
+.content {
+    padding: 20px; /* Optional padding for content */
+    background-color: #ffffff; /* Optional background color for content */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+}
+div.box{
+    width: 234px;
+    height: 116px;
+    border-radius: 8px;
+	border: 1px solid black;
+    
+}
+.main-box{
+    display: flex;
+}
