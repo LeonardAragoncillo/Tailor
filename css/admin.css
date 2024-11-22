@@ -116,7 +116,7 @@ div.profile{
 
 .main-container {
     display: grid;
-    grid-template-columns: 315px auto; /* Sidebar width and content width */
+    grid-template-columns: 600px auto; /* Sidebar width and content width */
     height: calc(100vh - 96px); /* Full height minus header height */
     justify-content: center;
     margin-right: 20px;
@@ -127,14 +127,24 @@ div.profile{
     padding: 20px; /* Optional padding for content */
     background-color: #ffffff; /* Optional background color for content */
     overflow-y: auto; /* Allow scrolling if content overflows */
+    width: 770px;
 }
 div.box{
     width: 234px;
     height: 116px;
     border-radius: 8px;
 	border: 1px solid black;
+    margin-right: 10px;
+    margin-left: 10px;
     
 }
 .main-box{
+    display: flex;
+}
+.img{
+    width: 53px;
+    height: 53px;
+}
+.inside{
     display: flex;
 }
