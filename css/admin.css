@@ -50,7 +50,7 @@ header{
     position: absolute; /* Position the sidebar absolutely */
     top: 0; /* Align it to the top of the header */
     left: 0; /* Align it to the left of the header */
-    width: 315px; /* Set the width of the sidebar */
+    width: 280px; /* Set the width of the sidebar */
     height: 100%; /* Set the height to 100% of the viewport */
     z-index: 0; /* Ensure the sidebar is below the header */
 
@@ -127,7 +127,7 @@ div.profile{
     padding: 20px; /* Optional padding for content */
     background-color: #ffffff; /* Optional background color for content */
     overflow-y: auto; /* Allow scrolling if content overflows */
-    width: 770px;
+    width: 880px;
 }
 div.box{
     width: 234px;
@@ -136,7 +136,7 @@ div.box{
 	border: 1px solid black;
     margin-right: 10px;
     margin-left: 10px;
-    
+    display: flex;
 }
 .main-box{
     display: flex;
@@ -144,7 +144,18 @@ div.box{
 .img{
     width: 53px;
     height: 53px;
+    margin-top: 23px;
 }
 .inside{
     display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 16px;
+}
+.box-1{
+    display: flex;
+    
+}
+.box-1, .inside{
+    padding-left: 15px;
 }
