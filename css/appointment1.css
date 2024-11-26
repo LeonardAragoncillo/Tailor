@@ -255,28 +255,31 @@ button.btn {
     align-content: flex-start;
 }
 
-.labb{
-    height: 100vh;
+.labb {
+    min-height: 100vh; /* Ensure it covers the full viewport height */
     width: 100%;
     background-image: url(../img/homepage\ bg.png);
     background-size: cover;
+    background-attachment: fixed; /* Keeps the background fixed */
     display: flex;
-    align-content: center;
-    align-items: center;
+    align-content: center; /* Align items to start */
+    align-items: center; /* Center items horizontally */
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
 }
 
-.lobb{
+.lobb {
     width: 90%;
     max-width: 900px;
-    height: auto;
+    height: auto; /* Allow it to grow based on content */
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
+    margin: 10px;
+    overflow-y: auto; /* Allow scrolling if content exceeds */
 }
 .section-title {
     font-size: 24px;
@@ -309,4 +312,36 @@ button.btn {
 .lobb ul li a:hover {
     background-color: #e0e0e0;
     color: #000;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.uniform-image {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 5px;
+}
+
+.order-details {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.price, .order-date, .completion-date {
+    margin: 5px 0;
+}
+
+.uniform-image {
+    width: 100px; /* Example width */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Space between image and text */
 }
