@@ -169,11 +169,45 @@ div.box#box{
 div.box-4{
     border: 1px solid black;
     border-radius: 10px;
-    width: 519px;
-    height: 253px;
+    width: 440px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+div.box-5{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 440px;
+    height: auto;
+    margin-left: 50px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
 }
 .container-4 h3{
     font-size: 22px;
     padding-top: 30px;
     padding-bottom: 10px;
+    
+}
+div.transact{
+    display: flex;
+    margin: 10px;
+    margin-left: -20px;
+}
+.table {
+    margin-bottom: 10px; /* Optional: Space between table and button */
+}
+
+
+#button {
+    margin-top: auto; /* Push the button to the bottom */
+    display: block; /* Ensure it behaves as a block element */
+    margin: 10px 0; /* Optional: Add some vertical space around the button */
+    width: 408px;
+    border-radius: 8px;
+    background-color:  RGB( 72, 72, 72 );
+    color: white;
+    margin-left: 15px;
 }
