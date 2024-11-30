@@ -1,0 +1,226 @@
+* {
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+    font-family: '__Inter_20951f', '__Inter_Fallback_20951f';
+    box-sizing: border-box;
+}
+
+header {
+    position: relative;
+    /* Make the header a positioning context */
+    height: 96px;
+    width: auto;
+    background-color: rgb(94 94 94);
+    color: white;
+}
+
+.calendar-icon {
+    width: 57px;
+    /* Adjust size as needed */
+    height: 43px;
+    /* Adjust size as needed */
+    margin-right: 10px;
+    /* Space between icon and date */
+    margin-top: 11px;
+}
+
+.container {
+    display: flex;
+    justify-content: end;
+    padding-top: 10px;
+
+}
+
+.today-date {
+    margin-top: 10px;
+
+}
+
+.date-label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.date-display {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+/* side-bar */
+.container-1 {
+    width: 263px;
+    height: 170px;
+    background-color: rgb(65, 74, 76);
+}
+
+.side-bar {
+    position: absolute;
+    /* Position the sidebar absolutely */
+    position: fixed;
+    /* Fix the sidebar */
+    top: 0;
+    /* Align it to the top of the header */
+    left: 0;
+    /* Align it to the left of the header */
+    width: 280px;
+    /* Set the width of the sidebar */
+    height: 100%;
+    /* Set the height to 100% of the viewport */
+    z-index: 0;
+    /* Ensure the sidebar is below the header */
+    overflow-y: auto;
+    /* Allow scrolling if needed */
+
+}
+
+.container-2 {
+    width: 263px;
+    height: auto;
+    background-color: RGB(54, 69, 79);
+}
+
+div.profile {
+    display: flex;
+    padding-left: 42px;
+    height: 176px;
+    align-items: center;
+}
+
+.profile-icon {
+    width: 75px;
+    height: 76px;
+    margin-bottom: 15px;
+}
+
+.profile-label {
+    display: flex;
+    color: white;
+    flex-direction: column;
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+}
+
+.menu li {
+    display: inline-block;
+    /* Display items in a horizontal line */
+    padding-left: 55px;
+    /* Space between items */
+    display: flex;
+    flex-direction: row;
+    padding-top: 22px;
+    padding-bottom: 10px;
+}
+
+.menu a {
+    text-decoration: none;
+    /* Remove underline from links */
+    padding: 10px 15px;
+    /* Add padding for better click area */
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transition */
+}
+
+.menu a:hover {
+    color: black;
+    /* Change text color on hover */
+}
+
+.icon {
+    width: 35px;
+    height: 35px;
+}
+
+.container-3 {
+    box-sizing: border-box;
+    /* Include padding/border in width calculation */
+    flex-grow: 1;
+    /* Allow container-3 to take the remaining space */
+}
+
+div.content-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 316px;
+    padding: 35px;
+}
+
+div.content-2 {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 350px;
+    margin-right: 25px;
+}
+
+button#button {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 146px;
+    height: 37px;
+    margin-left: 30px;
+}
+/* div.box{
+    width: 379px;
+    height: 217px;
+    border: 1px solid #000000;
+    margin-left: 350px;
+    border-radius: 14px;
+} */
+.container-4 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* justify-content: center; */
+    margin-left: 350px;
+    padding-top: 20px;
+    
+}
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.card h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+.highlight {
+    border: 2px solid #007BFF;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+.pagination button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.pagination button:hover {
+    background-color: #007BFF;
+    color: #fff;
+}
+.pagination button.active {
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: bold;
+}
