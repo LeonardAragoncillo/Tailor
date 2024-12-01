@@ -57,11 +57,19 @@
                     </li>
                     <li>
                         <img src="../img/male-icon.png" alt="" class="icon">
-                        <a href=""><span>Customer</span></a>
+                        <a href="customer.html"><span>Customer</span></a>
                     </li>
                     <li>
-                        <img src="../img/timetable-icon.png" alt="" class="icon">
-                        <a href=""><span>Appointment</span></a>
+                        <div class="drop">
+                            <img src="../img/timetable-icon.png" alt="" class="icon">
+                            <a href="javascript:void(0);" class="btn dropdown-toggle"><span>Appointment</span></a>
+                            <ul class="dropdown">
+                                <li><a href="upcoming.html">Upcoming Appointment</a></li>
+                                <li><a href="ongoing.html">Ongoing Appointments</a></li>
+                                <li><a href="Walkin.html">walk-in</a></li>
+                            </ul>
+                        </div>
+
                     </li>
                     <li>
                         <img src="../img/sand-clock-half-icon.png" alt="" class="icon">
@@ -76,6 +84,22 @@
                         <a href=""><span>Log out</span></a>
                     </li>
                 </ul>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const appointmentItem = document.querySelector('.menu li:nth-child(4)'); // Adjust index if needed
+                        const dropdown = appointmentItem.querySelector('.dropdown');
+
+                        appointmentItem.querySelector('a').addEventListener('click', function (event) {
+                            event.stopPropagation(); // Prevent the click from bubbling up
+                            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block'; // Toggle dropdown
+                        });
+
+                        // Close the dropdown if clicked outside
+                        document.addEventListener('click', function () {
+                            dropdown.style.display = 'none';
+                        });
+                    });
+                </script>
             </div>
         </div>
         <div class="container-3">

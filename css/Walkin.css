@@ -112,104 +112,12 @@ div.profile{
     width: 35px;
     height: 35px;
 }
-/* img, a{
-    display: flex;
-} */
-
 .main-container {
-    display: grid;
-    grid-template-columns: 600px auto; /* Sidebar width and content width */
-    height: calc(100vh - 96px); /* Full height minus header height */
+    display: flex;
     justify-content: center;
-    margin-right: 20px;
-}
+    margin-left: 156px;
+    flex-direction: row;
 
-
-.content {
-    padding: 20px; /* Optional padding for content */
-    background-color: #ffffff; /* Optional background color for content */
-   /* overflow-y: auto; /* Allow scrolling if content overflows */
-    width: auto;
-    padding-left: 0%;
-}
-div.box#box{
-    width: 234px;
-    height: 116px;
-    border-radius: 8px;
-	border: 1px solid black;
-    margin-right: 10px;
-    margin-left: 10px;
-    display: flex;
-}
-.container-3 h3{
-    padding-bottom: 20px;
-    /* font-size: 22px; */
-}
-.main-box{
-    display: flex;
-}
-.img{
-    width: 53px;
-    height: 53px;
-    margin-top: 23px;
-}
-.inside{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-top: 16px;
-}
-.box-1{
-    display: flex;
-    
-}
-.box-1, .inside{
-    padding-left: 15px;
-}
-div.box-4{
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 440px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-}
-div.box-5{
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 440px;
-    height: auto;
-    margin-left: 50px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-}
-.container-4 h3{
-    font-size: 22px;
-    padding-top: 30px;
-    padding-bottom: 10px;
-    
-}
-div.transact{
-    display: flex;
-    margin: 10px;
-    margin-left: -20px;
-}
-.table {
-    margin-bottom: 10px; /* Optional: Space between table and button */
-}
-
-
-#button {
-    margin-top: auto; /* Push the button to the bottom */
-    display: block; /* Ensure it behaves as a block element */
-    margin: 10px 0; /* Optional: Add some vertical space around the button */
-    width: 408px;
-    border-radius: 8px;
-    background-color:  RGB( 72, 72, 72 );
-    color: white;
-    margin-left: 15px;
 }
 .dropdown {
     position: absolute; /* Position it absolutely to align it under the parent */
@@ -236,4 +144,63 @@ div.transact{
 
 .dropdown li a:hover {
     background-color: #f1f1f1; /* Add hover effect */
+}
+
+/* ...................side */
+
+.container-4 {
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 22px;
+}
+
+div.intro {
+    /* text-align: center; */
+    font-size: 24px;
+    margin-bottom: 40px;
+    margin-right: 300px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.button-container {
+    text-align: right;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+div.conatiner-3{
+    width: fit-content;
 }
