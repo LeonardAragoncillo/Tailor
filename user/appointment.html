@@ -27,12 +27,18 @@
                 <li>
                     <a href="#flowers"><span>Contact Us</span></a>
                 </li>
-                <li>
-                    <a href="#flowers"><img src="../img/profile.png" alt="" class="logo"></a>
+                <li class="dropdown">
+                    <a href="javascript:void(0);"><img src="../img/profile.png" alt="" class="logo"
+                            onclick="toggleDropdown()"></a>
+                    <div class="dropdown-content" id="dropdownMenu">
+                        <a href="../user/settings.html">Settings</a>
+                        <a href="../user/logout.html">Logout</a>
+                    </div>
                 </li>
             </ul>
         </div>
 
+        <script src="../js/appoint.js"></script>
     </header>
     <div class="bgrectang">
         <div class="container" style="width: 700px;">
@@ -40,42 +46,73 @@
             <form id="uploadForm">
                 <label for="measurementPicture">Do you have a picture of your measurements?</label>
                 <input type="file" id="measurementPicture" name="measurementPicture" accept="image/*">
-    
-                <button type="button" id="uploadButton" style="margin-bottom: 5px;">Upload Picture</button>
-                <button type="button" id="noPictureButton">I Don't Have a Picture</button>
+
+                <div class="image-container">
+                    <h6 style="display: flex; align-items: flex-start;">Guide on how to measure yourself:</h6>
+                    <img src="../img/Polo-Shirt-Measurement-Guide-with-Size-Chart-1.webp"
+                        alt="Polo Shirt Measurement Guide" onclick="openModal(this.src)">
+                    <img src="../img/pants.png" alt="Pants Measurement Guide" onclick="openModal(this.src)">
+                </div>
+
+                <a href="#" id="uploadButton" class="styled-button" style="margin-bottom: 5px;">Upload Picture</a>
+                <a href="../user/appointment1.html" id="noPictureButton" class="styled-button">I Don't Have a Picture</a>
+
+                <div id="myModal" class="modal">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                </div>
+
+                <script>
+                    function openModal(src) {
+                        document.getElementById("modalImage").src = src;
+                        document.getElementById("myModal").style.display = "block";
+                    }
+
+                    function closeModal() {
+                        document.getElementById("myModal").style.display = "none";
+                    }
+
+                    window.onclick = function (event) {
+                        const modal = document.getElementById("myModal");
+                        if (event.target == modal) {
+                            closeModal();
+                        }
+                    }
+                </script>
+
             </form>
-    
+
             <div id="measurementSection" class="hidden">
                 <form id="measurementForm">
                     <h2>Fill Your Measurements</h2>
                     <label for="name">Full Name:</label>
                     <input type="text" id="name" name="name" required>
-    
+
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
-    
+
                     <label for="phone">Phone Number:</label>
                     <input type="tel" id="phone" name="phone" required>
-    
+
                     <label for="date">Appointment Date:</label>
                     <input type="date" id="date" name="date" required>
-    
+
                     <label for="time">Appointment Time:</label>
                     <input type="time" id="time" name="time" required>
-    
+
                     <h2>Measurements</h2>
                     <label for="chest">Chest (inches):</label>
                     <input type="number" id="chest" name="chest" required>
-    
+
                     <label for="waist">Waist (inches):</label>
                     <input type="number" id="waist" name="waist" required>
-    
+
                     <label for="hip">Hip (inches):</label>
                     <input type="number" id="hip" name="hip" required>
-    
+
                     <label for="inseam">Inseam (inches):</label>
                     <input type="number" id="inseam" name="inseam" required>
-    
+
                     <button type="submit">Send Measurements</button>
                 </form>
                 <div id="confirmation" class="hidden"></div>
@@ -86,7 +123,7 @@
                 <button class="btn-1" type="button" id="next">NEXT</button>
             </div>
         </div>
-        </div>
+    </div>
     </div>
     <script src="../js/appointment.js"></script>
 </body>
