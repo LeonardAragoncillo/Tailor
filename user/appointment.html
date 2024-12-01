@@ -45,14 +45,13 @@
             <h1>Appointment</h1>
             <form id="uploadForm">
                 <label for="measurementPicture">Do you have a picture of your measurements?</label>
-                <input type="file" id="measurementPicture" name="measurementPicture" accept="image/*">
-
                 <div class="image-container">
                     <h6 style="display: flex; align-items: flex-start;">Guide on how to measure yourself:</h6>
                     <img src="../img/Polo-Shirt-Measurement-Guide-with-Size-Chart-1.webp"
                         alt="Polo Shirt Measurement Guide" onclick="openModal(this.src)">
                     <img src="../img/pants.png" alt="Pants Measurement Guide" onclick="openModal(this.src)">
                 </div>
+                <input type="file" id="measurementPicture" name="measurementPicture" accept="image/*">
 
                 <a href="#" id="uploadButton" class="styled-button" style="margin-bottom: 5px;">Upload Picture</a>
                 <a href="../user/appointment1.html" id="noPictureButton" class="styled-button">I Don't Have a Picture</a>
