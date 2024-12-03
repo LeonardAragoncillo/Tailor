@@ -115,8 +115,10 @@ div.profile{
 .main-container {
     display: flex;
     justify-content: center;
-    margin-left: 156px;
+    margin-left: 227px;
     flex-direction: row;
+    width: 100%;
+    margin-top: 25px;
 
 }
 .dropdown {
@@ -148,3 +150,43 @@ div.profile{
 
 /* ...................side */
 
+.container-3 {
+    /* text-align: center; */
+    margin-right: 300px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+div.form-container {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);;
+    width: 519px;
+    /* margin: auto; */
+    /* margin-left: 169px; */
+}
+
+.form-container h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.form-container select,
+.form-container input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+div.button{
+    display: flex;
+    justify-content: center;
+}
