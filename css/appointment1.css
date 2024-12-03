@@ -25,7 +25,7 @@
 .rectang {
     border: 1px solid black;
     width: 51.25%;
-    height: 50.0833%;
+    height: 70.0833%;
     background: #ebebeb;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -344,4 +344,93 @@ button.btn {
     width: 100px; /* Example width */
     height: auto; /* Maintain aspect ratio */
     margin-right: 10px; /* Space between image and text */
+}
+
+.button {
+    margin-bottom: 20px; /* Add some space between buttons and image */
+}
+
+#imageContainer {
+    text-align: center; /* Center the image */
+}
+
+
+.form{
+	width: 551px;
+    height: 598px;
+    background: white;
+    margin: 36px auto;
+    padding: 20px;
+    border-radius: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin-top: -10px;
+	
+}
+.form input{
+	display: block;
+	width: 80%;
+	font-size: 18px;
+	padding: 5px;
+	border: 1px solid black;
+	background: transparent;
+	color: #000000;
+	align-items: center;
+	
+}
+.form label{
+	color: rgb(0, 0, 0);
+	cursor: pointer;
+	padding: 5px 0px;
+	display: block;
+	font-size: 20px;
+	font-family: tahoma;
+	padding-left: 105px;
+}
+.form input[type=submit]{
+	width: 200px;
+	margin-top:10px;
+	cursor: pointer;
+}
+input#Name, #Age, #Contact, #Address{
+	width: 343px;
+	height: 36px;
+	margin-left: 105px;
+    margin-bottom: 22px;
+}
+
+.next{
+    margin-top: 30px;
+    margin-left: 750px;
+}
+
+.next.btn-1 {
+    background-color: white;
+    color: black;
+    padding: 8px;
+    border-radius: 8px;
+    width: 158px;
+    height: 50px;
+    display: inline-block; /* Ensure the div behaves like a button */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline from the link */
+}
+
+.next.btn-1 a{
+    text-decoration: none;
+    color: #000;
+}
+
+.next.btn-1 a:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.next.btn-1:hover {
+    background-color: black;
+    color: #ffffff;
+    transition: color 0.2s ease-in-out, transform 0.3s ease-in-out;
+}
+
+div.next {
+    border-radius: 8px;
 }

@@ -28,7 +28,10 @@
                     <a href="#flowers"><span>Contact Us</span></a>
                 </li>
                 <li>
-                    <a href="#flowers"><img src="../img/profile.png" alt="" class="logo"></a>
+                    <a href="#flowers"><span>Account</span></a>
+                </li>
+                <li>
+                    <a href="#flowers"><span>Logout</span></a>
                 </li>
             </ul>
         </div>
@@ -37,41 +40,52 @@
     <div class="bgrectang">
         <div class="rectang">
             <h2>Select the type of school uniform</h2>
-            
-
+        
             <div class="button">
-                <button class="btn " type="button">WMSU</button>
-                <button class="btn " type="button">ZPPSU</button>
-                <button class="btn " type="button">Southern</button>
+                <button class="btn" type="button" onclick="showImage('../img/wmsu.png')">WMSU</button>
+                <button class="btn" type="button" onclick="showImage('../img/zppsu.png')">ZPPSU</button>
+                <button class="btn" type="button" onclick="showImage('../img/southern.png')">Southern</button>
             </div>
         
             <div class="scroll">
                 <label for="cars">Choose top:</label>
-
                 <select id="cars">
                     <option value="volvo">Polo</option>
                     <option value="saab">Blouse</option>
                     <option value="opel">Vest</option>
                 </select>
                 <label for="cars">Choose bottom:</label>
-
                 <select id="cars">
                     <option value="volvo">Short</option>
                     <option value="saab">Pants</option>
                     <option value="opel">Blazer</option>
                 </select>
                 <label for="cars">Choose set:</label>
-
                 <select id="cars">
                     <option value="volvo">Set of Uniform</option>
                     <option value="saab">Set of Uniform with Vest</option>
                     <option value="opel">Set of Uniform with Blazer</option>
                 </select>
             </div>
+        
+            <!-- Image container beside the scroll -->
+            <div class="image-container" style="display:none; margin-left: 250px; margin-top: -180px;">
+                <img id="displayedImage" src="" alt="Image" style="width:100%; max-width: 400px; height: 300px;">
+            </div>
+        
+            <script>
+                function showImage(imageSrc) {
+                    const imageContainer = document.querySelector('.image-container');
+                    const displayedImage = document.getElementById('displayedImage');
+        
+                    displayedImage.src = imageSrc; // Set the image source
+                    imageContainer.style.display = 'block'; // Show the image container
+                }
+            </script>
         </div>
         <div class="container">
-            <div class="next">
-                <button class="btn-1" type="button" id="next">NEXT</button>
+            <div class="next btn-1" style="margin-bottom: 40px;">
+                <a href="../user/customerinfo.html">NEXT</a>
             </div>
         </div>
     </div>
