@@ -307,3 +307,24 @@ dropdown {
 .navbar-light .navbar-brand {
     color: rgba(0, 0, 0, .9);
 }
+
+.container2{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 150vh;
+}
+.container2 a{
+    padding-top: -30px;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #000000;
+    padding-left: 55px;
+}
+
+.container2 a:hover{
+    background-color: #000000;
+    color: white;
+}

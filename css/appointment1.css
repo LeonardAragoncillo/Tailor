@@ -398,39 +398,23 @@ input#Name, #Age, #Contact, #Address{
     margin-bottom: 22px;
 }
 
-.next{
-    margin-top: 30px;
-    margin-left: 750px;
+.container2{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 150vh;
 }
-
-.next.btn-1 {
+.container2 a{
+    padding-top: -30px;
     background-color: white;
     color: black;
-    padding: 8px;
+    padding: 10px;
     border-radius: 8px;
-    width: 158px;
-    height: 50px;
-    display: inline-block; /* Ensure the div behaves like a button */
-    text-align: center; /* Center the text */
-    text-decoration: none; /* Remove underline from the link */
-}
-
-.next.btn-1 a{
     text-decoration: none;
-    color: #000;
+    color: #000000;
+    padding-left: 55px;
 }
 
-.next.btn-1 a:hover{
-    text-decoration: none;
-    color: #ffffff;
-}
-
-.next.btn-1:hover {
-    background-color: black;
-    color: #ffffff;
-    transition: color 0.2s ease-in-out, transform 0.3s ease-in-out;
-}
-
-div.next {
-    border-radius: 8px;
+.container2 a:hover{
+    background-color: #000000;
+    color: white;
 }
