@@ -9,26 +9,28 @@
 
 
 .bgrectang {
-    height: 100vh;
+    height: 100vh; /* Keep the height fixed */
     width: 100%;
     background-image: url(../img/homepage\ bg.png);
     background-size: cover;
     display: flex;
-    align-content: center;
-    align-items: center;
+    align-items: center; /* Center items vertically */
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
-    
+    overflow: auto; 
 }
 
 .rectang {
     border: 1px solid black;
     width: 51.25%;
-    height: 70.0833%;
+    min-height: 70vh; /* Set a minimum height */
+    max-height: 90vh; /* Ensure it does not exceed this height */
     background: #ebebeb;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* Allow vertical scrolling if content exceeds height */
+    padding: 26px;
     
 }
 
@@ -253,6 +255,8 @@ button.btn {
     justify-content: center;
     flex-wrap: wrap;
     align-content: flex-start;
+    overflow-y: auto; /* Allow scrolling for this section as well */
+    max-height: 60vh; 
 }
 
 .labb {
@@ -417,4 +421,57 @@ input#Name, #Age, #Contact, #Address{
 .container2 a:hover{
     background-color: #000000;
     color: white;
+}
+
+.container3 {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 5px;
+    display: none; /* Initially hidden */
+    overflow-y: auto; /* Allow vertical scrolling if necessary */
+    max-height: 70vh;
+}
+
+h1 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
+}
+
+.hidden {
+    display: none;
+}
+
+#confirmation {
+    margin-top: 20px;
+    padding: 10px;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
 }

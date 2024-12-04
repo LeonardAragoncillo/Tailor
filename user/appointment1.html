@@ -40,13 +40,13 @@
     <div class="bgrectang">
         <div class="rectang">
             <h2>Select the type of school uniform</h2>
-        
+
             <div class="button">
                 <button class="btn" type="button" onclick="showImage('../img/wmsu.png')">WMSU</button>
                 <button class="btn" type="button" onclick="showImage('../img/zppsu.png')">ZPPSU</button>
                 <button class="btn" type="button" onclick="showImage('../img/southern.png')">Southern</button>
             </div>
-        
+
             <div class="scroll">
                 <label for="cars">Choose top:</label>
                 <select id="cars">
@@ -67,21 +67,49 @@
                     <option value="opel">Set of Uniform with Blazer</option>
                 </select>
             </div>
-        
+
             <!-- Image container beside the scroll -->
             <div class="image-container" style="display:none; margin-left: 250px; margin-top: -180px;">
                 <img id="displayedImage" src="" alt="Image" style="width:100%; max-width: 400px; height: 300px;">
             </div>
-        
+
             <script>
+                // Function to show the image based on the selected school uniform
                 function showImage(imageSrc) {
                     const imageContainer = document.querySelector('.image-container');
                     const displayedImage = document.getElementById('displayedImage');
-        
+
                     displayedImage.src = imageSrc; // Set the image source
                     imageContainer.style.display = 'block'; // Show the image container
                 }
+
+                // Function to show the measurement form when a top is selected
+                document.querySelectorAll('.scroll select').forEach(select => {
+                    select.addEventListener('change', function () {
+                        const measurementForm = document.getElementById('measurementForm');
+                        measurementForm.style.display = 'block'; // Show the measurement form
+                    });
+                });
             </script>
+            <div class="container3" id="measurementForm" style="display:none;">
+            
+                    <h2>Measurements</h2>
+                    <label for="chest">Chest (inches):</label>
+                    <input type="number" id="chest" name="chest" required>
+            
+                    <label for="waist">Waist (inches):</label>
+                    <input type="number" id="waist" name="waist" required>
+            
+                    <label for="hip">Hip (inches):</label>
+                    <input type="number" id="hip" name="hip" required>
+            
+                    <label for="inseam">Inseam (inches):</label>
+                    <input type="number" id="inseam" name="inseam" required>
+            
+                    <button type="submit">Send Measurements</button>
+                </form>
+                <div id="confirmation" class="hidden"></div>
+            </div>
         </div>
         <div class="container2">
             <a href="../user/appointment2.html" style="width: 158px; height: 50px;">NEXT</a>
