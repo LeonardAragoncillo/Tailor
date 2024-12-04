@@ -25,95 +25,361 @@
                     <a href="../user/myorders.html"><span>My Orders</span></a>
                 </li>
                 <li>
-                    <a href="#flowers"><span>Contact Us</span></a>
-                </li>
-                <li>
                     <a href="#flowers"><span>Account</span></a>
                 </li>
                 <li>
-                    <a href="#flowers"><span>Logout</span></a>
+                    <a href="../user/login.html"><span>Logout</span></a>
                 </li>
             </ul>
         </div>
 
     </header>
     <div class="bgrectang">
-        <div class="rectang">
-            <h2>Select the type of school uniform</h2>
-
-            <div class="button">
-                <button class="btn" type="button" onclick="showImage('../img/wmsu.png')">WMSU</button>
-                <button class="btn" type="button" onclick="showImage('../img/zppsu.png')">ZPPSU</button>
-                <button class="btn" type="button" onclick="showImage('../img/southern.png')">Southern</button>
-            </div>
-
-            <div class="scroll">
-                <label for="cars">Choose top:</label>
-                <select id="cars">
-                    <option value="volvo">Polo</option>
-                    <option value="saab">Blouse</option>
-                    <option value="opel">Vest</option>
-                </select>
-                <label for="cars">Choose bottom:</label>
-                <select id="cars">
-                    <option value="volvo">Short</option>
-                    <option value="saab">Pants</option>
-                    <option value="opel">Blazer</option>
-                </select>
-                <label for="cars">Choose set:</label>
-                <select id="cars">
-                    <option value="volvo">Set of Uniform</option>
-                    <option value="saab">Set of Uniform with Vest</option>
-                    <option value="opel">Set of Uniform with Blazer</option>
-                </select>
-            </div>
-
-            <!-- Image container beside the scroll -->
-            <div class="image-container" style="display:none; margin-left: 250px; margin-top: -180px;">
-                <img id="displayedImage" src="" alt="Image" style="width:100%; max-width: 400px; height: 300px;">
-            </div>
-
+            
+            <div class="container-3">
+                <div class="box">
+                <div class="form-container">
+                    <div class="title" style="text-align: center; margin-bottom: 20px;">
+                        <h2>Uniform Type</h2>
+                    </div>
+                    <label for="school">Choose School:</label>
+                    <select id="school">
+                        <option value="">Select a school</option>
+                        <option value="WMSU">WMSU</option>
+                        <option value="ZPPSU">ZPPSU</option>
+                        <option value="SOUTHERN">SOUTHERN</option>
+                    </select>
+                    <label for="top">Choose Top:</label>
+                    <select id="top">
+                        <option value="">Select an option</option>
+                        <option value="polo">Polo</option>
+                        <option value="blouse">Blouse</option>
+                        <option value="vest">Vest</option>
+                        <option value="blazer">Blazer</option>
+                    </select>
+                    
+                    <label for="bottom">Choose Bottom:</label>
+                    <select id="bottom">
+                        <option value="">Select an option</option>
+                        <option value="short">Short</option>
+                        <option value="pants">Pants</option>
+                        <option value="skirt">Skirt</option>
+                        
+                    </select>
+    
+                    <label for="set">Choose Set:</label>
+                    <select id="set">
+                        <option value="">Select an option</option>
+                        <option value="set-1">Set of Uniform</option>
+                        <option value="set-2">Set of Uniform with Vest</option>
+                        <option value="set-3">Set of Uniform with blazer</option>
+                    </select>
+        
+                    <!-- <label for="gender">Gender</label>
+                    <select id="gender">
+                        <option value="">Select an option</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select> -->
+        
+                    
+        
             <script>
-                // Function to show the image based on the selected school uniform
-                function showImage(imageSrc) {
-                    const imageContainer = document.querySelector('.image-container');
-                    const displayedImage = document.getElementById('displayedImage');
-
-                    displayedImage.src = imageSrc; // Set the image source
-                    imageContainer.style.display = 'block'; // Show the image container
-                }
-
-                // Function to show the measurement form when a top is selected
-                document.querySelectorAll('.scroll select').forEach(select => {
-                    select.addEventListener('change', function () {
-                        const measurementForm = document.getElementById('measurementForm');
-                        measurementForm.style.display = 'block'; // Show the measurement form
-                    });
+                document.getElementById('top').addEventListener('change', function () {
+                    const top = this.value;
+                    const measurementContainer = document.querySelector('.measurement-container');
+                    const blouseContainer = document.querySelector ('.blouse-container');
+                    const vestContainer = document.querySelector ('.vest-container');
+                    const blazerContainer = document.querySelector ('.blazer-container');
+    
+                    measurementContainer.style.display= 'none';
+                    blouseContainer.style.display= 'none';
+                    vestContainer.style.display= 'none';
+                    blazerContainer.style.display= 'none';
+    
+                    if (top=== 'polo'){
+                        measurementContainer.style.display= 'block';//show container
+                        measurementContainer.style.marginTop= '60px'; 
+                        measurementContainer.style.borderTop= '2px solid black';
+                    }
+                    else if (top === 'blouse'){
+                        blouseContainer.style.display= 'block';
+                        blouseContainer.style.marginTop= '60px';
+                        blouseContainer.style.borderTop= '2px solid black';
+                    }
+                    else if (top === 'vest'){
+                        vestContainer.style.display = 'block';
+                        vestContainer.style.marginTop= '60px';
+                        vestContainer.style.borderTop= '2px solid black';
+                    }
+                    else if (top === 'blazer'){
+                        blazerContainer.style.display = 'block';
+                        blazerContainer.style.marginTop= '60px';
+                        blazerContainer.style.borderTop= '2px solid black';
+                    }
+                    else{
+                        measurementContainer.style.display= 'none'; //hide container
+                        blouseContainer.style.display= 'none';
+                        vestContainer.style.display= 'none';
+                        blazerContainer.style.display= 'none';
+                    }
                 });
+                document.getElementById('bottom').addEventListener('change', function () {
+                    const bottom = this.value;
+                    const shortContainer = document.querySelector('.short-container');
+                    const pantsContainer= document.querySelector('.pants-container');
+                    const skirtContainer= document.querySelector('.skirt-container');
+    
+                    shortContainer.style.display= 'none';
+                    pantsContainer.style.display= 'none';
+                    skirtContainer.style.display= 'none';
+    
+                    if (bottom === 'short'){
+                        shortContainer.style.display = 'block';
+                        shortContainer.style.marginTop = '60px';
+                        shortContainer.style.borderTop = '2px solid black';
+                    }
+                    else if (bottom === 'pants'){
+                        pantsContainer.style.display = 'block';
+                        pantsContainer.style.marginTop = '60px';
+                        pantsContainer.style.borderTop = '2px solid black';
+                    }
+                    else if(bottom === 'skirt'){
+                        skirtContainer.style.display = 'block';
+                        skirtContainer.style.marginTop = '60px';
+                        skirtContainer.style.borderTop = '2px solid black';
+                    }
+                    else{
+                        shortContainer.style.display='none';
+                    }
+                    
+                })
+                document.getElementById('set').addEventListener('change', function() {
+            // Reset the 'top' and 'bottom' dropdowns
+            document.getElementById('top').selectedIndex = 0; // Reset to "Select an option"
+            document.getElementById('bottom').selectedIndex = 0; // Reset to "Select an option"
+    
+            // Logic to prioritize or handle the selected 'set' can be added here
+            const selectedSet = this.value;
+            if (selectedSet === 'set-1') {
+                // Example: Automatically select a top and bottom based on the set
+                document.getElementById('top').value = 'polo'; // Example selection
+                document.getElementById('bottom').value = 'pants'; // Example selection
+            } else if (selectedSet === 'set-2') {
+                document.getElementById('top').value = 'vest'; // Example selection
+                document.getElementById('bottom').value = 'short'; // Example selection
+            } else if (selectedSet === 'set-3') {
+                document.getElementById('top').value = 'blazer'; // Example selection
+                document.getElementById('bottom').value = 'skirt'; // Example selection
+            }
+                });
+           
+        
+                // document.getElementById('gender').addEventListener('change', function () {
+                //     const gender = this.value;
+                    
+                // });
             </script>
-            <div class="container3" id="measurementForm" style="display:none;">
-            
-                    <h2>Measurements</h2>
-                    <label for="chest">Chest (inches):</label>
-                    <input type="number" id="chest" name="chest" required>
-            
-                    <label for="waist">Waist (inches):</label>
-                    <input type="number" id="waist" name="waist" required>
-            
-                    <label for="hip">Hip (inches):</label>
-                    <input type="number" id="hip" name="hip" required>
-            
-                    <label for="inseam">Inseam (inches):</label>
-                    <input type="number" id="inseam" name="inseam" required>
-            
-                    <button type="submit">Send Measurements</button>
-                </form>
-                <div id="confirmation" class="hidden"></div>
+           <div class="measurement-container" style="display: none;">
+            <h4>Polo</h4>
+                
+    
+                <label for="chest">Chest:</label>
+                <input type="number" id="chest" >
+    
+                <label for="polo-length">Polo's Length:</label>
+                <input type="number" id="polo-length">
+    
+                <label for="hips">Hips:</label>
+                <input type="number" id="hips" >
+    
+                <label for="shoulder-m">Shoulder M.:</label>
+                <input type="number" id="shoulder-m" >
+    
+                <label for="sleeve-length">Sleeve Length:</label>
+                <input type="number" id="sleeve-length" >
+    
+                <label for="armhole">Armhole:</label>
+                <input type="number" id="armhole" >
+    
+                <label for="lower-arm-girth">Lower Arm Girth:</label>
+                <input type="number" id="lower-arm-girth" >
+           </div>
+           <div class="blouse-container" style="display: none;">
+            <h4>Blouse</h4>
+                
+    
+                <label for="Bust">Bust:</label>
+                <input type="number" id="Bust" >
+    
+                <label for="Blouse-length">Blouse Length:</label>
+                <input type="number" id="Blouse-length">
+    
+                <label for="Waist">Waist:</label>
+                <input type="number" id="Waist" >
+    
+                <label for="Figure">Figure:</label>
+                <input type="number" id="Figure" >
+    
+                <label for="Hips">Hips:</label>
+                <input type="number" id="Hips" >
+    
+                <label for="Shoulder">Shoulder Measurement:</label>
+                <input type="number" id="Shoulder" >
+    
+                <label for="Sleeve-Length">Sleeve Length:</label>
+                <input type="number" id="Sleeve-Length" >
+    
+                <label for="Arm-Hole">Arm Hole:</label>
+                <input type="number" id="Arm-Hole" >
+    
+                <label for="Lower-Arm-Girth">Lower Arm Girth:</label>
+                <input type="number" id="Lower-Arm-Girth" >
+           </div>
+           <div class="vest-container" style="display: none;">
+            <h4>Vest</h4>
+                
+    
+                <label for="arm-hole">Arm Hole:</label>
+                <input type="number" id="arm-hole" >
+    
+                <label for="full-length">Full Length:</label>
+                <input type="number" id="full-length">
+    
+                <label for="shoulder-width">Shoulder Width:</label>
+                <input type="number" id="shoulder-width" >
+    
+                <label for="neck-circumference">Neck Circumference:</label>
+                <input type="number" id="neck-circumference" >
+    
+           </div>
+           <div class="blazer-container" style="display: none;">
+            <h4>Blazer</h4>
+                
+    
+                <label for="chest">Chest:</label>
+                <input type="number" id="chest" >
+    
+                <label for="shoulder-width">Shoulder width:</label>
+                <input type="number" id="shoulder-width" >
+    
+                <label for="blazer-lenght">Blazer Length:</label>
+                <input type="number" id="blazer-lenght">
+    
+                <label for="sleeve-length">Sleeve length:</label>
+                <input type="number" id="sleeve-length" >
+    
+                <label for="Waist">Waist:</label>
+                <input type="number" id="Waist" >
+    
+                <label for="Hips">Hips:</label>
+                <input type="number" id="Hips" >
+    
+                <label for="Armhole">Armhole:</label>
+                <input type="number" id="Armhole" >
+                
+                <label for="Wrist">Wrist:</label>
+                <input type="number" id="Wrist" >
+    
+                <label for="back-width">Back Width:</label>
+                <input type="number" id="back-width" >
+    
+                <label for="lower-arm-girth">Lower Arm Girth:</label>
+                <input type="number" id="lower-arm-girth" >
+    
+           </div>
+    
+           <!-- Bottom -->
+           <div class="short-container" style="display: none;">
+            <h4>Short</h4>
+                
+    
+                <label for="waist">Waist:</label>
+                <input type="number" id="waist" >
+    
+                <label for="hip">Hip:</label>
+                <input type="number" id="hip" >
+    
+                <label for="short-lenght">Short Length:</label>
+                <input type="number" id="short-lenght">
+    
+                <label for="thigh-circumference">Thigh Circumference:</label>
+                <input type="number" id="thigh-circumference" >
+    
+                <label for="inseam-length">Inseam Length:</label>
+                <input type="number" id="inseam-length" >
+    
+                <label for="leg-opening">Leg Opening:</label>
+                <input type="number" id="leg-opening" >
+    
+                <label for="rise">Rise:</label>
+                <input type="number" id="rise" >
+                
+           </div>
+    
+           <div class="pants-container" style="display: none;">
+            <h4>Pants</h4>
+                
+                <label for="pants-lenght">Pants Length:</label>
+                <input type="number" id="pants-lenght">
+    
+                <label for="waist">Waist:</label>
+                <input type="number" id="waist" >
+    
+                <label for="hip">Hip:</label>
+                <input type="number" id="hip" >
+    
+                <label for="crotch">Crotch:</label>
+                <input type="number" id="crotch">
+    
+                <label for="knee-height">Knee Height:</label>
+                <input type="number" id="knee-height" >
+    
+                <label for="knee-circumference">Knee Circumference:</label>
+                <input type="number" id="knee-circumference" >
+    
+                <label for="bottom-circumference">Bottom Circumference:</label>
+                <input type="number" id="bottom-circumference" >
+      
+           </div>
+    
+           <div class="skirt-container" style="display: none;">
+            <h4>Skirt</h4>
+                
+                <label for="skirt-lenght">Skirt Length:</label>
+                <input type="number" id="skirt-lenght">
+    
+                <label for="waist">Waist:</label>
+                <input type="number" id="waist" >
+    
+                <label for="hip">Hips:</label>
+                <input type="number" id="hip" >
+    
+                <label for="hip-depth">Hip Depth:</label>
+                <input type="number" id="hip-depth">
+           </div>
+           <div class="button">
+            <button type="submit" onclick="window.location.href='../user/customerinfo.html'" style="color: white; background-color: black; margin-top: 8px;" class="btn btn-primary ">Done</button>
+        </div>
+                </div>
             </div>
         </div>
-        <div class="container2">
-            <a href="../user/appointment2.html" style="width: 158px; height: 50px;">NEXT</a>
-        </div>
+        <div class="uniform-prices" style="margin-top: 20px; padding: 20px; background-color: #f9f9f9; border-radius: 5px;">
+            <h3>Uniform Prices</h3>
+            <h4>Female Uniform Prices</h4>
+            <ul>
+                <li>Blouse: ₱500</li>
+                <li>Pants: ₱500</li>
+                <li>Set (Pants and Blouse): ₱1,000</li>
+                <li>Vest: ₱400</li>
+                <li>Uniform Set with Vest: ₱1,400</li>
+                <li>Coat/Blazer: ₱500 (standard, depends on the design)</li>
+            </ul>
+            <h4>Male Uniform Prices</h4>
+            <ul>
+                <li>Polo: ₱500</li>
+                <li>Pants: ₱500</li>
+                <li>Set (Pants and Polo): ₱1,000</li>
     </div>
 </body>
 

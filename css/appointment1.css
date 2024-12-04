@@ -18,7 +18,16 @@
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
-    overflow: auto; 
+    overflow: hidden; /* Prevent overflow and remove scrollbars */
+}
+
+.container-3 {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-y: auto; /* Allow vertical scrolling if necessary */
+    height: 70vh; /* Set a fixed height */
 }
 
 .rectang {
@@ -56,18 +65,14 @@ div.container{
 }
 
 button#next.btn-1 {
-    background-color: white;
-    color: black;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     padding: 8px;
     border-radius: 8px;
     width: 158px;
     height: 50px;
 }
-button#next:hover{
-    background-color: black;
-    color: white;
-    transition: color 0.2s ease-in-out, transform 0.3s ease-in-out;
-}
+
 div.next{
     border-radius: 8px;
     
@@ -474,4 +479,109 @@ button:hover {
     background: #d4edda;
     border: 1px solid #c3e6cb;
     border-radius: 5px;
+}
+
+.container-3 {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-y: auto; /* Allow vertical scrolling if necessary */
+    height: 70vh; /* Set a fixed height */
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+div.form-container {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);;
+    width: 519px;
+    /* margin: auto; */
+}
+
+.form-container h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.form-container select,
+.form-container input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+div.button{
+    display: flex;
+    justify-content: center;
+}
+
+.payment-form {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff; /* White background for the form */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    padding: 20px;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.uniform-prices {
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.uniform-prices h3 {
+    margin-bottom: 10px;
+}
+
+.uniform-prices ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+}
+
+.uniform-prices li {
+    margin: 5px 0; /* Space between items */
+}
+
+.payment-options {
+    display: flex;
+    justify-content: space-between; /* Space between the options */
+    margin-top: 10px; /* Add some space above */
+}
+
+.payment-options div {
+    flex: 1; /* Allow options to take equal space */
+    text-align: center; /* Center the text */
 }
