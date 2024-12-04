@@ -1,4 +1,4 @@
-f<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,6 +34,61 @@ f<!DOCTYPE html>
     </script>
 
     <div class="main-container">
+        <div id="output-container" style="display: none; margin-top: 20px; border: 1px solid black; padding: 20px;">
+            <h3>Selected Data</h3>
+            <div id="output-content"></div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.querySelector('.button button').addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent form submission
+        
+                    // Collect dropdown values
+                    const selectedTop = document.getElementById('top').value;
+                    const selectedBottom = document.getElementById('bottom').value;
+                    const selectedSet = document.getElementById('set').value;
+        
+                    // Collect inputted measurements
+                    const measurementFields = document.querySelectorAll('.measurement-container input, .blouse-container input, .vest-container input, .blazer-container input, .short-container input, .pants-container input, .skirt-container input');
+                    const measurements = {};
+                    measurementFields.forEach(field => {
+                        if (field.value) {
+                            const label = field.previousElementSibling.innerText.replace(':', '').trim();
+                            measurements[label] = field.value;
+                        }
+                    });
+        
+                    // Debugging logs
+                    console.log("Selected Top:", selectedTop);
+                    console.log("Selected Bottom:", selectedBottom);
+                    console.log("Selected Set:", selectedSet);
+                    console.log("Measurements:", measurements);
+        
+                    // Prepare output HTML
+                    let outputHtml = `
+                        <p><strong>Top:</strong> ${selectedTop || 'None'}</p>
+                        <p><strong>Bottom:</strong> ${selectedBottom || 'None'}</p>
+                        <p><strong>Set:</strong> ${selectedSet || 'None'}</p>
+                    `;
+        
+                    if (Object.keys(measurements).length > 0) {
+                        outputHtml += '<h4>Measurements:</h4><ul>';
+                        for (const [key, value] of Object.entries(measurements)) {
+                            outputHtml += `<li>${key}: ${value}</li>`;
+                        }
+                        outputHtml += '</ul>';
+                    } else {
+                        outputHtml += '<p>No measurements provided.</p>';
+                    }
+        
+                    // Display the output
+                    const outputContainer = document.getElementById('output-container');
+                    const outputContent = document.getElementById('output-content');
+                    outputContent.innerHTML = outputHtml;
+                    outputContainer.style.display = 'block'; // Ensure this is set to block
+                });
+            });
+        </script>
         <div class="side-bar">
             <div class="container-1">
                 <div class="profile">
@@ -240,192 +295,176 @@ f<!DOCTYPE html>
                 
             // });
         </script>
-       <div class="measurement-container" style="display: none;">
-        <h4>Polo</h4>
-            
-
-            <label for="chest">Chest:</label>
-            <input type="number" id="chest" >
-
+        <div class="measurement-container" style="display: none;">
+            <h4>Polo</h4>
+            <label for="chest-polo">Chest:</label>
+            <input type="number" id="chest-polo">
+        
             <label for="polo-length">Polo's Length:</label>
             <input type="number" id="polo-length">
+        
+            <label for="hips-polo">Hips:</label>
+            <input type="number" id="hips-polo">
+        
+            <label for="shoulder-m-polo">Shoulder M.:</label>
+            <input type="number" id="shoulder-m-polo">
+        
+            <label for="sleeve-length-polo">Sleeve Length:</label>
+            <input type="number" id="sleeve-length-polo">
+        
+            <label for="armhole-polo">Armhole:</label>
+            <input type="number" id="armhole-polo">
+        
+            <label for="lower-arm-girth-polo">Lower Arm Girth:</label>
+            <input type="number" id="lower-arm-girth-polo">
+        </div>
+        
+        <div class="blouse-container" style="display: none;">
+            <h4>Blouse</h4>
+            <label for="bust-blouse">Bust:</label>
+            <input type="number" id="bust-blouse">
+        
+            <label for="blouse-length">Blouse Length:</label>
+            <input type="number" id="blouse-length">
+        
+            <label for="waist-blouse">Waist:</label>
+            <input type="number" id="waist-blouse">
+        
+            <label for="figure-blouse">Figure:</label>
+            <input type="number" id="figure-blouse">
+        
+            <label for="hips-blouse">Hips:</label>
+            <input type="number" id="hips-blouse">
+        
+            <label for="shoulder-blouse">Shoulder Measurement:</label>
+            <input type="number" id="shoulder-blouse">
+        
+            <label for="sleeve-length-blouse">Sleeve Length:</label>
+            <input type="number" id="sleeve-length-blouse">
+        
+            <label for="arm-hole-blouse">Arm Hole:</label>
+            <input type="number" id="arm-hole-blouse">
+        
+            <label for="lower-arm-girth-blouse">Lower Arm Girth:</label>
+            <input type="number" id="lower-arm-girth-blouse">
+        </div>
+        
+        <div class="vest-container" style="display: none;">
+            <h4>Vest</h4>
+            <label for="arm-hole-vest">Arm Hole:</label>
+            <input type="number" id="arm-hole-vest">
+        
+            <label for="full-length-vest">Full Length:</label>
+            <input type="number" id="full-length-vest">
+        
+            <label for="shoulder-width-vest">Shoulder Width:</label>
+            <input type="number" id="shoulder-width-vest">
+        
+            <label for="neck-circumference-vest">Neck Circumference:</label>
+            <input type="number" id="neck-circumference-vest">
+        </div>
+        
+        <div class="blazer-container" style="display: none;">
+            <h4>Blazer</h4>
+            <label for="chest-blazer">Chest:</label>
+            <input type="number" id="chest-blazer">
+        
+            <label for="shoulder-width-blazer">Shoulder width:</label>
+            <input type="number" id="shoulder-width-blazer">
+        
+            <label for="blazer-length">Blazer Length:</label>
+            <input type="number" id="blazer-length">
+        
+            <label for="sleeve-length-blazer">Sleeve length:</label>
+            <input type="number" id="sleeve-length-blazer">
+        
+            <label for="waist-blazer">Waist:</label>
+            <input type="number" id="waist-blazer">
+        
+            <label for="hips-blazer">Hips:</label>
+            <input type="number" id="hips-blazer">
+        
+            <label for="armhole-blazer">Armhole:</label>
+            <input type="number" id="armhole-blazer">
+        
+            <label for="wrist-blazer">Wrist:</label>
+            <input type="number" id="wrist-blazer">
 
-            <label for="hips">Hips:</label>
-            <input type="number" id="hips" >
-
-            <label for="shoulder-m">Shoulder M.:</label>
-            <input type="number" id="shoulder-m" >
-
-            <label for="sleeve-length">Sleeve Length:</label>
-            <input type="number" id="sleeve-length" >
-
-            <label for="armhole">Armhole:</label>
-            <input type="number" id="armhole" >
-
-            <label for="lower-arm-girth">Lower Arm Girth:</label>
-            <input type="number" id="lower-arm-girth" >
-       </div>
-       <div class="blouse-container" style="display: none;">
-        <h4>Blouse</h4>
+            <label for="back-width-blazer">Back Width:</label>
+            <input type="number" id="back-width-blazer" >
             
-
-            <label for="Bust">Bust:</label>
-            <input type="number" id="Bust" >
-
-            <label for="Blouse-length">Blouse Length:</label>
-            <input type="number" id="Blouse-length">
-
-            <label for="Waist">Waist:</label>
-            <input type="number" id="Waist" >
-
-            <label for="Figure">Figure:</label>
-            <input type="number" id="Figure" >
-
-            <label for="Hips">Hips:</label>
-            <input type="number" id="Hips" >
-
-            <label for="Shoulder">Shoulder Measurement:</label>
-            <input type="number" id="Shoulder" >
-
-            <label for="Sleeve-Length">Sleeve Length:</label>
-            <input type="number" id="Sleeve-Length" >
-
-            <label for="Arm-Hole">Arm Hole:</label>
-            <input type="number" id="Arm-Hole" >
-
-            <label for="Lower-Arm-Girth">Lower Arm Girth:</label>
-            <input type="number" id="Lower-Arm-Girth" >
-       </div>
-       <div class="vest-container" style="display: none;">
-        <h4>Vest</h4>
-            
-
-            <label for="arm-hole">Arm Hole:</label>
-            <input type="number" id="arm-hole" >
-
-            <label for="full-length">Full Length:</label>
-            <input type="number" id="full-length">
-
-            <label for="shoulder-width">Shoulder Width:</label>
-            <input type="number" id="shoulder-width" >
-
-            <label for="neck-circumference">Neck Circumference:</label>
-            <input type="number" id="neck-circumference" >
-
-       </div>
-       <div class="blazer-container" style="display: none;">
-        <h4>Blazer</h4>
-            
-
-            <label for="chest">Chest:</label>
-            <input type="number" id="chest" >
-
-            <label for="shoulder-width">Shoulder width:</label>
-            <input type="number" id="shoulder-width" >
-
-            <label for="blazer-lenght">Blazer Length:</label>
-            <input type="number" id="blazer-lenght">
-
-            <label for="sleeve-length">Sleeve length:</label>
-            <input type="number" id="sleeve-length" >
-
-            <label for="Waist">Waist:</label>
-            <input type="number" id="Waist" >
-
-            <label for="Hips">Hips:</label>
-            <input type="number" id="Hips" >
-
-            <label for="Armhole">Armhole:</label>
-            <input type="number" id="Armhole" >
-            
-            <label for="Wrist">Wrist:</label>
-            <input type="number" id="Wrist" >
-
-            <label for="back-width">Back Width:</label>
-            <input type="number" id="back-width" >
-
-            <label for="lower-arm-girth">Lower Arm Girth:</label>
-            <input type="number" id="lower-arm-girth" >
+            <label for="lower-arm-girth-blazer">Lower Arm Girth:</label>
+            <input type="number" id="lower-arm-girth-blazer" >
 
        </div>
 
        <!-- Bottom -->
        <div class="short-container" style="display: none;">
         <h4>Short</h4>
-            
-
-            <label for="waist">Waist:</label>
-            <input type="number" id="waist" >
-
-            <label for="hip">Hip:</label>
-            <input type="number" id="hip" >
-
-            <label for="short-lenght">Short Length:</label>
-            <input type="number" id="short-lenght">
-
-            <label for="thigh-circumference">Thigh Circumference:</label>
-            <input type="number" id="thigh-circumference" >
-
-            <label for="inseam-length">Inseam Length:</label>
-            <input type="number" id="inseam-length" >
-
-            <label for="leg-opening">Leg Opening:</label>
-            <input type="number" id="leg-opening" >
-
-            <label for="rise">Rise:</label>
-            <input type="number" id="rise" >
-            
-       </div>
-
-       <div class="pants-container" style="display: none;">
+        <label for="waist-short">Waist:</label>
+        <input type="number" id="waist-short">
+    
+        <label for="hip-short">Hip:</label>
+        <input type="number" id="hip-short">
+    
+        <label for="short-length">Short Length:</label>
+        <input type="number" id="short-length">
+    
+        <label for="thigh-circumference">Thigh Circumference:</label>
+        <input type="number" id="thigh-circumference">
+    
+        <label for="inseam-length">Inseam Length:</label>
+        <input type="number" id="inseam-length">
+    
+        <label for="leg-opening">Leg Opening:</label>
+        <input type="number" id="leg-opening">
+    
+        <label for="rise">Rise:</label>
+        <input type="number" id="rise">
+    </div>
+    
+    <div class="pants-container" style="display: none;">
         <h4>Pants</h4>
-            
-            <label for="pants-lenght">Pants Length:</label>
-            <input type="number" id="pants-lenght">
-
-            <label for="waist">Waist:</label>
-            <input type="number" id="waist" >
-
-            <label for="hip">Hip:</label>
-            <input type="number" id="hip" >
-
-            <label for="crotch">Crotch:</label>
-            <input type="number" id="crotch">
-
-            <label for="knee-height">Knee Height:</label>
-            <input type="number" id="knee-height" >
-
-            <label for="knee-circumference">Knee Circumference:</label>
-            <input type="number" id="knee-circumference" >
-
-            <label for="bottom-circumference">Bottom Circumference:</label>
-            <input type="number" id="bottom-circumference" >
-  
-       </div>
-
-       <div class="skirt-container" style="display: none;">
+        <label for="pants-length">Pants Length:</label>
+        <input type="number" id="pants-length">
+    
+        <label for="waist-pants">Waist:</label>
+        <input type="number" id="waist-pants">
+    
+        <label for="hip-pants">Hip:</label>
+        <input type="number" id="hip-pants">
+    
+        <label for="crotch">Crotch:</label>
+        <input type="number" id="crotch">
+    
+        <label for="knee-height">Knee Height:</label>
+        <input type="number" id="knee-height">
+    
+        <label for="knee-circumference">Knee Circumference:</label>
+        <input type="number" id="knee-circumference">
+    
+        <label for="bottom-circumference">Bottom Circumference:</label>
+        <input type="number" id="bottom-circumference">
+    </div>
+    
+    <div class="skirt-container" style="display: none;">
         <h4>Skirt</h4>
-            
-            <label for="skirt-lenght">Skirt Length:</label>
-            <input type="number" id="skirt-lenght">
-
-            <label for="waist">Waist:</label>
-            <input type="number" id="waist" >
-
-            <label for="hip">Hips:</label>
-            <input type="number" id="hip" >
-
-            <label for="hip-depth">Hip Depth:</label>
-            <input type="number" id="hip-depth">
-       </div>
-       <div class="button">
-        <button type="submit" style="color: white; background-color: black; margin-top: 8px;" class="btn btn-primary ">Done</button>
+        <label for="skirt-length">Skirt Length:</label>
+        <input type="number" id="skirt-length">
+    
+        <label for="waist-skirt">Waist:</label>
+        <input type="number" id="waist-skirt">
+    
+        <label for="hip-skirt">Hips:</label>
+        <input type="number" id="hip-skirt">
+    
+        <label for="hip-depth">Hip Depth:</label>
+        <input type="number" id="hip-depth">
     </div>
-            </div>
-        </div>
+    
+    <div class="button">
+        <button type="submit" style="color: white; background-color: black; margin-top: 8px;" class="btn btn-primary">Done</button>
     </div>
-    </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
