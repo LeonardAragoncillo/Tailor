@@ -110,83 +110,65 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Appointment No.</th>
+                            <th>Appointment Id.</th>
                             <th>Customer Name</th>
-                            <th>Tailor</th>
-                            <th>Session</th>
+                            <th>Quantity</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Balance</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark Dela Cruz</td>
-                            <td>Jose Chan</td>
-                            <td class="actions">
-                                <button>View</button>
-                                <button>Done</button>
-                                <button>Cancel</button>
+                        <?php
+                        $servername = "localhost";
+                        $username= "root";
+                        $password= "";
+                        $database= "upcoming_appointment";
+
+                        //create connection
+                        $connection = new mysqli($servername, $username, $password, $database);
+                         
+                        //check connection
+                        if ($connection->connect_error){
+                            die("Connection failed: " . $connection-> connect_error);
+                        }
+
+                        //read all row from database table
+                        $sql = "SELECT * FROM upcoming_list";
+                        $result = $connection->query($sql);
+
+                        if (!$result){
+                            die("Invalid Query: ". $connection->error);
+                        }
+
+                        //read data of each row
+                        while($row = $result->fetch_assoc()){
+                            echo "
+                             <tr>
+                            <td>$row[id]</td>
+                            <td>$row[Name]</td>
+                            <td>$row[Quantity]</td>
+                            <td>$row[Description]</td>
+                            <td>$row[Amount]</td>
+                            <td>$row[Balance]</td>
+                            <td>Pending</td>
+                            <td>
+                                <button class='btn btn-primary btn-sm' href='/admin/edit.php?id=$row[id]'>Edit</button>
+                                <button class='btn btn-primary btn-sm' href='/admin/done.php?id=$row[id]'>Done</button>
+                                <button class='btn btn-primary btn-sm'href='/admin/cancel.php?id=$row[id]'>Cancel</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Edgar Dela Cerna</td>
-                            <td>Tanya Madrigad</td>
-                            <td class="actions">
-                                <button>View</button>
-                                <button>Done</button>
-                                <button>Cancel</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Jose Santacruz</td>
-                            <td>Michael Cruz</td>
-                            <td class="actions">
-                                <button>View</button>
-                                <button>Done</button>
-                                <button>Cancel</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Marie Dela Cruz</td>
-                            <td>John Emperial</td>
-                            <td class="actions">
-                                <button>View</button>
-                                <button>Done</button>
-                                <button>Cancel</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Marie Dela Cruz</td>
-                            <td>John Emperial</td>
-                            <td class="actions">
-                                <button>View</button>
-                                <button>Done</button>
-                                <button>Cancel</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Jose Santacruz</td>
-                            <td>Michael Cruz</td>
-                            <td class="actions">
-                                <button>View</button>
-                                <button>Done</button>
-                                <button>Cancel</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Marie Dela Cruz</td>
-                            <td>John Emperial</td>
-                            <td class="actions">
-                                <button>View</button>
-                                <button>Done</button>
-                                <button>Cancel</button>
-                            </td>
-                        </tr>
+                            ";
+                        }
+                        ?>
+
+                        
+
+
+                       
+                       
                     </tbody>
                 </table>
             </div>
