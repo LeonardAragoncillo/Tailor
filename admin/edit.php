@@ -48,36 +48,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 else{
     //POST method: Update data of the client
-    $id = $_POST["id"];
-    $Name = $_POST["Name"];
-    $Date_Time = $_POST["Date_Time"];
-    $Quantity = $_POST["Quantity"];
-    $Description = $_POST["Description"];
-    $Amount = $_POST["Amount"];
-    $Balance = $_POST["Balance"];
-    $Status = $_POST["Status"];
-
-    do{
-        if ( empty($id) || empty($Name) || empty($Date_Time) || empty($Quantity) || empty($Description) || empty ($Amount) || empty($Balance) || empty($Status)){
-            $errorMessage = "All the fields are required";
-            break;
-        }
-        $sql = "UPDATE upcoming_list SET Name = '$Name', Date_Time = '$Date_Time', Quantity = '$Quantity', Description = '$Description', Amount = '$Amount', Balance = '$Balance', Status = '$Status' WHERE id = '$id'"; // Fixed SQL syntax
-
-        $result= $conn->query($sql);
-
-        if (!$result){
-            $errorMessage= "Invalid Query: ". $conn->error;
-            break;
-        }
-
-        $successMessage= "Updated Successfully";
-
-        header("location: ../admin/upcoming.php");
-        
-
-    }while (true);
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $id = $_POST["id"];
+        $Name = $conn->real_escape_string($_POST["Name"]);
+        $Date_Time = $conn->real_escape_string($_POST["Date_Time"]);
+        $Quantity = $conn->real_escape_string($_POST["Quantity"]);
+        $Description = $conn->real_escape_string($_POST["Description"]);
+        $Amount = $conn->real_escape_string($_POST["Amount"]);
+        $Balance = $conn->real_escape_string($_POST["Balance"]);
+        $Status = $conn->real_escape_string($_POST["Status"]);
+    
+        do {
+            if (empty($id) || empty($Name) || empty($Date_Time) || empty($Quantity) || empty($Description) || empty($Amount) || empty($Balance) || empty($Status)) {
+                $errorMessage = "All fields are required.";
+                break;
+            }
+    
+            // Debugging: Print the values before query execution
+            echo "ID: $id<br>";
+            echo "Name: $Name<br>";
+            echo "Date_Time: $Date_Time<br>";
+            echo "Quantity: $Quantity<br>";
+            echo "Description: $Description<br>";
+            echo "Amount: $Amount<br>";
+            echo "Balance: $Balance<br>";
+            echo "Status: $Status<br>";
+    
+            
+            // Create the SQL query
+            $sql = "UPDATE upcoming_list SET 
+                    Name = '$Name', 
+                    Date_Time = '$Date_Time', 
+                    Quantity = '$Quantity', 
+                    Description = '$Description', 
+                    Amount = '$Amount', 
+                    Balance = '$Balance', 
+                    Status = '$Status' 
+                    WHERE id = '$id'";
+    
+            // Debugging: Output the query
+            echo "Generated Query: " . $sql . "<br>";
+    
+            // Execute the query
+            $result = $conn->query($sql);
+    
+            if (!$result) {
+                die("SQL Error: " . $conn->error);
+            }
+    
+            $successMessage = "Updated Successfully";
+            header("location: ../admin/upcoming.php");
+            exit;
+    
+        } while (true);
+    }
+    
+    
 }
+    
 
 ?>
 
@@ -191,19 +219,21 @@ else{
             </div>
 
             <?php
-            if ( !empty($errorMessage)){
+            if (!empty($errorMessage)) {
                 echo "
-                <div class= 'alert alert-warning alert-dismissible fade show' role='alert'>
+                <div class='alert alert-warning alert-dismissible fade show' role='alert'>
                     <strong>$errorMessage</strong>
-                    <button type='button' class= 'btn-close' data-bs-dismiss= 'alert' arial-label = 'Close'><button>
-
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                 </div>
-
                 ";
             }
             ?>
             <div class="container-4">
-                
+
+                <form method="post">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    
+                </form>
                 <form method="post">
                     <input type="hidden" value="<?php echo $id?>">
                     <div class="form-group">

@@ -180,7 +180,10 @@ $conn->close();
             }
             ?>
             <div class="container-4">
-                
+            <form method="post">
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    
+                </form>
                 <form method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
@@ -232,7 +235,7 @@ $conn->close();
                             <button type="submit" class="btn btn-primary">submit</button>
                     </div>
                     <div class="button-container">
-                            <a class="btn btn-outline-primary" href="/admin/upcoming.php">cancel</a>
+                            <a class="btn btn-outline-primary" href="../admin/upcoming.php">cancel</a>
                     </div>
                 </form>
             </div>

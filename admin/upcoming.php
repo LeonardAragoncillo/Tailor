@@ -156,7 +156,7 @@
                             <td>$row[Description]</td>
                             <td>$row[Amount]</td>
                             <td>$row[Balance]</td>
-                            <td>$row[Date_Time]</td>
+                            <td>$row[Status]</td>
                             <td>
                                 <a class='btn btn-primary btn-sm' href='../admin/edit.php?id=$row[id]'>Edit</a>
                                 <a class='btn btn-primary btn-sm' href='/admin/done.php?id=$row[id]'>Done</a>
