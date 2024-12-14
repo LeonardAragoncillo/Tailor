@@ -1,3 +1,64 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "upcoming_appointment";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Initialize variables
+$Name = $Date_Time = $Quantity = $Description = $Amount = $Balance = $Status = "";
+
+$errorMessage = $successMessage = "";
+
+// Check if the request is POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $Name = isset($_POST["Name"]) ? $_POST["Name"] : "";
+    $Date_Time = isset($_POST["Date_Time"]) ? $_POST["Date_Time"] : "";
+    $Quantity = isset($_POST["Quantity"]) ? $_POST["Quantity"] : "";
+    $Description = isset($_POST["Description"]) ? $_POST["Description"] : "";
+    $Amount = isset($_POST["Amount"]) ? $_POST["Amount"] : "";
+    $Balance = isset($_POST["Balance"]) ? $_POST["Balance"] : "";
+    $Status = isset($_POST["Status"]) ? $_POST["Status"] : "";
+
+    // Validation
+    if (
+        empty($Name) || empty($Date_Time) || empty($Quantity) ||
+        empty($Description) || empty($Amount) || empty($Balance) || empty($Status)
+    ) {
+        $errorMessage = "All fields are required.";
+    } else {
+        // Prepare the SQL query
+        $sql = "INSERT INTO walkin_list (Name, Date_Time, Quantity, Description, Amount, Balance, Status)
+                VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssissis", $Name, $Date_Time, $Quantity, $Description, $Amount, $Balance, $Status);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            $successMessage = "Appointment added successfully.";
+            // Clear the form
+            $Name = $Date_Time = $Quantity = $Description = $Amount = $Balance = $Status = "";
+            header("Location: ../admin/walkint.php");
+            exit;
+        } else {
+            $errorMessage = "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+    }
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,9 +125,9 @@
                             <img src="../img/timetable-icon.png" alt="" class="icon">
                             <a href="javascript:void(0);" class="btn dropdown-toggle"><span>Appointment</span></a>
                             <ul class="dropdown">
-                                <li><a href="upcoming.php">Upcoming Appointment</a></li>
+                                <li><a href="../admin/upcoming.php">Upcoming Appointment</a></li>
                                 <li><a href="ongoing.html">Ongoing Appointments</a></li>
-                                <li><a href="walkint.php">Walk-in</a></li>
+                                <li><a href="../admin/walkint.php">Walk-in</a></li>
                             </ul>
                         </div>
 
@@ -104,39 +165,78 @@
         </div>
         <div class="container-3">
             <div class="intro">
-                <h1>Walk-in</h1>
+                <h1>Add New Walk-in</h1>
             </div>
+
+            <?php
+            if ( !empty($errorMessage)){
+                echo "
+                <div class= 'alert alert-warning alert-dismissible fade show' role='alert'>
+                    <strong>$errorMessage</strong>
+                    <button type='button' class= 'btn-close' data-bs-dismiss= 'alert' arial-label = 'Close'><button>
+
+                </div>
+
+                ";
+            }
+            ?>
             <div class="container-4">
-                
+            <form method="post">
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    
+                </form>
                 <form method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" id="name" >
+                        <input type="text" id="name" name="Name" value="<?php echo $Name;  ?>">
                     </div>
                     <div class="form-group">
-                        <label for="contact">Contact:</label>
-                        <input type="text" id="contact">
+                        <label for="Date_Time">Date/Time:</label>
+                        <input type="datetime-local" id="Date_Time" name="Date_Time" value="<?php echo $Date_Time;  ?>">
                     </div>
                     <div class="form-group">
-                        <label for="address">Address:</label>
-                        <input type="text" id="address" >
+                        <label for="Quantity">Quantity:</label>
+                        <input type="number" id="Quantity" name="Quantity" value="<?php echo $Quantity;  ?>">
                     </div>
                     <div class="form-group">
-                        <label for="orders">Orders:</label>
-                        <input type="text" id="orders" >
+                        <label for="description">Description:</label>
+                        <input type="text" id="description" name="Description" value="<?php echo $Description;  ?>">
                     </div>
                     <div class="form-group">
-                        <label for="school">School:</label>
-                        <input type="text" id="school" >
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" name="Amount" value="<?php echo $Amount;  ?>">
                     </div>
                     <div class="form-group">
-                        <label for="quantity">Quantity:</label>
-                        <input type="text" id="quantity" >
+                        <label for="balance">Balance:</label>
+                        <input type="number" id="balance" name="Balance" value="<?php echo $Balance;  ?>">
+                    </div>
+                    <div class="form-group">
+                    <label for="status">Status:</label>
+                        <select id="status" name="Status">
+                            <option value="Pending" <?php echo ($Status == 'Pending') ? 'selected' : ''; ?>>Pending</option>
+                            <option value="Approved" <?php echo ($Status == 'Approved') ? 'selected' : ''; ?>>Approved</option>
+                        </select>
+                    </div>
+
+
+                    <?php
+                    if ( !empty($successMessage)){
+                        echo"
+                        <div class='offset-sm-3 col-sm-6'>
+                            <div class='alert alert-sucess alert-dismissible fade show' role='alert'>
+                                <strong>$successMessage</strong>
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' arial-label></button>
+                            </div>
+                        </div>
+                        ";
+                    }
+                    ?>
+                    
+                    <div class="button-container">
+                            <button type="submit" class="btn btn-primary">submit</button>
                     </div>
                     <div class="button-container">
-                        <a href="../admin/walkin-1.html">
-                            <button>Next</button>
-                        </a>
+                            <a class="btn btn-outline-primary" href="../admin/walkint.php">cancel</a>
                     </div>
                 </form>
             </div>

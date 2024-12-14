@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $id = $_GET['id'];
 
     //read the row of the selected clint from the database
-    $sql = "SELECT * FROM upcoming_list WHERE id = '$id'";
+    $sql = "SELECT * FROM walkin_list WHERE id = '$id'";
     $result= $conn->query($sql);
     $row= $result->fetch_assoc();
 
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errorMessage = "All fields are required.";
     } else {
         // Update the record in the database
-        $sql = "UPDATE upcoming_list SET 
+        $sql = "UPDATE walkin_list SET 
                 Name = '$Name', 
                 Date_Time = '$Date_Time', 
                 Quantity = '$Quantity', 
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Execute the update query
         if ($conn->query($sql) === TRUE) {
             $successMessage = "Updated Successfully";
-            header("location: ../admin/upcoming.php");
+            header("location: ../admin/walkint.php");
             exit;
         } else {
             $errorMessage = "Error: " . $conn->error;
@@ -269,7 +269,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="button-container">
-                    <a class="btn btn-outline-primary" href="../admin/upcoming.php">Cancel</a>
+                    <a class="btn btn-outline-primary" href="../admin/walkint.php">Cancel</a>
                 </div>
             </form>
 

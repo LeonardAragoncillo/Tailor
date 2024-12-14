@@ -64,9 +64,9 @@
                             <img src="../img/timetable-icon.png" alt="" class="icon">
                             <a href="javascript:void(0);" class="btn dropdown-toggle"><span>Appointment</span></a>
                             <ul class="dropdown">
-                                <li><a href="upcoming.html">Upcoming Appointment</a></li>
+                                <li><a href="../admin/walkint.php">Upcoming Appointment</a></li>
                                 <li><a href="ongoing.html">Ongoing Appointments</a></li>
-                                <li><a href="Walkin.html">Walk-in</a></li>
+                                <li><a href="../admin/walkint.php">Walk-in</a></li>
                             </ul>
                         </div>
 
@@ -103,7 +103,7 @@
             </div>
         </div>
         <div class="container-3">
-            <div class="intro">
+            <div class="intro" style="margin-left: 141px;">
                 <h1>Upcoming Appointments</h1>
                 <a href="../admin/add.php" class="btn btn-primary" role="button">Add New Appointment</a>
             </div>
@@ -137,6 +137,26 @@
                             die("Connection failed: " . $connection-> connect_error);
                         }
 
+                        if (isset($_GET['delete_id'])){
+                            $delete_id= $_GET['delete_id'];
+
+                            //prepare delete statement
+                            $delete_sql= "DELETE FROM upcoming_list WHERE id = ?";
+                            $stmt = $connection->prepare($delete_sql);
+
+                            if ($stmt){
+                                $stmt->bind_param("i", $delete_id);
+
+                                //execute the prepared statement
+                                if ($stmt->execute()){
+                                    echo "<div class='alert alert-success'>Record Deleted Successfully.</div>";
+                                }else{
+                                    echo "<div class='alert alert-danger'>Error Deleting Record: ". $stmt->error . "  </div>";
+                                }
+                                $stmt->close();
+                            }
+                        }
+
                         //read all row from database table
                         $sql = "SELECT * FROM upcoming_list";
                         $result = $connection->query($sql);
@@ -158,9 +178,9 @@
                             <td>$row[Balance]</td>
                             <td>$row[Status]</td>
                             <td>
+                                <a class='btn btn-primary btn-sm' href='../admin/view.php?id=$row[id]'>View</a>
                                 <a class='btn btn-primary btn-sm' href='../admin/edit.php?id=$row[id]'>Edit</a>
-                                <a class='btn btn-primary btn-sm' href='/admin/done.php?id=$row[id]'>Done</a>
-                                <a class='btn btn-primary btn-sm'href='/admin/cancel.php?id=$row[id]'>Cancel</a>
+                               <a class='btn btn-danger btn-sm' href='?delete_id={$row['id']}' onclick='return confirm(\"Are you sure you want to delete this record?\")'>Delete</a>
                             </td>
                         </tr>
                             ";

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin</title>
-    <link rel="stylesheet" href="../css/Walkin.css">
+    <link rel="stylesheet" href="../css/upcoming.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
@@ -64,9 +64,9 @@
                             <img src="../img/timetable-icon.png" alt="" class="icon">
                             <a href="javascript:void(0);" class="btn dropdown-toggle"><span>Appointment</span></a>
                             <ul class="dropdown">
-                                <li><a href="upcoming.php">Upcoming Appointment</a></li>
+                                <li><a href="../admin/upcoming.php">Upcoming Appointment</a></li>
                                 <li><a href="ongoing.html">Ongoing Appointments</a></li>
-                                <li><a href="walkint.php">Walk-in</a></li>
+                                <li><a href="../admin/walkint.php">Walk-in</a></li>
                             </ul>
                         </div>
 
@@ -103,42 +103,95 @@
             </div>
         </div>
         <div class="container-3">
-            <div class="intro">
+            <div class="intro" style="margin-left: 141px;">
                 <h1>Walk-in</h1>
+                <a href="../admin/add_walkin.php" class="btn btn-primary" role="button">Add New Walk-in</a>
             </div>
-            <div class="container-4">
-                
-                <form method="post">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" >
-                    </div>
-                    <div class="form-group">
-                        <label for="contact">Contact:</label>
-                        <input type="text" id="contact">
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address:</label>
-                        <input type="text" id="address" >
-                    </div>
-                    <div class="form-group">
-                        <label for="orders">Orders:</label>
-                        <input type="text" id="orders" >
-                    </div>
-                    <div class="form-group">
-                        <label for="school">School:</label>
-                        <input type="text" id="school" >
-                    </div>
-                    <div class="form-group">
-                        <label for="quantity">Quantity:</label>
-                        <input type="text" id="quantity" >
-                    </div>
-                    <div class="button-container">
-                        <a href="../admin/walkin-1.html">
-                            <button>Next</button>
-                        </a>
-                    </div>
-                </form>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Appointment Id.</th>
+                            <th>Customer Name</th>
+                            <th>Date/Time</th>
+                            <th>Quantity</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Balance</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $servername = "localhost";
+                        $username= "root";
+                        $password= "";
+                        $database= "upcoming_appointment";
+
+                        //create connection
+                        $connection = new mysqli($servername, $username, $password, $database);
+                         
+                        //check connection
+                        if ($connection->connect_error){
+                            die("Connection failed: " . $connection-> connect_error);
+                        }
+
+                        // Handle delete request
+                        if (isset($_GET['delete_id'])){
+                            $delete_id= $_GET['delete_id'];
+
+                            //prepare delete statement
+                            $delete_sql= "DELETE FROM walkin_list WHERE id = ?";
+                            $stmt = $connection->prepare($delete_sql);
+
+                            if ($stmt){
+                                $stmt->bind_param("i", $delete_id);
+
+                                //execute the prepared statement
+                                if ($stmt->execute()){
+                                    echo "<div class='alert alert-success'>Record Deleted Successfully.</div>";
+                                }else{
+                                    echo "<div class='alert alert-danger'>Error Deleting Record: ". $stmt->error . "  </div>";
+                                }
+                                $stmt->close();
+                            }
+                        }
+
+                        //read all row from database table
+                        $sql = "SELECT * FROM walkin_list";
+                        $result = $connection->query($sql);
+
+                        if (!$result){
+                            die("Invalid Query: ". $connection->error);
+                        }
+
+                        //read data of each row
+                        while ($row = $result->fetch_assoc()) {
+                            echo "
+                                <tr>
+                                    <td>{$row['id']}</td>
+                                    <td>{$row['Name']}</td>
+                                    <td>{$row['Date_Time']}</td>
+                                    <td>{$row['Quantity']}</td>
+                                    <td>{$row['Description']}</td>
+                                    <td>{$row['Amount']}</td>
+                                    <td>{$row['Balance']}</td>
+                                    <td>{$row['Status']}</td>
+                                    <td>
+                                        <a class='btn btn-primary btn-sm' href='../admin/view.php?id={$row['id']}'>View</a>
+                                        <a class='btn btn-primary btn-sm' href='../admin/edit_walkin.php?id={$row['id']}'>Edit</a>
+                                        <a class='btn btn-danger btn-sm' href='?delete_id={$row['id']}' onclick='return confirm(\"Are you sure you want to delete this record?\")'>Delete</a>
+                                    </td>
+                                </tr>
+                            ";
+                        }
+                        
+                        ?>
+
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
