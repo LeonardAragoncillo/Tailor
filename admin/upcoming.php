@@ -105,6 +105,7 @@
         <div class="container-3">
             <div class="intro">
                 <h1>Upcoming Appointments</h1>
+                <a href="../admin/add.php" class="btn btn-primary" role="button">Add New Appointment</a>
             </div>
             <div class="table-container">
                 <table>
@@ -112,6 +113,7 @@
                         <tr>
                             <th>Appointment Id.</th>
                             <th>Customer Name</th>
+                            <th>Date/Time</th>
                             <th>Quantity</th>
                             <th>Description</th>
                             <th>Amount</th>
@@ -149,26 +151,23 @@
                              <tr>
                             <td>$row[id]</td>
                             <td>$row[Name]</td>
+                            <td>$row[Date_Time]</td>
                             <td>$row[Quantity]</td>
                             <td>$row[Description]</td>
                             <td>$row[Amount]</td>
                             <td>$row[Balance]</td>
-                            <td>Pending</td>
+                            <td>$row[Date_Time]</td>
                             <td>
-                                <button class='btn btn-primary btn-sm' href='/admin/edit.php?id=$row[id]'>Edit</button>
-                                <button class='btn btn-primary btn-sm' href='/admin/done.php?id=$row[id]'>Done</button>
-                                <button class='btn btn-primary btn-sm'href='/admin/cancel.php?id=$row[id]'>Cancel</button>
+                                <a class='btn btn-primary btn-sm' href='../admin/edit.php?id=$row[id]'>Edit</a>
+                                <a class='btn btn-primary btn-sm' href='/admin/done.php?id=$row[id]'>Done</a>
+                                <a class='btn btn-primary btn-sm'href='/admin/cancel.php?id=$row[id]'>Cancel</a>
                             </td>
                         </tr>
                             ";
                         }
                         ?>
 
-                        
 
-
-                       
-                       
                     </tbody>
                 </table>
             </div>

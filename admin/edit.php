@@ -1,3 +1,86 @@
+<?php
+
+$servername="localhost";
+$username="root";
+$password="";
+$database="upcoming_appointment";
+
+//create connection
+$conn= new mysqli($servername, $username, $password, $database);
+
+$id = "";
+$Name = "";
+$Date_Time = "";
+$Quantity = "";
+$Description = "";
+$Amount = "";
+$Balance = "";
+$Status = "";
+
+$errorMessage= "";
+$successMessage = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    // Get method: Show data of the client
+
+    if (!isset($_GET['id'])) {
+        header("location: /admin/upcoming.php");
+        exit;
+    }
+    $id = $_GET['id'];
+
+    //read the row of the selected clint from the database
+    $sql = "SELECT * FROM upcoming_list WHERE id = '$id'";
+    $result= $conn->query($sql);
+    $row= $result->fetch_assoc();
+
+    if (!$row){
+        header("location: ../admin/upcoming.php");
+        exit;
+    }
+    $Name =$row ["Name"];
+    $Date_Time =$row ["Date_Time"];
+    $Quantity =$row ["Quantity"];
+    $Description =$row ["Description"];
+    $Amount = $row["Amount"];
+    $Balance = $row["Balance"];
+    $Status = $row["Status"];
+}
+else{
+    //POST method: Update data of the client
+    $id = $_POST["id"];
+    $Name = $_POST["Name"];
+    $Date_Time = $_POST["Date_Time"];
+    $Quantity = $_POST["Quantity"];
+    $Description = $_POST["Description"];
+    $Amount = $_POST["Amount"];
+    $Balance = $_POST["Balance"];
+    $Status = $_POST["Status"];
+
+    do{
+        if ( empty($id) || empty($Name) || empty($Date_Time) || empty($Quantity) || empty($Description) || empty ($Amount) || empty($Balance) || empty($Status)){
+            $errorMessage = "All the fields are required";
+            break;
+        }
+        $sql = "UPDATE upcoming_list SET Name = '$Name', Date_Time = '$Date_Time', Quantity = '$Quantity', Description = '$Description', Amount = '$Amount', Balance = '$Balance', Status = '$Status' WHERE id = '$id'"; // Fixed SQL syntax
+
+        $result= $conn->query($sql);
+
+        if (!$result){
+            $errorMessage= "Invalid Query: ". $conn->error;
+            break;
+        }
+
+        $successMessage= "Updated Successfully";
+
+        header("location: ../admin/upcoming.php");
+        
+
+    }while (true);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,39 +187,76 @@
         </div>
         <div class="container-3">
             <div class="intro">
-                <h1>Walk-in</h1>
+                <h1>Add New Appointment</h1>
             </div>
+
+            <?php
+            if ( !empty($errorMessage)){
+                echo "
+                <div class= 'alert alert-warning alert-dismissible fade show' role='alert'>
+                    <strong>$errorMessage</strong>
+                    <button type='button' class= 'btn-close' data-bs-dismiss= 'alert' arial-label = 'Close'><button>
+
+                </div>
+
+                ";
+            }
+            ?>
             <div class="container-4">
                 
                 <form method="post">
+                    <input type="hidden" value="<?php echo $id?>">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" id="name" >
+                        <input type="text" id="name" name="Name" value="<?php echo $Name;  ?>">
                     </div>
                     <div class="form-group">
-                        <label for="contact">Contact:</label>
-                        <input type="text" id="contact">
+                        <label for="Date_Time">Date/Time:</label>
+                        <input type="datetime-local" id="Date_Time" name="Date_Time" value="<?php echo $Date_Time;  ?>">
                     </div>
                     <div class="form-group">
-                        <label for="address">Address:</label>
-                        <input type="text" id="address" >
+                        <label for="Quantity">Quantity:</label>
+                        <input type="number" id="Quantity" name="Quantity" value="<?php echo $Quantity;  ?>">
                     </div>
                     <div class="form-group">
-                        <label for="orders">Orders:</label>
-                        <input type="text" id="orders" >
+                        <label for="description">Description:</label>
+                        <input type="text" id="description" name="Description" value="<?php echo $Description;  ?>">
                     </div>
                     <div class="form-group">
-                        <label for="school">School:</label>
-                        <input type="text" id="school" >
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" name="Amount" value="<?php echo $Amount;  ?>">
                     </div>
                     <div class="form-group">
-                        <label for="quantity">Quantity:</label>
-                        <input type="text" id="quantity" >
+                        <label for="balance">Balance:</label>
+                        <input type="number" id="balance" name="Balance" value="<?php echo $Balance;  ?>">
+                    </div>
+                    <div class="form-group">
+                    <label for="status">Status:</label>
+                        <select id="status" name="Status">
+                            <option value="Pending" <?php echo ($Status == 'Pending') ? 'selected' : ''; ?>>Pending</option>
+                            <option value="Approved" <?php echo ($Status == 'Approved') ? 'selected' : ''; ?>>Approved</option>
+                        </select>
+                    </div>
+
+
+                    <?php
+                    if ( !empty($successMessage)){
+                        echo"
+                        <div class='offset-sm-3 col-sm-6'>
+                            <div class='alert alert-sucess alert-dismissible fade show' role='alert'>
+                                <strong>$successMessage</strong>
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' arial-label></button>
+                            </div>
+                        </div>
+                        ";
+                    }
+                    ?>
+                    
+                    <div class="button-container">
+                            <button type="submit" class="btn btn-primary">submit</button>
                     </div>
                     <div class="button-container">
-                        <a href="../admin/walkin-1.html">
-                            <button>Next</button>
-                        </a>
+                            <a class="btn btn-outline-primary" href="../admin/upcoming.php">cancel</a>
                     </div>
                 </form>
             </div>
@@ -144,3 +264,4 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+</html>
