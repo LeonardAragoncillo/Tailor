@@ -141,12 +141,7 @@ div.profile {
     height: 35px;
 }
 
-.container-3 {
-    box-sizing: border-box;
-    /* Include padding/border in width calculation */
-    flex-grow: 1;
-    /* Allow container-3 to take the remaining space */
-}
+
 
 div.content-1 {
     display: flex;
@@ -249,4 +244,42 @@ button#button {
 
 .dropdown li a:hover {
     background-color: #f1f1f1; /* Add hover effect */
+}
+/* General Container Styling */
+.container-3 {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light grey background */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Container */
+.table-container {
+    max-height: 500px; /* Makes the table scrollable if needed */
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    margin: 0;
+}
+
+table th, table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px;
+}
+
+thead.table-dark th {
+    background-color: #343a40; /* Dark header background */
+    color: #fff;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
 }
