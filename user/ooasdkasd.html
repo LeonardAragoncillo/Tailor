@@ -3,166 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Forms with Radio Buttons</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Payment Transaction</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .payment-container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .payment-option {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment-option:hover {
+            background-color: #ddd;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: left;
+        }
+
+        .modal .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .order-summary {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .order-summary p {
+            margin: 5px 0;
+        }
+
+        .total-price {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Input Styles */
+        input[type="number"] {
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 80px;
+        }
+
+        .btn {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Select an Option</h2>
-        <div id="options">
-            <label>
-                <input type="radio" name="option" value="option1" onchange="showForm()"> Option 1
-            </label>
-            <label>
-                <input type="radio" name="option" value="option2" onchange="showForm()"> Option 2
-            </label>
-            <label>
-                <input type="radio" name="option" value="option3" onchange="showForm()"> Option 3
-            </label>
+
+    <div class="payment-container">
+        <h2>Order Payment</h2>
+
+        <!-- Order Form -->
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <p>Product Name: Uniform</p>
+            <p>Item Price: ₱100</p>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updateTotal()">
+            <p>Total Price: <span id="total-price">₱100</span></p>
         </div>
 
-        <div id="formContainer" class="form-container" style="display: none;">
-            <form id="myForm">
-                <div id="formContent"></div>
-                <button type="submit">Submit</button>
-            </form>
+        <!-- Payment Options -->
+        <h3>Select Payment Method</h3>
+        <div class="payment-options">
+            <div class="payment-option" id="gcash">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/GCash_Logo.svg" alt="GCash" width="60">
+                <p>GCash</p>
+            </div>
+            <div class="payment-option" id="paypal">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/PayPal_logo_2014.svg" alt="PayPal" width="60">
+                <p>PayPal</p>
+            </div>
+            <div class="payment-option" id="landbank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/LandBank_logo.svg" alt="LandBank ATM" width="60">
+                <p>LandBank ATM</p>
+            </div>
         </div>
     </div>
 
+    <!-- LandBank ATM Modal -->
+    <!-- LandBank ATM Modal -->
+<div id="landbank-modal" class="modal">
+    <div class="modal-content">
+        <span class="exit-btn" onclick="closeModal()">X</span>
+        <h3>LandBank ATM Payment</h3>
+        <form id="landbank-form">
+            <div class="form-group">
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" placeholder="Enter card number" required>
+            </div>
+            <div class="form-group">
+                <label for="expiry-date">Expiry Date (MM/YY):</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+            </div>
+            <div class="form-group">
+                <label for="security-code">Security Code (CVV):</label>
+                <input type="text" id="security-code" name="security-code" placeholder="Enter CVV" required>
+            </div>
+            <div class="form-group">
+                <label for="cardholder-name">Cardholder Name:</label>
+                <input type="text" id="cardholder-name" name="cardholder-name" placeholder="Enter cardholder name" required>
+            </div>
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal CSS -->
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        padding: 20px;
+        border-radius: 12px;
+        width: 80%;
+        max-width: 400px;
+        position: relative;
+    }
+
+    .exit-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        color: #aaa;
+        cursor: pointer;
+        background: none;
+        border: none;
+    }
+
+    .exit-btn:hover {
+        color: #000;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<!-- Modal JavaScript -->
+<script>
+    // Function to open the LandBank ATM modal
+    function openModal() {
+        document.getElementById("landbank-modal").style.display = "block";
+    }
+
+    // Function to close the LandBank ATM modal
+    function closeModal() {
+        document.getElementById("landbank-modal").style.display = "none";
+    }
+
+    // Close the modal when clicking outside of the modal content
+    window.onclick = function(event) {
+        if (event.target === document.getElementById("landbank-modal")) {
+            closeModal();
+        }
+    }
+</script>
+
 
     <script>
-       function showForm() {
-    const options = document.getElementsByName('option');
-    const formContainer = document.getElementById('formContainer');
-    const formContent = document.getElementById('formContent');
-
-    // Clear previous form content
-    formContent.innerHTML = '';
-
-    // Check which radio button is selected
-    let selectedOption = '';
-    for (const option of options) {
-        if (option.checked) {
-            selectedOption = option.value;
-            break;
+        // Update Total Price when quantity changes
+        function updateTotal() {
+            const quantity = document.getElementById("quantity").value;
+            const pricePerItem = 100;
+            const totalPrice = quantity * pricePerItem;
+            document.getElementById("total-price").innerText = `₱${totalPrice}`;
         }
-    }
 
-    // Show the form only if an option is selected
-    if (selectedOption) {
-        formContainer.style.display = 'block';
+        // Open LandBank ATM Modal
+        document.getElementById("landbank").onclick = function() {
+            document.getElementById("landbank-modal").style.display = "flex";
+        };
 
-        // Create different forms based on the selected option
-        if (selectedOption === 'option1') {
-            formContent.innerHTML = `
-                <label for="name1">Name:</label>
-                <input type="text" id="name1" name="name1" required>
-                <label for="email1">Email:</label>
-                <input type="email" id="email1" name="email1" required>
-            `;
-        } else if (selectedOption === 'option2') {
-            formContent.innerHTML = `
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required>
-            `;
-        } else if (selectedOption === 'option3') {
-            formContent.innerHTML = `
-                <label for="feedback">Feedback:</label>
-                <textarea id="feedback" name="feedback" required></textarea>
-                <label for="rating">Rating (1-5):</label>
-                <input type="number" id="rating" name="rating" min="1" max="5" required>
-            `;
+        // Close Modal
+        function closeModal() {
+            document.getElementById("landbank-modal").style.display = "none";
         }
-    } else {
-        formContainer.style.display = 'none';
-    }
-}
+
+        // Close modal if clicked outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("landbank-modal")) {
+                closeModal();
+            }
+        };
     </script>
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-}
 
-.container {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-}
-
-select:focus {
-    border-color: #007BFF;
-    outline: none;
-}
-
-.form-container {
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-}
-
-input[type="text"],
-input[type="email"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus {
-    border-color: #007BFF;
-    outline: none;
-}
-
-button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-    </style>
 </body>
 </html>
