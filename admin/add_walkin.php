@@ -118,7 +118,7 @@ $conn->close();
                     </li>
                     <li>
                         <img src="../img/male-icon.png" alt="" class="icon">
-                        <a href="customer.html"><span>Customer</span></a>
+                        <a href="../admin/customer.php"><span>Customer</span></a>
                     </li>
                     <li>
                         <div class="drop">
