@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin</title>
-    <link rel="stylesheet" href="../css/customer.css">
+    <link rel="stylesheet" href="../css/user.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
@@ -57,7 +57,7 @@
                     </li>
                     <li>
                         <img src="../img/male-icon.png" alt="" class="icon">
-                        <a href="../admin/customer.php"><span>Customer</span></a>
+                        <a href="../admin/customer.php"><span>User</span></a>
                     </li>
                     <li>
                         <div class="drop">
@@ -104,7 +104,7 @@
         </div>
         <div class="container-3">
         <div class="content-1">
-            <h3><strong>Customer</strong></h3>
+            <h3><strong>User</strong></h3>
         </div>
         <div class="table-container table-responsive">
             <table class="table table-bordered table-striped text-center">
@@ -117,7 +117,7 @@
                         <th>Email</th>
                         <th>Password</th>
                         <th>Contact</th>
-                        <th>Date</th>
+                        <th>Sign-up Date</th>
                     </tr>
                 </thead>
                 <tbody>

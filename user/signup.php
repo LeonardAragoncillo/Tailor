@@ -28,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("sssssi", $email, $password, $first_name, $middle_name, $last_name, $contact_number);
+        $stmt->bind_param("ssssss", $email, $password, $first_name, $middle_name, $last_name, $contact_number);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Registration Successful!'); window.location.href = 'login.html';</script>";
+            echo "<script>alert('Registration Successful!'); window.location.href = '../user/homepage.html';</script>";
         } else {
             echo "Error: " . $stmt->error;
         }
