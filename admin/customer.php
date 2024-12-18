@@ -57,7 +57,7 @@
                     </li>
                     <li>
                         <img src="../img/male-icon.png" alt="" class="icon">
-                        <a href="../admin/customer.php"><span>User</span></a>
+                        <a href="../admin/customer.php"><span>Customer</span></a>
                     </li>
                     <li>
                         <div class="drop">
