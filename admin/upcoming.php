@@ -103,9 +103,9 @@
             </div>
         </div>
         <div class="container-3">
-            <div class="intro" style="margin-left: 141px;">
+            <div class="intro" style="margin-left: 141px; display: flex; justify-content: space-between; margin-top: 15px;">
                 <h1>Upcoming Appointments</h1>
-                <a href="../admin/add.php" class="btn btn-primary" role="button">Add New Appointment</a>
+                <a href="../admin/add.php" class="btn btn-primary" role="button" style="margin-top: 15px";>Add New Appointment</a>
             </div>
             <div class="table-container">
                 <table>

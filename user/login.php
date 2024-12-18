@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user_name'] = $row['Name'];
 
             // Redirect to landing page
-            header("Location: ../user/homepage.html");
+            header("Location: ../user/homepage.php");
             exit();
         } else {
             echo "<script>alert('Invalid password!'); window.history.back();</script>";
