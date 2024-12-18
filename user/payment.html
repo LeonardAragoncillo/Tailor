@@ -28,40 +28,64 @@
                     <a href="#flowers"><span>Account</span></a>
                 </li>
                 <li>
-                    <a href="#flowers"><span>Logout</span></a>
+                    <a href="../user/login.html"><span>Logout</span></a>
                 </li>
             </ul>
         </div>
     </header>
     <div class="bgrectang">
-        <div class="form-container">
-            <h2 style="text-align: center; margin-bottom: 20px;">Payment</h2>
-            <form id="paymentForm">
-                <label for="gcashNumber">GCash Number:</label>
-                <input type="text" id="gcashNumber" name="gcashNumber" placeholder="Enter your GCash number" required>
+        <div class="payment-container">
+        <h2>Order Payment</h2>
 
-                <label for="amount">Amount:</label>
-                <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
-
-                <label for="reference">Reference Number:</label>
-                <input type="text" id="reference" name="reference" placeholder="Enter reference number" required>
-
-                <label>Payment Type:</label>
-                <div class="payment-options">
-                    <div>
-                        <input type="radio" id="fullPayment" name="paymentType" value="full" required>
-                        <label for="fullPayment">Full Payment</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="halfPayment" name="paymentType" value="half" required>
-                        <label for="halfPayment">Half/Downpayment(50%)</label>
-                    </div>
-                </div>
-
-                <div class="button">
-                    <button type="submit" style="color: white; background-color: black; margin-top: 8px;" class="btn btn-primary">Submit Payment</button>
-                </div>
-            </form>
+        <!-- Order Form -->
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <p>Product Name: Uniform</p>
+            <p>Item Price: ₱100</p>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updateTotal()">
+            <p>Total Price: <span id="total-price">₱100</span></p>
         </div>
 
+        <!-- Payment Options -->
+        <h3>Select Payment Method</h3>
+        <div class="payment-options" style="width: 450px; display: flex;">
+            <div class="payment-option" id="gcash">
+                <img src="../img/Gcash-PNG-1280x720-1-removebg-preview.png" alt="GCash" width="60" height="60">
+                <p>GCash</p>
+            </div>
+            <div class="payment-option" id="paypal">
+                <img src="../img/Paypal-Logo-removebg-preview.png" alt="PayPal" width="60">
+                <p>PayPal</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update Total Price when quantity changes
+        function updateTotal() {
+            const quantity = document.getElementById("quantity").value;
+            const pricePerItem = 100;
+            const totalPrice = quantity * pricePerItem;
+            document.getElementById("total-price").innerText = `₱${totalPrice}`;
+        }
+
+        // Open LandBank ATM Modal
+        document.getElementById("landbank").onclick = function() {
+            document.getElementById("landbank-modal").style.display = "flex";
+        };
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById("landbank-modal").style.display = "none";
+        }
+
+        // Close modal if clicked outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("landbank-modal")) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
         
