@@ -34,58 +34,57 @@
         </div>
     </header>
     <div class="bgrectang">
-        <div class="payment-container">
-        <h2>Order Payment</h2>
-
-        <!-- Order Form -->
-        <div class="order-summary">
-            <h3>Order Summary</h3>
-            <p>Product Name: Uniform</p>
-            <p>Item Price: ₱100</p>
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="updateTotal()">
-            <p>Total Price: <span id="total-price">₱100</span></p>
-        </div>
-
-        <!-- Payment Options -->
-        <h3>Select Payment Method</h3>
-        <div class="payment-options" style="width: 450px; display: flex;">
-            <div class="payment-option" id="gcash">
-                <img src="../img/Gcash-PNG-1280x720-1-removebg-preview.png" alt="GCash" width="60" height="60">
-                <p>GCash</p>
+        <div class="checkout-container">
+            <div class="header">
+                <h1>Payment</h1>
             </div>
-            <div class="payment-option" id="paypal">
-                <img src="../img/Paypal-Logo-removebg-preview.png" alt="PayPal" width="60">
-                <p>PayPal</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Update Total Price when quantity changes
-        function updateTotal() {
-            const quantity = document.getElementById("quantity").value;
-            const pricePerItem = 100;
-            const totalPrice = quantity * pricePerItem;
-            document.getElementById("total-price").innerText = `₱${totalPrice}`;
-        }
-
-        // Open LandBank ATM Modal
-        document.getElementById("landbank").onclick = function() {
-            document.getElementById("landbank-modal").style.display = "flex";
-        };
-
-        // Close Modal
-        function closeModal() {
-            document.getElementById("landbank-modal").style.display = "none";
-        }
-
-        // Close modal if clicked outside
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("landbank-modal")) {
-                closeModal();
-            }
-        };
-    </script>
-</body>
+            <div class="content">
+                <div class="note">
+                    <strong>Note:</strong> A 50% downpayment is strictly required to process your order.
+                </div>
+                <div class="product">
+                    <img src="../img/wmsu.png" alt="Product Image">
+                    <div class="product-info">
+                        <div class="product-title">Polo</div>
+                        <div class="product-price">P25.00</div>
+                    </div>
+                </div>
         
+                <div class="summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>$25.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Total</span>
+                        <span>$30.00</span>
+                    </div>
+                </div>
+        
+                <div class="payment-methods">
+                    <h3>Payment Methods</h3>
+                    <div class="payment-option">
+                        <input type="radio" id="gcash" name="payment" value="Gcash">
+                        <label for="gcash">Gcash</label>
+                    </div>
+                    <div class="payment-option">
+                        <input type="radio" id="paypal" name="payment" value="Paypal">
+                        <label for="paypal">PayPal</label>
+                    </div>
+                </div>
+        
+                <button class="btn" id="checkout-btn" style="background-color: #e60045;">Place Order</button>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('checkout-btn').addEventListener('click', () => {
+        const selectedPayment = document.querySelector('input[name="payment"]:checked');
+        if (!selectedPayment) {
+            alert('Please select a payment method.');
+        } else {
+            alert(`Your order has been placed successfully using ${selectedPayment.value}!`);
+        }
+    });
+        </script>
+</body>

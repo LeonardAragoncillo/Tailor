@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .checkout-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #ff0050;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .note {
+            background-color: #ffe4e1;
+            color: #ff0050;
+            padding: 10px;
+            border: 1px solid #ffcccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .product {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .product img {
+            max-width: 80px;
+            border-radius: 5px;
+        }
+
+        .product-info {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .product-title {
+            font-weight: bold;
+        }
+
+        .product-price {
+            color: #ff0050;
+            margin-top: 5px;
+        }
+
+        .summary {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .payment-methods {
+            margin-top: 20px;
+        }
+
+        .payment-methods h3 {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            justify-content: flex-start;
+        }
+
+        .payment-option input {
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ff0050;
+            color: #fff;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #e60045;
+        }
+    </style>
+</head>
+<body>
+
+<div class="checkout-container">
+    <div class="header">
+        <h1>Checkout</h1>
+    </div>
+    <div class="content">
+        <div class="note">
+            <strong>Note:</strong> A 50% downpayment is strictly required to process your order.
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/80" alt="Product Image">
+            <div class="product-info">
+                <div class="product-title">Product Name</div>
+                <div class="product-price">$25.00</div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>$25.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>$5.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Total</span>
+                <span>$30.00</span>
+            </div>
+        </div>
+
+        <div class="payment-methods">
+            <h3>Payment Methods</h3>
+            <div class="payment-option">
+                <input type="radio" id="gcash" name="payment" value="Gcash">
+                <label for="gcash">Gcash</label>
+            </div>
+            <div class="payment-option">
+                <input type="radio" id="paypal" name="payment" value="Paypal">
+                <label for="paypal">PayPal</label>
+            </div>
+        </div>
+
+        <button class="btn" id="checkout-btn">Place Order</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+        const selectedPayment = document.querySelector('input[name="payment"]:checked');
+        if (!selectedPayment) {
+            alert('Please select a payment method.');
+        } else {
+            alert(`Your order has been placed successfully using ${selectedPayment.value}!`);
+        }
+    });
+</script>
+
+</body>
+</html>
