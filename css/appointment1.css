@@ -597,7 +597,7 @@ div.button{
 }
 
 .header {
-    background-color: #ff0050;
+    background-color: #635d5d;
     color: #fff;
     text-align: center;
     padding: 20px;
@@ -614,7 +614,7 @@ div.button{
 
 .note {
     background-color: #ffe4e1;
-    color: #ff0050;
+    color: #635d5d;
     padding: 10px;
     border: 1px solid #ffcccc;
     border-radius: 5px;
@@ -644,7 +644,7 @@ div.button{
 }
 
 .product-price {
-    color: #ff0050;
+    color: #635d5d;
     margin-top: 5px;
 }
 
@@ -685,7 +685,7 @@ div.button{
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #ff0050;
+    background-color: #635d5d;
     color: #fff;
     border: none;
     text-align: center;
@@ -697,5 +697,5 @@ div.button{
 }
 
 .btn:hover {
-    background-color: #e60045;
+    background-color: #635d5d;
 }
