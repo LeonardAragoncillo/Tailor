@@ -1,3 +1,65 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "upcoming_appointment";
+
+// Database connection
+$connection = new mysqli($servername, $username, $password, $database);
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Collect form input
+    $appointment_date = $_POST['appointment_date'];
+    $appointment_time = $_POST['appointment_time'];
+    $status = "Pending";
+
+    // Combine date and time into a single datetime value
+    $datetime = $appointment_date . " " . $appointment_time;
+    $formatted_datetime = date('Y-m-d H:i:s', strtotime($datetime));
+
+    try {
+        // Check for duplicate entries using SELECT 1
+        $checkStmt = $connection->prepare("SELECT 1 FROM upcoming_list WHERE Date_Time = ?");
+        $checkStmt->bind_param("s", $formatted_datetime);
+        $checkStmt->execute();
+        $checkStmt->store_result();
+
+        if ($checkStmt->num_rows > 0) {
+            // Duplicate found
+            echo "<script>alert('This appointment time is already booked. Please choose another time.');</script>";
+        } else {
+            // Insert the new appointment
+            $insertStmt = $connection->prepare("INSERT INTO upcoming_list (Date_Time, Status) VALUES (?, ?)");
+            $insertStmt->bind_param("ss", $formatted_datetime, $status);
+
+            if ($insertStmt->execute()) {
+                // Redirect to prevent form resubmission
+                header("Location: ../user/payment.php");
+                exit();
+            } else {
+                throw new Exception("Failed to insert appointment: " . $insertStmt->error);
+            }
+        }
+
+        $checkStmt->close();
+    } catch (Exception $e) {
+        echo "<script>alert('Error: " . $e->getMessage() . "');</script>";
+    }
+}
+
+$connection->close();
+?>
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,39 +100,36 @@
             <div class="appointment-header">
                 <h1>Book an Appointment</h1>
             </div>
-            <div class="appointment-content">
+            <form action="" method="POST">
                 <div class="appointment-form-group">
                     <label for="appointment-date">Select Date:</label>
-                    <input type="date" id="appointment-date" class="form-control" required>
+                    <input type="date" id="appointment-date" name="appointment_date" class="form-control" required>
                 </div>
                 <div class="appointment-form-group">
                     <label for="appointment-time">Select Time:</label>
-                    <input type="time" id="appointment-time" class="form-control" required>
+                    <input type="time" id="appointment-time" name="appointment_time" class="form-control" required>
                 </div>
-                <div class="appointment-summary">
-                    <div class="appointment-summary-row">
-                        <span>Selected Date and Time</span>
-                        <span id="selected-datetime">Not selected</span>
-                    </div>
-                </div>
-                <button class="btn" id="book-btn" style="background-color: #635d5d;">Book Appointment</button>
-            </div>
+                <button type="submit" class="btn" style="background-color: #635d5d;">Book Appointment</button>
+            </form>
         </div>
 
-        <script>
-           document.getElementById('book-btn').addEventListener('click', () => {
-                const appointmentDate = document.getElementById('appointment-date').value;
-                const appointmentTime = document.getElementById('appointment-time').value;
-
-                if (!appointmentDate || !appointmentTime) {
-                    alert('Please select both date and time for your appointment.');
-                } else {
-                    // Redirect to payment page with date and time as query parameters
-                    window.location.href = `payment.html?date=${encodeURIComponent(appointmentDate)}&time=${encodeURIComponent(appointmentTime)}`;
-                }
-            });
-        </script>
+        
     </div>
+    <script>
+    document.querySelector('form').addEventListener('submit', function (event) {
+    const submitButton = this.querySelector('button[type="submit"]');
+
+    // Disable the submit button to prevent multiple submissions
+    if (submitButton.disabled) {
+        event.preventDefault(); // Prevent additional form submission
+        return false;
+    }
+
+    submitButton.disabled = true; // Disable the button after the first click
+});
+
+
+    </script>
 
     <style>
                 .appointment-wrapper {
