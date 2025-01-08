@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Combine date and time into a single datetime value
     $datetime = $appointment_date . " " . $appointment_time;
     $formatted_datetime = date('Y-m-d H:i:s', strtotime($datetime));
-
+    echo "Formatted DateTime: " . $formatted_datetime;
     try {
         // Check for duplicate entries using SELECT 1
         $checkStmt = $connection->prepare("SELECT 1 FROM upcoming_list WHERE Date_Time = ?");

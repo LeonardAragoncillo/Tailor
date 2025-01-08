@@ -19,12 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $customer_contact = $_POST['customer_contact'];
     $customer_address = $_POST['customer_address'];
     $customer_gender = $_POST['customer_gender'];
-    $appointment_date = date('Y-m-d H:i:s');
+    // $appointment_date = date('Y-m-d H:i:s');
 
     // Use prepared statements
-    $stmt = $connection->prepare("INSERT INTO upcoming_list (Name, Age, Contact, Address, Description, Date_Time, Status) 
-                                  VALUES (?, ?, ?, ?, 'N/A', ?, 'Pending')");
-    $stmt->bind_param("sisss", $customer_name, $customer_age, $customer_contact, $customer_address, $appointment_date);
+    $stmt = $connection->prepare("INSERT INTO upcoming_list (Name, Age, Contact, Address, Description, Status) 
+                                  VALUES (?, ?, ?, ?, 'N/A', 'Pending')");
+    $stmt->bind_param("siss", $customer_name, $customer_age, $customer_contact, $customer_address);//, $appointment_date);
 
     if ($stmt->execute()) {
         header("Location: ../user/bookdateandtime.php"); // Update this path based on actual location
