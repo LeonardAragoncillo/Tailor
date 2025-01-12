@@ -50,33 +50,38 @@ $conn->close();
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Login Form</title>
-    <link rel="stylesheet" type="text/css" href="../css/login.css" media="all" />
-</head>
 
-<body>
-    <div>
-        <p class="brand">MMRC Tailoring</p>
-    </div>
-    <div class="form">
-        <form action="../user/login.php" method="POST">
-            <h2 style="text-align: center; padding-bottom: 30px;">Welcome Back!</h2>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Email" required />
+    <head>
+        <title>Login Form</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/login.css" media="all" />
+    </head>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Password" required />
+    <body>
+        <div>
+            <p class="brand">MMRC Tailoring</p>
+        </div>
+        <div class="login-container">
+            <div class="form">
+                <h1 style="text-align: center; padding-bottom: 10px;">Login</h1>
+                <form action="../user/login.php" method="POST">
+                    <!--<label for="email">Email:</label>-->
+                    <input type="email" id="email" name="email" placeholder="Email" required />
 
-            <button type="submit" class="btn btn-primary">Login</button>
+                    <!--<label for="password">Password:</label>-->
+                    <input type="password" id="password" name="password" placeholder="Password" required />
 
-            <p>Don't have an account? 
-                <a style="font-weight: bold; padding-left: 3px;" href="../user/signup.php">Sign Up</a>
-            </p>
-        </form>
-    </div>
+                    <button type="submit" class="btn login-btn">Login</button>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+                    <p>Don't have an account?
+                        <a class="text-decoration-none" style="font-weight: bold; padding-left: 3px;"
+                            href="../user/signup.php">Sign Up</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
 </html>

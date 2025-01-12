@@ -1,31 +1,39 @@
-body{
-	background-image: url(../img/landing-bg.webp);
+body {
+	background-image: url(../img/red-velvet-bg.jpg);
 	margin: 0%;
 	width: auto;
-	background-size: cover; /* This will cover the entire area */
-    background-position: center; /* This centers the image */
-    background-repeat: no-repeat; 
-}
-.brand{
-    padding-top: 28px;
-    padding-left: 39px;
-    font-size: 32px;
-    margin: 0%;
-    font-weight: 700;
-	color: white;
+	background-size: cover;
+	/* This will cover the entire area */
+	background-position: center;
+	/* This centers the image */
+	background-repeat: no-repeat;
 }
 
-.form{
-	width: 551px;
-    height: 874px;
-    background: white;
-    margin: 58px auto;
-    padding: 20px;
-    border-radius: 8px;
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-	
+.brand {
+	/*padding-top: 21px;*/
+	padding-left: 54px;
+	height: 10vh;
+	font-size: 32px;
+	margin: 0%;
+	font-weight: 700;
+	color: white;
+	display: flex;
+	align-items: center;
+	font-weight: 600;
 }
-.form input{
+
+.form {
+	width: 500px;
+	min-height: 200px;
+	background: white;
+	margin: 58px auto;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+}
+
+.form input {
 	display: block;
 	width: 80%;
 	font-size: 18px;
@@ -34,9 +42,15 @@ body{
 	background: transparent;
 	color: #000000;
 	align-items: center;
-	
+
 }
-.form label{
+
+input:focus {
+	outline: none;
+	border: none;
+}
+
+.form label {
 	color: rgb(0, 0, 0);
 	cursor: pointer;
 	padding: 5px 0px;
@@ -45,62 +59,90 @@ body{
 	font-family: tahoma;
 	padding-left: 105px;
 }
-.form input[type=submit]{
+
+.form input[type=submit] {
 	width: 200px;
-	margin-top:10px;
+	margin-top: 10px;
 	cursor: pointer;
 }
-.form p{
+
+.form p {
 	color: black;
 	font-size: 17px;
 	font-family: tahoma;
 	display: flex;
-    justify-content: center;
-	padding-top: 10px;
-}
-.form p a{
-	color: black;
-	
+	justify-content: center;
+	padding-top: 0px;
 }
 
-input#email{
-	width: 343px;
-	height: 36px;
-	margin-left: 105px;
-	margin-bottom: 22px;
-	
+.form p a {
+	color: black;
+
 }
-input#password{
-	width: 343px;
-	height: 36px;
-	margin-left: 105px;
-    margin-bottom: 22px;
-}
-input#submit{
+
+
+
+input#submit {
 	width: 354px;
-    height: 38px;
-    margin-left: 105px;
-    background-color: rgb(0, 0, 0);
+	height: 38px;
+	background-color: rgb(0, 0, 0);
 	border-radius: 5px;
 	margin-top: 29px;
 	color: white;
 }
-input#ConfirmPassword, #firstname, #Middlename, #Lastname, #Contactnumber{
-	width: 343px;
-	height: 36px;
-	margin-left: 105px;
-    margin-bottom: 22px;
+
+#firstname,
+#Middlename,
+#Lastname,
+#Contactnumber,
+input#email,
+input#password,
+input#ConfirmPassword {
+	width: 100%;
+	height: 40px;
+	border: none;
+	background: #f2f2f2;
+	border-radius: 5px;
+	padding: 10px 20px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	font-size: 0.8rem;
 }
-input#submit, a#submit {
-    width: 344px;
-    height: 38px;
-    margin-left: 105px;
-    background-color: rgb(0, 0, 0);
-    border-radius: 5px;
-    margin-top: 29px;
-    color: white;
-    text-align: center; /* Center the text */
-    display: inline-block; /* Make it behave like a button */
-    line-height: 38px; /* Vertically center the text */
-    text-decoration: none; /* Remove underline */
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: space-evenly;
+	gap: 20px;
+}
+
+input#submit,
+a#submit {
+	width: 344px;
+	height: 38px;
+	background-color: rgb(0, 0, 0);
+	border-radius: 5px;
+	margin-top: 29px;
+	color: white;
+	text-align: center;
+	/* Center the text */
+	display: inline-block;
+	/* Make it behave like a button */
+	line-height: 38px;
+	/* Vertically center the text */
+	text-decoration: none;
+	/* Remove underline */
+}
+
+.sign-up-btn {
+	min-height: 45px;
+	border: none;
+	border-radius: 10px;
+	background: linear-gradient(to left, #550000, #9c0000, #9c0000, #550000);
+	color: #fff;
+	font-size: large;
+	font-weight: 600;
+	transition: all 0.5s;
 }
