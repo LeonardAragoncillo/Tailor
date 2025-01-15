@@ -41,7 +41,7 @@
                                     style="color: #000000; padding-right: 20px;">Account</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="landingPage.html"
+                                <a class="nav-link" href="landingPage.php"
                                     style="color: #000000; padding-right: 20px;">Logout</a>
                             </li>
                             <style>
@@ -77,7 +77,7 @@
                             Read More
                         </button>
                         <button type="button" class="btn btn-primary" id="button" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop"> <a href="../user/appointment.html"
+                            data-bs-target="#staticBackdrop"> <a href="../user/appointment.php"
                                 style="text-decoration: none; color: #000000;">
                                 Make an Appointment</a>
 

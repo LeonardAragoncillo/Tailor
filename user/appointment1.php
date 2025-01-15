@@ -16,10 +16,10 @@
             <h2>MMRC Tailoring</h2>
             <ul class="menu">
                 <li>
-                    <a href="../user/homepage.html"><span>Home</span></a>
+                    <a href="../user/homepage.php"><span>Home</span></a>
                 </li>
                 <li>
-                    <a href="../user/appointment.html"><span>Appointment</span></a>
+                    <a href="../user/appointment.php"><span>Appointment</span></a>
                 </li>
                 <li>
                     <a href="../user/myorders.html"><span>My Orders</span></a>
@@ -28,7 +28,7 @@
                     <a href="#flowers"><span>Account</span></a>
                 </li>
                 <li>
-                    <a href="../user/login.html"><span>Logout</span></a>
+                    <a href="../user/login.php"><span>Logout</span></a>
                 </li>
             </ul>
         </div>
