@@ -1,3 +1,54 @@
+<?php
+// Database connection
+$servername = "localhost";
+$username = "root"; // your database username
+$password = ""; // your database password
+$dbname = "upcoming_appointment"; // Use your actual database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// If the form is submitted, capture the data and insert it into the database
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Use the null coalescing operator to prevent undefined array keys
+    $school = $_POST['school'] ?? '';
+    $uniformType = $_POST['uniformType'] ?? '';
+    $top = $_POST['top'] ?? '';
+    $bottom = $_POST['bottom'] ?? '';
+    $set = $_POST['set'] ?? '';
+    $quantity = $_POST['quantity'] ?? 0; // assuming quantity is numeric
+    $size = $_POST['size'] ?? '';
+    $threads = $_POST['threads'] ?? 0; // assuming threads is numeric
+    $zipper = $_POST['zipper'] ?? 0; // assuming zipper is numeric
+    $buttons = $_POST['buttons'] ?? 0; // assuming buttons is numeric
+    $tela = $_POST['tela'] ?? 0; // assuming tela is numeric
+    $schoolSeal = $_POST['schoolSeal'] ?? 0; // assuming schoolSeal is numeric
+    $hookAndEye = $_POST['hookAndEye'] ?? 0; // assuming hookAndEye is numeric
+
+    // Insert data into the database
+    // Use 's' for string and 'i' for integers in bind_param
+    $stmt = $conn->prepare("INSERT INTO appointments (school, uniform_type, top, bottom, set_type, quantity, size, threads, zipper, buttons, tela, school_seal, hook_and_eye) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssisiiiiii", $school, $uniformType, $top, $bottom, $set, $quantity, $size, $threads, $zipper, $buttons, $tela, $schoolSeal, $hookAndEye);
+
+    if ($stmt->execute()) {
+        echo "Appointment submitted successfully!";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,6 +122,7 @@
         <div class="inside">
             <h2>MMRC Tailoring</h2>
             <ul class="menu">
+<<<<<<< Updated upstream
                 <li>
                     <a href="../user/homepage.php"><span>Home</span></a>
                 </li>
@@ -86,6 +138,13 @@
                 <li>
                     <a href="../user/login.php"><span>Logout</span></a>
                 </li>
+=======
+                <li><a href="../user/homepage.php"><span>Home</span></a></li>
+                <li><a href="../user/appointment.php"><span>Appointment</span></a></li>
+                <li><a href="../user/myorders.html"><span>My Orders</span></a></li>
+                <li><a href="#flowers"><span>Account</span></a></li>
+                <li><a href="../user/login.php"><span>Logout</span></a></li>
+>>>>>>> Stashed changes
             </ul>
         </div>
     </header>
@@ -93,7 +152,7 @@
     <div class="bgrectang">
         <div class="container">
             <h1>Schedule Your Appointment</h1>
-            <form id="uploadForm">
+            <form id="uploadForm" method="POST" action="appointment1.php">
                 <div class="form-container">
                     <div class="title" style="text-align: center; margin-bottom: 20px;">
                         <h2>Uniform Type</h2>
@@ -101,7 +160,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="school">Choose School:</label>
-                            <select id="school" class="form-select">
+                            <select id="school" name="school" class="form-select" required>
                                 <option value="">Select a school</option>
                                 <option value="WMSU">WMSU</option>
                                 <option value="ZPPSU">ZPPSU</option>
@@ -110,7 +169,7 @@
                         </div>
                         <div class="form-group">
                             <label for="uniformType">Choose Uniform Type:</label>
-                            <select id="uniformType" class="form-select" onchange="redirectToPage()">
+                            <select id="uniformType" name="uniformType" class="form-select" required>
                                 <option value="">Select Option</option>
                                 <option value="customized">Customized</option>
                                 <option value="readyMade">Ready-made</option>
@@ -121,7 +180,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="top">Choose Top:</label>
-                            <select id="top" class="form-select">
+                            <select id="top" name="top" class="form-select" required>
                                 <option value="">Select an option</option>
                                 <option value="polo">Polo</option>
                                 <option value="blouse">Blouse</option>
@@ -132,7 +191,7 @@
 
                         <div class="form-group form-group-right">
                             <label for="bottom">Choose Bottom:</label>
-                            <select id="bottom" class="form-select">
+                            <select id="bottom" name="bottom" class="form-select" required>
                                 <option value="">Select an option</option>
                                 <option value="short">Short</option>
                                 <option value="pants">Pants</option>
@@ -144,7 +203,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="set">Choose Set:</label>
-                            <select id="set" class="form-select">
+                            <select id="set" name="set" class="form-select" required>
                                 <option value="">Select an option</option>
                                 <option value="set-1">Set of Uniform</option>
                                 <option value="set-2">Set of Uniform with Vest</option>
@@ -153,14 +212,14 @@
                         </div>
                         <div class="form-group form-group-right">
                             <label for="quantity">Quantity:</label>
-                            <input type="number" id="quantity" name="quantity" class="form-control" placeholder="Enter quantity" min="1">
+                            <input type="number" id="quantity" name="quantity" class="form-control" placeholder="Enter quantity" min="1" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label for="size">Choose Size:</label>
-                            <select id="size" class="form-select">
+                            <select id="size" name="size" class="form-select" required>
                                 <option value="">Select a size</option>
                                 <option value="small">Small</option>
                                 <option value="medium">Medium</option>
@@ -238,7 +297,11 @@
                     </div>
 
                     <div class="button">
+<<<<<<< Updated upstream
                         <button type="submit" onclick="window.location.href='../user/customerinfo.php'" style="color: white; background-color: black; margin-top: 8px;" class="btn btn-primary">Done</button>
+=======
+                        <button type="submit" class="btn btn-primary" style="color: white; background-color: black; margin-top: 8px;">Done</button>
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </form>
@@ -276,14 +339,15 @@
     </div>
 
     <script>
-        function redirectToPage() {
-            const uniformType = document.getElementById('uniformType').value;
+        document.getElementById('uniformType').addEventListener('change', function() {
+            const uniformType = this.value;
+            // Add your logic here based on selected uniformType
             if (uniformType === 'customized') {
-                window.location.href = '../user/appointment.php';
+                console.log('Customized uniform selected');
             } else if (uniformType === 'readyMade') {
-                window.location.href = '../user/appointment1.php';
+                console.log('Ready-made uniform selected');
             }
-        }
+        });
     </script>
 </body>
 
