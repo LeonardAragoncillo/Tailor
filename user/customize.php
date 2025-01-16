@@ -71,10 +71,6 @@
         <div class="inside">
             <h2>MMRC Tailoring</h2>
             <ul class="menu">
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
                 <li>
                     <a href="../user/homepage.php"><span>Home</span></a>
                 </li>
@@ -90,10 +86,6 @@
                 <li>
                     <a href="../user/login.php"><span>Log out</span></a>
                 </li>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
             </ul>
         </div>
     </header>
@@ -544,9 +536,9 @@
         function redirectToPage() {
             const uniformType = document.getElementById('uniformType').value;
             if (uniformType === 'customized') {
-                window.location.href = '../user/appointment.php'; // Change URL as needed
+                window.location.href = '../user/customize.php'; // Change URL as needed
             } else if (uniformType === 'readyMade') {
-                window.location.href = '../user/appointment1.php'; // Change URL as needed
+                window.location.href = '../user/readymade.php'; // Change URL as needed
             }
         }
     </script>

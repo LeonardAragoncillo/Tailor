@@ -1,11 +1,10 @@
 <?php
 // Database connection
 $servername = "localhost";
-$username = "root"; // your database username
-$password = ""; // your database password
-$dbname = "upcoming_appointment"; // Use your actual database name
+$username = "root";
+$password = "";
+$dbname = "upcoming_appointment";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
@@ -13,41 +12,43 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// If the form is submitted, capture the data and insert it into the database
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Use the null coalescing operator to prevent undefined array keys
     $school = $_POST['school'] ?? '';
     $uniformType = $_POST['uniformType'] ?? '';
     $top = $_POST['top'] ?? '';
     $bottom = $_POST['bottom'] ?? '';
-    $set = $_POST['set'] ?? '';
-    $quantity = $_POST['quantity'] ?? 0; // assuming quantity is numeric
+    $set_type = $_POST['set_type'] ?? '';
+    $quantity = is_numeric($_POST['quantity'] ?? 0) ? $_POST['quantity'] : 0;
     $size = $_POST['size'] ?? '';
-    $threads = $_POST['threads'] ?? 0; // assuming threads is numeric
-    $zipper = $_POST['zipper'] ?? 0; // assuming zipper is numeric
-    $buttons = $_POST['buttons'] ?? 0; // assuming buttons is numeric
-    $tela = $_POST['tela'] ?? 0; // assuming tela is numeric
-    $schoolSeal = $_POST['schoolSeal'] ?? 0; // assuming schoolSeal is numeric
-    $hookAndEye = $_POST['hookAndEye'] ?? 0; // assuming hookAndEye is numeric
+    $threads = is_numeric($_POST['threads'] ?? 0) ? $_POST['threads'] : 0;
+    $zipper = is_numeric($_POST['zipper'] ?? 0) ? $_POST['zipper'] : 0;
+    $buttons = is_numeric($_POST['buttons'] ?? 0) ? $_POST['buttons'] : 0;
+    $tela = is_numeric($_POST['tela'] ?? 0) ? $_POST['tela'] : 0;
+    $school_seal = is_numeric($_POST['school_seal'] ?? 0) ? $_POST['school_seal'] : 0;
+    $hook_and_eye = is_numeric($_POST['hook_and_eye'] ?? 0) ? $_POST['hook_and_eye'] : 0;
 
-    // Insert data into the database
-    // Use 's' for string and 'i' for integers in bind_param
+    // Debugging logs removed from UI
+    // echo '<pre>';
+    // print_r($_POST); // Debugging: Outputs form data
+    // echo '</pre>';
+
     $stmt = $conn->prepare("INSERT INTO appointments (school, uniform_type, top, bottom, set_type, quantity, size, threads, zipper, buttons, tela, school_seal, hook_and_eye) 
                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssisiiiiii", $school, $uniformType, $top, $bottom, $set, $quantity, $size, $threads, $zipper, $buttons, $tela, $schoolSeal, $hookAndEye);
+    $stmt->bind_param("sssssisiiiiii", $school, $uniformType, $top, $bottom, $set_type, $quantity, $size, $threads, $zipper, $buttons, $tela, $school_seal, $hook_and_eye);
 
     if ($stmt->execute()) {
-        echo "Appointment submitted successfully!";
+        // Success message logged but not displayed on UI
+        error_log("Appointment submitted successfully!");
+        header('Location: ../user/customerinfo.php');
     } else {
-        echo "Error: " . $stmt->error;
+        // SQL Error logged but not displayed on UI
+        error_log("SQL Error: " . $stmt->error);
     }
 
-    // Close the statement and connection
     $stmt->close();
     $conn->close();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -145,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="bgrectang">
         <div class="container">
             <h1>Schedule Your Appointment</h1>
-            <form id="uploadForm" method="POST" action="appointment1.php">
+            <form id="uploadForm" method="POST" action="readymade.php">
                 <div class="form-container">
                     <div class="title" style="text-align: center; margin-bottom: 20px;">
                         <h2>Uniform Type</h2>
@@ -196,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-row">
                         <div class="form-group">
                             <label for="set">Choose Set:</label>
-                            <select id="set" name="set" class="form-select" required>
+                            <select id="set" name="set_type" class="form-select" required>
                                 <option value="">Select an option</option>
                                 <option value="set-1">Set of Uniform</option>
                                 <option value="set-2">Set of Uniform with Vest</option>
@@ -227,34 +228,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="file" id="measurementPicture" name="measurementPicture" accept="image/*" class="form-control">
                     </div>
 
-                    <h6 class="mb-3">Guide on how to measure yourself:</h6>
-                    <div class="image-container">
-                        <img src="../img/Polo-Shirt-Measurement-Guide-with-Size-Chart-1.webp" alt="Polo Shirt Measurement Guide" onclick="openModal(this.src)">
-                        <img src="../img/pants.png" alt="Pants Measurement Guide" onclick="openModal(this.src)">
-                    </div>
-
                     <div id="myModal" class="modal">
                         <span class="close" onclick="closeModal()">&times;</span>
                         <img class="modal-content" id="modalImage">
                     </div>
-
-                    <script>
-                        function openModal(src) {
-                            document.getElementById("modalImage").src = src;
-                            document.getElementById("myModal").style.display = "block";
-                        }
-
-                        function closeModal() {
-                            document.getElementById("myModal").style.display = "none";
-                        }
-
-                        window.onclick = function(event) {
-                            const modal = document.getElementById("myModal");
-                            if (event.target == modal) {
-                                closeModal();
-                            }
-                        }
-                    </script>
 
                     <div class="form-row">
                         <div class="form-group">
@@ -281,11 +258,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-row">
                         <div class="form-group">
                             <label for="schoolSeal">School Seal (₱50 per piece):</label>
-                            <input type="number" id="schoolSeal" name="schoolSeal" class="form-control" placeholder="Enter quantity" min="0">
+                            <input type="number" id="schoolSeal" name="school_seal" class="form-control" placeholder="Enter quantity" min="0">
                         </div>
                         <div class="form-group form-group-right">
                             <label for="hookAndEye">Hook and Eye (₱25 per pack):</label>
-                            <input type="number" id="hookAndEye" name="hookAndEye" class="form-control" placeholder="Enter quantity" min="0">
+                            <input type="number" id="hookAndEye" name="hook_and_eye" class="form-control" placeholder="Enter quantity" min="0">
                         </div>
                     </div>
 
@@ -332,11 +309,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script>
         document.getElementById('uniformType').addEventListener('change', function() {
             const uniformType = this.value;
-            // Add your logic here based on selected uniformType
             if (uniformType === 'customized') {
-                console.log('Customized uniform selected');
-            } else if (uniformType === 'readyMade') {
-                console.log('Ready-made uniform selected');
+                window.location.href = 'customize.php';
             }
         });
     </script>
