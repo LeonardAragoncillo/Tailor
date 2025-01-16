@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="inside">
             <h2>MMRC Tailoring</h2>
             <ul class="menu">
-<<<<<<< Updated upstream
+
                 <li>
                     <a href="../user/homepage.php"><span>Home</span></a>
                 </li>
@@ -138,13 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <li>
                     <a href="../user/login.php"><span>Logout</span></a>
                 </li>
-=======
-                <li><a href="../user/homepage.php"><span>Home</span></a></li>
-                <li><a href="../user/appointment.php"><span>Appointment</span></a></li>
-                <li><a href="../user/myorders.html"><span>My Orders</span></a></li>
-                <li><a href="#flowers"><span>Account</span></a></li>
-                <li><a href="../user/login.php"><span>Logout</span></a></li>
->>>>>>> Stashed changes
             </ul>
         </div>
     </header>
@@ -297,11 +290,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
 
                     <div class="button">
-<<<<<<< Updated upstream
+
                         <button type="submit" onclick="window.location.href='../user/customerinfo.php'" style="color: white; background-color: black; margin-top: 8px;" class="btn btn-primary">Done</button>
-=======
-                        <button type="submit" class="btn btn-primary" style="color: white; background-color: black; margin-top: 8px;">Done</button>
->>>>>>> Stashed changes
+               
                     </div>
                 </div>
             </form>
