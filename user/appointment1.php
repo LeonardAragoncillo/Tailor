@@ -71,7 +71,6 @@
         <div class="inside">
             <h2>MMRC Tailoring</h2>
             <ul class="menu">
-<<<<<<< Updated upstream
                 <li>
                     <a href="../user/homepage.php"><span>Home</span></a>
                 </li>
@@ -87,13 +86,6 @@
                 <li>
                     <a href="../user/login.php"><span>Logout</span></a>
                 </li>
-=======
-                <li><a href="../user/homepage.html"><span>Home</span></a></li>
-                <li><a href="../user/appointment.html"><span>Appointment</span></a></li>
-                <li><a href="../user/myorders.html"><span>My Orders</span></a></li>
-                <li><a href="#flowers"><span>Account</span></a></li>
-                <li><a href="../user/login.html"><span>Logout</span></a></li>
->>>>>>> Stashed changes
             </ul>
         </div>
     </header>
