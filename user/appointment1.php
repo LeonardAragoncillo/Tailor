@@ -246,7 +246,7 @@
                     </div>
 
                     <div class="button">
-                        <button type="submit" onclick="window.location.href='../user/customerinfo.html'" style="color: white; background-color: black; margin-top: 8px;" class="btn btn-primary">Done</button>
+                        <button type="submit" onclick="window.location.href='../user/customerinfo.php'" style="color: white; background-color: black; margin-top: 8px;" class="btn btn-primary">Done</button>
                     </div>
                 </div>
             </form>

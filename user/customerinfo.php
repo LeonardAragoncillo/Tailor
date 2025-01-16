@@ -71,7 +71,7 @@ $connection->close();
             </ul>
         </div>
     </header>
-
+    <div class="bgrectang">
     <div class="form">
         <form action="" method="POST">
             <label for="Name">Full Name:</label>
@@ -102,7 +102,7 @@ $connection->close();
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-
+    </div>
     <script>
         function selectGender(gender) {
             document.getElementById('gender-button').textContent = gender;
