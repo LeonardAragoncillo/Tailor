@@ -1,9 +1,9 @@
 <?php
 // Database connection
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "upcoming_appointment";
+$username = "root"; // Your MySQL username
+$password = ""; // Your MySQL password
+$dbname = "upcoming_appointment"; // Your MySQL database name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -13,6 +13,7 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Capture form data from POST request
     $school = $_POST['school'] ?? '';
     $uniformType = $_POST['uniformType'] ?? '';
     $top = $_POST['top'] ?? '';
@@ -27,28 +28,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $school_seal = is_numeric($_POST['school_seal'] ?? 0) ? $_POST['school_seal'] : 0;
     $hook_and_eye = is_numeric($_POST['hook_and_eye'] ?? 0) ? $_POST['hook_and_eye'] : 0;
 
-    // Debugging logs removed from UI
-    // echo '<pre>';
-    // print_r($_POST); // Debugging: Outputs form data
-    // echo '</pre>';
-
+    // Insert data into the database
     $stmt = $conn->prepare("INSERT INTO appointments (school, uniform_type, top, bottom, set_type, quantity, size, threads, zipper, buttons, tela, school_seal, hook_and_eye) 
                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssisiiiiii", $school, $uniformType, $top, $bottom, $set_type, $quantity, $size, $threads, $zipper, $buttons, $tela, $school_seal, $hook_and_eye);
 
     if ($stmt->execute()) {
-        // Success message logged but not displayed on UI
-        error_log("Appointment submitted successfully!");
-        header('Location: ../user/customerinfo.php');
+        echo "<script>alert('Appointment submitted successfully!'); window.location.href = '../user/customerinfo.php';</script>";
     } else {
-        // SQL Error logged but not displayed on UI
-        error_log("SQL Error: " . $stmt->error);
+        echo "<script>alert('Error: " . $stmt->error . "');</script>";
     }
 
     $stmt->close();
     $conn->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -307,8 +302,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script>
-        document.getElementById('uniformType').addEventListener('change', function() {
+        document.getElementById('uniformType').addEventListener('change', function () {
             const uniformType = this.value;
+            // Redirect to the appropriate page based on uniform type selection
             if (uniformType === 'customized') {
                 window.location.href = 'customize.php';
             }

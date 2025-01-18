@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // $appointment_date = date('Y-m-d H:i:s');
 
     // Use prepared statements
-    $stmt = $connection->prepare("INSERT INTO upcoming_list (Name, Age, Contact, Address, Description, Status) 
+    $stmt = $connection->prepare("INSERT INTO appointments (Name, Age, Contact, Address, Description, Status) 
                                   VALUES (?, ?, ?, ?, 'N/A', 'Pending')");
     $stmt->bind_param("siss", $customer_name, $customer_age, $customer_contact, $customer_address);//, $appointment_date);
 
