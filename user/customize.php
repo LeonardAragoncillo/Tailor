@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="bgrectang">
         <div class="container">
             <h1>Schedule Your Appointment</h1>
-            <form id="uploadForm">
+            <form id="uploadForm" method="POST" action="customize.php">
                 <div class="form-container">
                     <div class="title" style="text-align: center; margin-bottom: 20px;">
                         <h2>Uniform Type</h2>
