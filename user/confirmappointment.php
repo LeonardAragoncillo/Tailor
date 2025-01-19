@@ -90,9 +90,6 @@
             <h1 class="mb-3">Appointment Pending</h1>
             <p>Your appointment has been successfully booked. It is now waiting for confirmation.</p>
             <p><strong>Date:</strong> <span id="confirmed-date">Loading...</span></p>
-            <p><strong>Time:</strong> <span id="confirmed-time">Loading...</span></p>
-            <p><strong>Payment Method:</strong> <span id="payment-method">Loading...</span></p>
-            <p id="payment-details" style="display: none;">Thank you for choosing <span id="payment-type"></span>.</p>
             <a href="../user/homepage.php" class="btn">Go Back to Home</a>
         </div>
     

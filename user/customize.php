@@ -234,13 +234,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="form-group">
                         <label for="uniformType">Choose Uniform Type:</label>
-                        <select id="uniformType" name="uniformType" class="form-select" required>
+                        <select id="uniformType" name="uniformType" class="form-select" onchange="redirectToPage()" required>
                             <option value="">Select Option</option>
                             <option value="customized">Customized</option>
                             <option value="readyMade">Ready-made</option>
                         </select>
                     </div>
-                </div>
+                    </div>
                     
                     <div class="form-row">
                         <div class="form-group">
@@ -649,15 +649,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script>
-        function redirectToPage() {
-            const uniformType = document.getElementById('uniformType').value;
-            if (uniformType === 'customized') {
-                window.location.href = '../user/customize.php'; // Change URL as needed
-            } else if (uniformType === 'readyMade') {
-                window.location.href = '../user/readymade.php'; // Change URL as needed
-            }
+    function redirectToPage() {
+        const uniformType = document.getElementById('uniformType').value;
+        if (uniformType === 'readyMade') {
+            window.location.href = '../user/readymade.php'; // Redirect to the ready-made page
         }
-    </script>
+    }
+</script>
 </body>
 
 </html>

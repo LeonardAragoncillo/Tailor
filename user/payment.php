@@ -92,7 +92,7 @@
                     const paymentMethod = selectedPayment.value;
 
                     // Redirect to confirmation.html with query parameters
-                    window.location.href = `confirmation.html?date=${encodeURIComponent(appointmentDate)}&time=${encodeURIComponent(appointmentTime)}&payment=${encodeURIComponent(paymentMethod)}`;
+                    window.location.href = `confirmation.php?date=${encodeURIComponent(appointmentDate)}&time=${encodeURIComponent(appointmentTime)}&payment=${encodeURIComponent(paymentMethod)}`;
                 }
             });
         </script>

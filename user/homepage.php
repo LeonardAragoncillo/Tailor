@@ -73,13 +73,14 @@
 
                     <div class="container">
                         <button type="button" class="btn btn-primary" id="button" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
-                            Read More
-                        </button>
-                        <button type="button" class="btn btn-primary" id="button" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop"> <a href="../user/appointment.php"
+                            data-bs-target="#staticBackdrop"><a href="../user/appointment2.php"
                                 style="text-decoration: none; color: #000000;">
                                 Make an Appointment</a>
+                        </button>
+                        <button type="button" class="btn btn-primary" id="button" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop"> <a href="../user/customize.php"
+                                style="text-decoration: none; color: #000000;">
+                                Order Now</a>
 
                         </button>
                     </div>

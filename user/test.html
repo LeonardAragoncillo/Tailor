@@ -3,187 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikTok Checkout</title>
+    <title>Appointment Calendar</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
+            margin: 20px;
         }
-
-        .checkout-container {
-            max-width: 600px;
-            margin: 50px auto;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .calendar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .calendar-header button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+        }
+        .calendar-header button:hover {
+            background-color: #0056b3;
+        }
+        .calendar-header h2 {
+            margin: 0 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+        .calendar-table {
+            border-collapse: collapse;
+            width: 90%;
+            max-width: 800px;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
             overflow: hidden;
         }
-
-        .header {
-            background-color: #ff0050;
-            color: #fff;
+        .calendar-table th, .calendar-table td {
+            border: 1px solid #ccc;
             text-align: center;
-            padding: 20px;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        .note {
-            background-color: #ffe4e1;
-            color: #ff0050;
-            padding: 10px;
-            border: 1px solid #ffcccc;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .product {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .product img {
-            max-width: 80px;
-            border-radius: 5px;
-        }
-
-        .product-info {
-            flex: 1;
-            margin-left: 15px;
-        }
-
-        .product-title {
-            font-weight: bold;
-        }
-
-        .product-price {
-            color: #ff0050;
-            margin-top: 5px;
-        }
-
-        .summary {
-            margin-top: 20px;
-            border-top: 1px solid #ddd;
-            padding-top: 15px;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .payment-methods {
-            margin-top: 20px;
-        }
-
-        .payment-methods h3 {
-            margin-bottom: 10px;
-            text-align: left;
-        }
-
-        .payment-option {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            justify-content: flex-start;
-        }
-
-        .payment-option input {
-            margin-right: 10px;
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #ff0050;
-            color: #fff;
-            border: none;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 5px;
-            margin-top: 20px;
+            padding: 15px;
             cursor: pointer;
         }
-
-        .btn:hover {
-            background-color: #e60045;
+        .calendar-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        .calendar-table td:hover {
+            background-color: #e0f7fa;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
         }
     </style>
 </head>
 <body>
+    <h1>Appointment Calendar</h1>
 
-<div class="checkout-container">
-    <div class="header">
-        <h1>Checkout</h1>
+    <div class="calendar">
+        <div class="calendar-header">
+            <button id="prev-month">&#8592; Previous</button>
+            <h2 id="current-month"></h2>
+            <button id="next-month">Next &#8594;</button>
+        </div>
+        <div id="calendar-container"></div>
     </div>
-    <div class="content">
-        <div class="note">
-            <strong>Note:</strong> A 50% downpayment is strictly required to process your order.
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/80" alt="Product Image">
-            <div class="product-info">
-                <div class="product-title">Product Name</div>
-                <div class="product-price">$25.00</div>
-            </div>
-        </div>
 
-        <div class="summary">
-            <div class="summary-row">
-                <span>Subtotal</span>
-                <span>$25.00</span>
-            </div>
-            <div class="summary-row">
-                <span>Shipping</span>
-                <span>$5.00</span>
-            </div>
-            <div class="summary-row">
-                <span>Total</span>
-                <span>$30.00</span>
-            </div>
-        </div>
+    <div id="message" class="message"></div>
 
-        <div class="payment-methods">
-            <h3>Payment Methods</h3>
-            <div class="payment-option">
-                <input type="radio" id="gcash" name="payment" value="Gcash">
-                <label for="gcash">Gcash</label>
-            </div>
-            <div class="payment-option">
-                <input type="radio" id="paypal" name="payment" value="Paypal">
-                <label for="paypal">PayPal</label>
-            </div>
-        </div>
+    <script>
+        // Object to store appointments per date
+        const appointments = {};
+        const MAX_APPOINTMENTS_PER_DAY = 5;
 
-        <button class="btn" id="checkout-btn">Place Order</button>
-    </div>
-</div>
+        const calendarContainer = document.getElementById('calendar-container');
+        const messageDiv = document.getElementById('message');
+        const currentMonthLabel = document.getElementById('current-month');
+        const prevMonthButton = document.getElementById('prev-month');
+        const nextMonthButton = document.getElementById('next-month');
 
-<script>
-    document.getElementById('checkout-btn').addEventListener('click', () => {
-        const selectedPayment = document.querySelector('input[name="payment"]:checked');
-        if (!selectedPayment) {
-            alert('Please select a payment method.');
-        } else {
-            alert(`Your order has been placed successfully using ${selectedPayment.value}!`);
+        let currentYear = new Date().getFullYear();
+        let currentMonth = new Date().getMonth();
+
+        function generateCalendar(year, month) {
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            const monthNames = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+            currentMonthLabel.textContent = `${monthNames[month]} ${year}`;
+
+            let calendarHTML = '<table class="calendar-table">';
+            calendarHTML += '<thead><tr>';
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            days.forEach(day => {
+                calendarHTML += `<th>${day}</th>`;
+            });
+            calendarHTML += '</tr></thead><tbody><tr>';
+
+            // Fill in blank days at the start of the month
+            for (let i = 0; i < firstDay; i++) {
+                calendarHTML += '<td></td>';
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+                const currentAppointments = appointments[dateKey] || 0;
+                const isFull = currentAppointments >= MAX_APPOINTMENTS_PER_DAY;
+
+                calendarHTML += `<td data-date="${dateKey}" class="${isFull ? 'full' : ''}">
+                    ${day} <br>
+                    <small>${currentAppointments}/${MAX_APPOINTMENTS_PER_DAY}</small>
+                </td>`;
+
+                if ((firstDay + day) % 7 === 0) {
+                    calendarHTML += '</tr><tr>';
+                }
+            }
+
+            calendarHTML += '</tr></tbody></table>';
+            calendarContainer.innerHTML = calendarHTML;
+
+            document.querySelectorAll('.calendar-table td[data-date]').forEach(cell => {
+                cell.addEventListener('click', handleDateClick);
+            });
         }
-    });
-</script>
 
+        function handleDateClick(event) {
+            const selectedDate = event.target.getAttribute('data-date');
+
+            // Clear previous message
+            messageDiv.textContent = '';
+            messageDiv.className = 'message';
+
+            const currentAppointments = appointments[selectedDate] || 0;
+
+            if (currentAppointments < MAX_APPOINTMENTS_PER_DAY) {
+                appointments[selectedDate] = currentAppointments + 1;
+                messageDiv.textContent = `Appointment confirmed for ${selectedDate}. (${appointments[selectedDate]} of ${MAX_APPOINTMENTS_PER_DAY} slots booked)`;
+                messageDiv.classList.add('success');
+            } else {
+                messageDiv.textContent = `No appointments available for ${selectedDate}. Please choose another date.`;
+                messageDiv.classList.add('error');
+            }
+
+            // Refresh the calendar
+            generateCalendar(currentYear, currentMonth);
+        }
+
+        prevMonthButton.addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentYear, currentMonth);
+        });
+
+        nextMonthButton.addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentYear, currentMonth);
+        });
+
+        // Initialize calendar
+        generateCalendar(currentYear, currentMonth);
+    </script>
 </body>
 </html>

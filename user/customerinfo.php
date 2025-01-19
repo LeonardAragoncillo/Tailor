@@ -19,15 +19,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $customer_contact = $_POST['customer_contact'];
     $customer_address = $_POST['customer_address'];
     $customer_gender = $_POST['customer_gender'];
-    // $appointment_date = date('Y-m-d H:i:s');
 
-    // Use prepared statements
-    $stmt = $connection->prepare("INSERT INTO appointments (Name, Age, Contact, Address, Description, Status) 
+    // Prepare the SQL statement
+    $stmt = $connection->prepare("INSERT INTO customerinfo (Name, Age, Contact, Address, Description, Status) 
                                   VALUES (?, ?, ?, ?, 'N/A', 'Pending')");
-    $stmt->bind_param("siss", $customer_name, $customer_age, $customer_contact, $customer_address);//, $appointment_date);
+    if (!$stmt) {
+        die("SQL error: " . $connection->error);
+    }
 
+    // Bind parameters
+    $stmt->bind_param("siss", $customer_name, $customer_age, $customer_contact, $customer_address);
+
+    // Execute the statement
     if ($stmt->execute()) {
-        header("Location: ../user/bookdateandtime.php"); // Update this path based on actual location
+        header("Location: ../user/payment.php"); // Redirect after success
         exit();
     } else {
         echo "Error: " . $stmt->error;
@@ -37,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $connection->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
