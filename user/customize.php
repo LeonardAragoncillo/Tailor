@@ -1,123 +1,126 @@
 <?php
-// Database connection
-$servername = "localhost";
-$username = "root"; // Your database username
-$password = ""; // Your database password
-$dbname = "upcoming_appointment"; // Your database name
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Database connection
+    $host = 'localhost';
+    $username = 'root';
+    $password = ''; // Replace with your database password
+    $database = 'upcoming_appointment';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($host, $username, $password, $database);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    // Check connection
+    if ($conn->connect_error) {
+        die('Connection failed: ' . $conn->connect_error);
+    }
 
-// If the form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Basic form details
-    $school = $_POST['school'] ?? '';
-    $uniformType = $_POST['uniformType'] ?? '';
-    $top = $_POST['top'] ?? '';
-    $bottom = $_POST['bottom'] ?? '';
-    $set_type = $_POST['set_type'] ?? '';
-    $quantity = is_numeric($_POST['quantity'] ?? 0) ? $_POST['quantity'] : 0;
-    $size = $_POST['size'] ?? '';
-    $threads = is_numeric($_POST['threads'] ?? 0) ? $_POST['threads'] : 0;
-    $zipper = is_numeric($_POST['zipper'] ?? 0) ? $_POST['zipper'] : 0;
-    $buttons = is_numeric($_POST['buttons'] ?? 0) ? $_POST['buttons'] : 0;
-    $tela = is_numeric($_POST['tela'] ?? 0) ? $_POST['tela'] : 0;
-    $school_seal = is_numeric($_POST['school_seal'] ?? 0) ? $_POST['school_seal'] : 0;
-    $hook_and_eye = is_numeric($_POST['hook_and_eye'] ?? 0) ? $_POST['hook_and_eye'] : 0;
+    // Get form data
+    $orderType = $_POST['order_type'] ?? null; 
+    $school = $_POST['school'] ?? null;
+    $uniformType = $_POST['uniformType'] ?? null;
+    $top = $_POST['top'] ?? null;
+    $bottom = $_POST['bottom'] ?? null;
+    $setType = $_POST['set_type'] ?? null;
+    $quantity = $_POST['quantity'] ?? null;
+    $size = $_POST['size'] ?? null;
+    $threads = $_POST['threads'] ?? null;
+    $zipper = $_POST['zipper'] ?? null;
+    $buttons = $_POST['buttons'] ?? null;
+    $tela = $_POST['tela'] ?? null;
+    $schoolSeal = $_POST['school_seal'] ?? null;
+    $hookAndEye = $_POST['hook_and_eye'] ?? null;
 
-    // Dynamic inputs for measurements based on selected options
-    // Polo Measurements
-    $chest = $_POST['chest'] ?? 0;
-    $polo_length = $_POST['polo_length'] ?? 0;
-    $hips = $_POST['hips'] ?? 0;
-    $shoulder_m = $_POST['shoulder_m'] ?? 0;
-    $sleeve_length = $_POST['sleeve_length'] ?? 0;
-    $armhole = $_POST['armhole'] ?? 0;
-    $lower_arm_girth = $_POST['lower_arm_girth'] ?? 0;
-
-    // Blouse Measurements
-    $bust = $_POST['bust'] ?? 0;
-    $blouse_length = $_POST['blouse_length'] ?? 0;
-    $waist = $_POST['waist'] ?? 0;
-    $figure = $_POST['figure'] ?? 0;
-    $shoulder = $_POST['shoulder'] ?? 0;
-    $sleeve_length_blouse = $_POST['sleeve_length_blouse'] ?? 0;
-
-    // Vest Measurements
-    $armhole_vest = $_POST['armhole_vest'] ?? 0;
-    $full_length = $_POST['full_length'] ?? 0;
-    $shoulder_width = $_POST['shoulder_width'] ?? 0;
-    $neck_circumference = $_POST['neck_circumference'] ?? 0;
-
-    // Blazer Measurements
-    $chest_blazer = $_POST['chest_blazer'] ?? 0;
-    $shoulder_width_blazer = $_POST['shoulder_width_blazer'] ?? 0;
-    $blazer_length = $_POST['blazer_length'] ?? 0;
-    $sleeve_length_blazer = $_POST['sleeve_length_blazer'] ?? 0;
-    $waist_blazer = $_POST['waist_blazer'] ?? 0;
-    $hips_blazer = $_POST['hips_blazer'] ?? 0;
-    $armhole_blazer = $_POST['armhole_blazer'] ?? 0;
-    $wrist = $_POST['wrist'] ?? 0;
-    $back_width = $_POST['back_width'] ?? 0;
-    $lower_arm_girth_blazer = $_POST['lower_arm_girth_blazer'] ?? 0;
-
-    // Short Measurements
-    $waist_short = $_POST['waist_short'] ?? 0;
-    $hip_short = $_POST['hip_short'] ?? 0;
-    $short_length = $_POST['short_length'] ?? 0;
-    $thigh_circumference = $_POST['thigh_circumference'] ?? 0;
-    $inseam_length = $_POST['inseam_length'] ?? 0;
-    $leg_opening = $_POST['leg_opening'] ?? 0;
-    $rise = $_POST['rise'] ?? 0;
-
-    // Pants Measurements
-    $pants_length = $_POST['pants_length'] ?? 0;
-    $waist_pants = $_POST['waist_pants'] ?? 0;
-    $hip_pants = $_POST['hip_pants'] ?? 0;
-    $crotch = $_POST['crotch'] ?? 0;
-    $knee_height = $_POST['knee_height'] ?? 0;
-    $knee_circumference = $_POST['knee_circumference'] ?? 0;
-    $bottom_circumference = $_POST['bottom_circumference'] ?? 0;
-
-    // Skirt Measurements
-    $skirt_length = $_POST['skirt_length'] ?? 0;
-    $waist_skirt = $_POST['waist_skirt'] ?? 0;
-    $hips_skirt = $_POST['hips_skirt'] ?? 0;
-    $hip_depth = $_POST['hip_depth'] ?? 0;
+    // Measurements
+    $chest = $_POST['chest'] ?? null;
+    $poloLength = $_POST['polo_length'] ?? null;
+    $hips = $_POST['hips'] ?? null;
+    $shoulderM = $_POST['shoulder_m'] ?? null;
+    $sleeveLength = $_POST['sleeve_length'] ?? null;
+    $armhole = $_POST['armhole'] ?? null;
+    $lowerArmGirth = $_POST['lower_arm_girth'] ?? null;
+    $bust = $_POST['bust'] ?? null;
+    $blouseLength = $_POST['blouse_length'] ?? null;
+    $waist = $_POST['waist'] ?? null;
+    $figure = $_POST['figure'] ?? null;
+    $shoulder = $_POST['shoulder'] ?? null;
+    $sleeveLengthBlouse = $_POST['sleeve_length_blouse'] ?? null;
+    $armholeBlouse = $_POST['armhole_blouse'] ?? null;
+    $lowerArmGirthBlouse = $_POST['lower_arm_girth_blouse'] ?? null;
+    $armholeVest = $_POST['armhole_vest'] ?? null;
+    $fullLength = $_POST['full_length'] ?? null;
+    $shoulderWidth = $_POST['shoulder_width'] ?? null;
+    $neckCircumference = $_POST['neck_circumference'] ?? null;
+    $chestBlazer = $_POST['chest_blazer'] ?? null;
+    $shoulderWidthBlazer = $_POST['shoulder_width_blazer'] ?? null;
+    $blazerLength = $_POST['blazer_length'] ?? null;
+    $sleeveLengthBlazer = $_POST['sleeve_length_blazer'] ?? null;
+    $waistBlazer = $_POST['waist_blazer'] ?? null;
+    $hipsBlazer = $_POST['hips_blazer'] ?? null;
+    $armholeBlazer = $_POST['armhole_blazer'] ?? null;
+    $wrist = $_POST['wrist'] ?? null;
+    $backWidth = $_POST['back_width'] ?? null;
+    $lowerArmGirthBlazer = $_POST['lower_arm_girth_blazer'] ?? null;
+    $waistShort = $_POST['waist_short'] ?? null;
+    $hipShort = $_POST['hip_short'] ?? null;
+    $shortLength = $_POST['short_length'] ?? null;
+    $thighCircumference = $_POST['thigh_circumference'] ?? null;
+    $inseamLength = $_POST['inseam_length'] ?? null;
+    $legOpening = $_POST['leg_opening'] ?? null;
+    $rise = $_POST['rise'] ?? null;
+    $pantsLength = $_POST['pants_length'] ?? null;
+    $waistPants = $_POST['waist_pants'] ?? null;
+    $hipPants = $_POST['hip_pants'] ?? null;
+    $crotch = $_POST['crotch'] ?? null;
+    $kneeHeight = $_POST['knee_height'] ?? null;
+    $kneeCircumference = $_POST['knee_circumference'] ?? null;
+    $bottomCircumference = $_POST['bottom_circumference'] ?? null;
+    $skirtLength = $_POST['skirt_length'] ?? null;
+    $waistSkirt = $_POST['waist_skirt'] ?? null;
+    $hipsSkirt = $_POST['hips_skirt'] ?? null;
+    $hipDepth = $_POST['hip_depth'] ?? null;
 
     // Insert data into the database
-    $stmt = $conn->prepare("INSERT INTO appointments (school, uniform_type, top, bottom, set_type, quantity, size, threads, zipper, buttons, tela, school_seal, hook_and_eye, 
-                            chest, polo_length, hips, shoulder_m, sleeve_length, armhole, lower_arm_girth, bust, blouse_length, waist, figure, shoulder, sleeve_length_blouse, 
-                            armhole_vest, full_length, shoulder_width, neck_circumference, chest_blazer, shoulder_width_blazer, blazer_length, sleeve_length_blazer, waist_blazer, 
-                            hips_blazer, armhole_blazer, wrist, back_width, lower_arm_girth_blazer, waist_short, hip_short, short_length, thigh_circumference, inseam_length, 
-                            leg_opening, rise, pants_length, waist_pants, hip_pants, crotch, knee_height, knee_circumference, bottom_circumference, skirt_length, waist_skirt, 
-                            hips_skirt, hip_depth) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $sql = "INSERT INTO appointments (
+        order_type, school, uniform_type, top, bottom, set_type, quantity, size, threads, zipper, buttons, tela, school_seal,
+        hook_and_eye, chest, polo_length, hips, shoulder_m, sleeve_length, armhole, lower_arm_girth, bust, blouse_length,
+        waist, figure, shoulder, sleeve_length_blouse, armhole_blouse, lower_arm_girth_blouse, armhole_vest, full_length,
+        shoulder_width, neck_circumference, chest_blazer, shoulder_width_blazer, blazer_length, sleeve_length_blazer,
+        waist_blazer, hips_blazer, armhole_blazer, wrist, back_width, lower_arm_girth_blazer, waist_short, hip_short,
+        short_length, thigh_circumference, inseam_length, leg_opening, rise, pants_length, waist_pants, hip_pants, crotch,
+        knee_height, knee_circumference, bottom_circumference, skirt_length, waist_skirt, hips_skirt, hip_depth
+    ) VALUES (
+        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+    )";
 
-    $stmt->bind_param("sssssisiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii", $school, $uniformType, $top, $bottom, $set_type, $quantity, $size, $threads, 
-                      $zipper, $buttons, $tela, $school_seal, $hook_and_eye, $chest, $polo_length, $hips, $shoulder_m, $sleeve_length, $armhole, $lower_arm_girth, 
-                      $bust, $blouse_length, $waist, $figure, $shoulder, $sleeve_length_blouse, $armhole_vest, $full_length, $shoulder_width, $neck_circumference, 
-                      $chest_blazer, $shoulder_width_blazer, $blazer_length, $sleeve_length_blazer, $waist_blazer, $hips_blazer, $armhole_blazer, $wrist, $back_width, 
-                      $lower_arm_girth_blazer, $waist_short, $hip_short, $short_length, $thigh_circumference, $inseam_length, $leg_opening, $rise, $pants_length, 
-                      $waist_pants, $hip_pants, $crotch, $knee_height, $knee_circumference, $bottom_circumference, $skirt_length, $waist_skirt, $hips_skirt, $hip_depth);
+    $stmt = $conn->prepare($sql);
 
-                      if ($stmt->execute()) {
-                        echo "<script>alert('Appointment submitted successfully!'); window.location.href = '../user/customerinfo.php';</script>";
-                    } else {
-                        // Output detailed error message
-                        echo "<script>alert('Error: " . $stmt->error . "');</script>";
-                        // Alternatively, use PHP's error_log() for better debugging
-                        error_log("SQL Error: " . $stmt->error);
-                    }
+    $stmt->bind_param(
+        'sssssidddddddddddddddddddddddddddddddddddddddddddddddd',
+        $orderType, $school, $uniformType, $top, $bottom, $setType, $quantity, $size, $threads, $zipper, $buttons, $tela,
+        $schoolSeal, $hookAndEye, $chest, $poloLength, $hips, $shoulderM, $sleeveLength, $armhole, $lowerArmGirth, $bust,
+        $blouseLength, $waist, $figure, $shoulder, $sleeveLengthBlouse, $armholeBlouse, $lowerArmGirthBlouse, $armholeVest,
+        $fullLength, $shoulderWidth, $neckCircumference, $chestBlazer, $shoulderWidthBlazer, $blazerLength, $sleeveLengthBlazer,
+        $waistBlazer, $hipsBlazer, $armholeBlazer, $wrist, $backWidth, $lowerArmGirthBlazer, $waistShort, $hipShort,
+        $shortLength, $thighCircumference, $inseamLength, $legOpening, $rise, $pantsLength, $waistPants, $hipPants, $crotch,
+        $kneeHeight, $kneeCircumference, $bottomCircumference, $skirtLength, $waistSkirt, $hipsSkirt, $hipDepth
+    );
 
+    if ($stmt->execute()) {
+        echo 'Data saved successfully!';
+    } else {
+        echo 'Error: ' . $stmt->error;
+    }
+
+    // Close connections
     $stmt->close();
     $conn->close();
 }
 ?>
+
+
+
+
+
+
 
 
 
