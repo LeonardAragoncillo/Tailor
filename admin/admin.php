@@ -72,6 +72,10 @@
 
                     </li>
                     <li>
+                        <img src="../img/male-icon.png" alt="" class="icon">
+                        <a href="../admin/orders.php"><span>Orders</span></a>
+                    </li>
+                    <li>
                         <img src="../img/sand-clock-half-icon.png" alt="" class="icon">
                         <a href=""><span>Calendar</span></a>
                     </li>

@@ -1,47 +1,67 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "upcoming_appointment";
-
-// Connect to the database
-$connection = new mysqli($servername, $username, $password, $database);
-
-// Check for successful connection
-if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Collect form data
-    $customer_name = $_POST['customer_name'];
-    $customer_age = $_POST['customer_age'];
-    $customer_contact = $_POST['customer_contact'];
-    $customer_address = $_POST['customer_address'];
-    $customer_gender = $_POST['customer_gender'];
+    // Database connection
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "upcoming_appointment";
+    $connection = new mysqli($servername, $username, $password, $database);
 
-    // Prepare the SQL statement
-    $stmt = $connection->prepare("INSERT INTO customerinfo (Name, Age, Contact, Address, Description, Status) 
-                                  VALUES (?, ?, ?, ?, 'N/A', 'Pending')");
-    if (!$stmt) {
-        die("SQL error: " . $connection->error);
+    // Check for successful connection
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
     }
 
-    // Bind parameters
-    $stmt->bind_param("siss", $customer_name, $customer_age, $customer_contact, $customer_address);
+    // Retrieve appointment ID from query parameter
+    $appointment_id = $_GET['appointment_id'] ?? 0;
 
-    // Execute the statement
+    // Validate appointment ID
+    if ($appointment_id <= 0) {
+        echo "<script>alert('Invalid appointment ID.'); window.history.back();</script>";
+        exit();
+    }
+
+    // Capture form data
+    $customer_name = $_POST['customer_name'] ?? '';
+    $customer_age = $_POST['customer_age'] ?? 0;
+    $customer_contact = $_POST['customer_contact'] ?? '';
+    $customer_address = $_POST['customer_address'] ?? '';
+    $customer_gender = $_POST['customer_gender'] ?? '';
+
+    // Validate required fields
+    if (empty($customer_name) || $customer_age <= 0 || empty($customer_contact) || empty($customer_address) || empty($customer_gender)) {
+        echo "<script>alert('Please fill out all required fields.'); window.history.back();</script>";
+        exit();
+    }
+
+    // Update the existing row in the database
+    $stmt = $connection->prepare("
+        UPDATE appointments 
+        SET customer_name = ?, customer_age = ?, customer_contact = ?, customer_address = ?, customer_gender = ? 
+        WHERE id = ?
+    ");
+    $stmt->bind_param(
+        "sisssi",
+        $customer_name,
+        $customer_age,
+        $customer_contact,
+        $customer_address,
+        $customer_gender,
+        $appointment_id
+    );
+
     if ($stmt->execute()) {
-        header("Location: ../user/payment.php"); // Redirect after success
+        header("Location: payment.php"); // Redirect to payment page
         exit();
     } else {
         echo "Error: " . $stmt->error;
     }
-    $stmt->close();
-}
 
-$connection->close();
+    $stmt->close();
+    $connection->close();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +118,7 @@ $connection->close();
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Select Gender
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" id="gender-dropdown">
                     <li><button class="dropdown-item" type="button" onclick="selectGender('Male')">Male</button></li>
                     <li><button class="dropdown-item" type="button" onclick="selectGender('Female')">Female</button></li>
                 </ul>
@@ -115,5 +135,6 @@ $connection->close();
             document.getElementById('gender').value = gender;
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,48 +1,80 @@
 <?php
-// Database connection
-$servername = "localhost";
-$username = "root"; // Your MySQL username
-$password = ""; // Your MySQL password
-$dbname = "upcoming_appointment"; // Your MySQL database name
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Capture form data from POST request
+    // Database connection
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "upcoming_appointment";
+    $connection = new mysqli($servername, $username, $password, $database);
+
+    // Check for successful connection
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
+
+    // Capture form data
     $school = $_POST['school'] ?? '';
-    $uniformType = $_POST['uniformType'] ?? '';
+    $uniform_type = $_POST['uniform_type'] ?? '';
     $top = $_POST['top'] ?? '';
     $bottom = $_POST['bottom'] ?? '';
     $set_type = $_POST['set_type'] ?? '';
-    $quantity = is_numeric($_POST['quantity'] ?? 0) ? $_POST['quantity'] : 0;
+    $quantity = $_POST['quantity'] ?? 0;
     $size = $_POST['size'] ?? '';
-    $threads = is_numeric($_POST['threads'] ?? 0) ? $_POST['threads'] : 0;
-    $zipper = is_numeric($_POST['zipper'] ?? 0) ? $_POST['zipper'] : 0;
-    $buttons = is_numeric($_POST['buttons'] ?? 0) ? $_POST['buttons'] : 0;
-    $tela = is_numeric($_POST['tela'] ?? 0) ? $_POST['tela'] : 0;
-    $school_seal = is_numeric($_POST['school_seal'] ?? 0) ? $_POST['school_seal'] : 0;
-    $hook_and_eye = is_numeric($_POST['hook_and_eye'] ?? 0) ? $_POST['hook_and_eye'] : 0;
+
+    // Optional fields
+    $threads = $_POST['threads'] ?? null;
+    $zipper = $_POST['zipper'] ?? null;
+    $buttons = $_POST['buttons'] ?? null;
+    $tela = $_POST['tela'] ?? null;
+    $school_seal = $_POST['school_seal'] ?? null;
+    $hook_and_eye = $_POST['hook_and_eye'] ?? null;
+    $measurementPicture = null;
+
+    // Optional file upload
+    if (!empty($_FILES['measurementPicture']['name'])) {
+        $target_dir = "../uploads/";
+        $measurementPicture = $target_dir . basename($_FILES["measurementPicture"]["name"]);
+        move_uploaded_file($_FILES["measurementPicture"]["tmp_name"], $measurementPicture);
+    }
 
     // Insert data into the database
-    $stmt = $conn->prepare("INSERT INTO appointments (school, uniform_type, top, bottom, set_type, quantity, size, threads, zipper, buttons, tela, school_seal, hook_and_eye) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssisiiiiii", $school, $uniformType, $top, $bottom, $set_type, $quantity, $size, $threads, $zipper, $buttons, $tela, $school_seal, $hook_and_eye);
+    $stmt = $connection->prepare("
+        INSERT INTO appointments (school, uniform_type, top, bottom, set_type, quantity, size, threads, zipper, buttons, tela, school_seal, hook_and_eye, measurement_picture) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ");
+    $stmt->bind_param(
+        "sssssisiiiiiis",
+        $school,
+        $uniform_type,
+        $top,
+        $bottom,
+        $set_type,
+        $quantity,
+        $size,
+        $threads,
+        $zipper,
+        $buttons,
+        $tela,
+        $school_seal,
+        $hook_and_eye,
+        $measurementPicture
+    );
 
     if ($stmt->execute()) {
-        echo "<script>alert('Appointment submitted successfully!'); window.location.href = '../user/customerinfo.php';</script>";
+        $appointment_id = $stmt->insert_id; // Get the ID of the inserted row
+        header("Location: customerinfo.php?appointment_id=" . $appointment_id); // Redirect with appointment ID
+        exit();
     } else {
-        echo "<script>alert('Error: " . $stmt->error . "');</script>";
+        echo "Error: " . $stmt->error;
     }
 
     $stmt->close();
-    $conn->close();
+    $connection->close();
 }
 ?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -219,9 +251,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
 
                     <div class="mb-4">
-                        <label for="measurementPicture" class="form-label">or</label>
+                        <label for="measurementPicture" class="form-label">Upload Measurement Picture (Optional):</label>
                         <input type="file" id="measurementPicture" name="measurementPicture" accept="image/*" class="form-control">
                     </div>
+
 
                     <div id="myModal" class="modal">
                         <span class="close" onclick="closeModal()">&times;</span>
@@ -229,37 +262,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="threads">Threads (₱40 per piece):</label>
-                            <input type="number" id="threads" name="threads" class="form-control" placeholder="Enter quantity" min="0">
-                        </div>
-                        <div class="form-group form-group-right">
-                            <label for="zipper">Zipper (₱8 per piece):</label>
-                            <input type="number" id="zipper" name="zipper" class="form-control" placeholder="Enter quantity" min="0">
-                        </div>
-                    </div>
+            <div class="form-group">
+                <label for="threads">Threads (₱40 per piece):</label>
+                <input type="number" id="threads" name="threads" class="form-control" placeholder="Enter quantity (optional)" min="0">
+            </div>
+            <div class="form-group form-group-right">
+                <label for="zipper">Zipper (₱8 per piece):</label>
+                <input type="number" id="zipper" name="zipper" class="form-control" placeholder="Enter quantity (optional)" min="0">
+            </div>
+            </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="buttons">Buttons (₱8 per pack):</label>
-                            <input type="number" id="buttons" name="buttons" class="form-control" placeholder="Enter quantity" min="0">
-                        </div>
-                        <div class="form-group form-group-right">
-                            <label for="tela">Tela (₱79 per meter):</label>
-                            <input type="number" id="tela" name="tela" class="form-control" placeholder="Enter quantity" min="0">
-                        </div>
-                    </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="buttons">Buttons (₱8 per pack):</label>
+                    <input type="number" id="buttons" name="buttons" class="form-control" placeholder="Enter quantity (optional)" min="0">
+                </div>
+                <div class="form-group form-group-right">
+                    <label for="tela">Tela (₱79 per meter):</label>
+                    <input type="number" id="tela" name="tela" class="form-control" placeholder="Enter quantity (optional)" min="0">
+                </div>
+            </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="schoolSeal">School Seal (₱50 per piece):</label>
-                            <input type="number" id="schoolSeal" name="school_seal" class="form-control" placeholder="Enter quantity" min="0">
-                        </div>
-                        <div class="form-group form-group-right">
-                            <label for="hookAndEye">Hook and Eye (₱25 per pack):</label>
-                            <input type="number" id="hookAndEye" name="hook_and_eye" class="form-control" placeholder="Enter quantity" min="0">
-                        </div>
-                    </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="schoolSeal">School Seal (₱50 per piece):</label>
+                    <input type="number" id="schoolSeal" name="school_seal" class="form-control" placeholder="Enter quantity (optional)" min="0">
+                </div>
+                <div class="form-group form-group-right">
+                    <label for="hookAndEye">Hook and Eye (₱25 per pack):</label>
+                    <input type="number" id="hookAndEye" name="hook_and_eye" class="form-control" placeholder="Enter quantity (optional)" min="0">
+                </div>
+            </div>
+
 
                     <div class="button">
 

@@ -43,8 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $figure = $_POST['figure'] ?? null;
     $shoulder = $_POST['shoulder'] ?? null;
     $sleeveLengthBlouse = $_POST['sleeve_length_blouse'] ?? null;
-    $armholeBlouse = $_POST['armhole_blouse'] ?? null;
-    $lowerArmGirthBlouse = $_POST['lower_arm_girth_blouse'] ?? null;
     $armholeVest = $_POST['armhole_vest'] ?? null;
     $fullLength = $_POST['full_length'] ?? null;
     $shoulderWidth = $_POST['shoulder_width'] ?? null;
@@ -80,28 +78,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insert data into the database
     $sql = "INSERT INTO appointments (
-        order_type, school, uniform_type, top, bottom, set_type, quantity, size, threads, zipper, buttons, tela, school_seal,
+        school, uniform_type, top, bottom, set_type, quantity, size, threads, zipper, buttons, tela, school_seal,
         hook_and_eye, chest, polo_length, hips, shoulder_m, sleeve_length, armhole, lower_arm_girth, bust, blouse_length,
-        waist, figure, shoulder, sleeve_length_blouse, armhole_blouse, lower_arm_girth_blouse, armhole_vest, full_length,
-        shoulder_width, neck_circumference, chest_blazer, shoulder_width_blazer, blazer_length, sleeve_length_blazer,
-        waist_blazer, hips_blazer, armhole_blazer, wrist, back_width, lower_arm_girth_blazer, waist_short, hip_short,
-        short_length, thigh_circumference, inseam_length, leg_opening, rise, pants_length, waist_pants, hip_pants, crotch,
-        knee_height, knee_circumference, bottom_circumference, skirt_length, waist_skirt, hips_skirt, hip_depth
+        waist, figure, shoulder, sleeve_length_blouse, armhole_vest, full_length, shoulder_width, neck_circumference, 
+        chest_blazer, shoulder_width_blazer, blazer_length, sleeve_length_blazer, waist_blazer, hips_blazer, armhole_blazer, 
+        wrist, back_width, lower_arm_girth_blazer, waist_short, hip_short, short_length, thigh_circumference, inseam_length, 
+        leg_opening, rise, pants_length, waist_pants, hip_pants, crotch, knee_height, knee_circumference, bottom_circumference, 
+        skirt_length, waist_skirt, hips_skirt, hip_depth, order_type
     ) VALUES (
-        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
     )";
 
     $stmt = $conn->prepare($sql);
 
     $stmt->bind_param(
-        'sssssidddddddddddddddddddddddddddddddddddddddddddddddd',
-        $orderType, $school, $uniformType, $top, $bottom, $setType, $quantity, $size, $threads, $zipper, $buttons, $tela,
+        'sssssiddddddddddddddddddddddddddddddddddddddddddddds',
+        $school, $uniformType, $top, $bottom, $setType, $quantity, $size, $threads, $zipper, $buttons, $tela,
         $schoolSeal, $hookAndEye, $chest, $poloLength, $hips, $shoulderM, $sleeveLength, $armhole, $lowerArmGirth, $bust,
-        $blouseLength, $waist, $figure, $shoulder, $sleeveLengthBlouse, $armholeBlouse, $lowerArmGirthBlouse, $armholeVest,
-        $fullLength, $shoulderWidth, $neckCircumference, $chestBlazer, $shoulderWidthBlazer, $blazerLength, $sleeveLengthBlazer,
-        $waistBlazer, $hipsBlazer, $armholeBlazer, $wrist, $backWidth, $lowerArmGirthBlazer, $waistShort, $hipShort,
-        $shortLength, $thighCircumference, $inseamLength, $legOpening, $rise, $pantsLength, $waistPants, $hipPants, $crotch,
-        $kneeHeight, $kneeCircumference, $bottomCircumference, $skirtLength, $waistSkirt, $hipsSkirt, $hipDepth
+        $blouseLength, $waist, $figure, $shoulder, $sleeveLengthBlouse, $armholeVest, $fullLength, $shoulderWidth, $neckCircumference, 
+        $chestBlazer, $shoulderWidthBlazer, $blazerLength, $sleeveLengthBlazer, $waistBlazer, $hipsBlazer, $armholeBlazer, 
+        $wrist, $backWidth, $lowerArmGirthBlazer, $waistShort, $hipShort, $shortLength, $thighCircumference, $inseamLength, 
+        $legOpening, $rise, $pantsLength, $waistPants, $hipPants, $crotch, $kneeHeight, $kneeCircumference, $bottomCircumference, 
+        $skirtLength, $waistSkirt, $hipsSkirt, $hipDepth, $orderType
     );
 
     if ($stmt->execute()) {
@@ -115,10 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 }
 ?>
-
-
-
-
 
 
 
