@@ -28,7 +28,7 @@
                                     style="color: #000000; padding-right: 20px;">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../user/appointment.php"
+                                <a class="nav-link" href="../user/customize.php"
                                     style="color: #000000; padding-right: 20px;">Appointment</a>
                             </li>
                             <li class="nav-item">
